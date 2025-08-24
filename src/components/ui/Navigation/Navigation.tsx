@@ -1,70 +1,72 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon, Code2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Sun, Moon, Code2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navigationItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Experience', href: '/experience' },
-  { name: 'Contact', href: '/contact' },
-]
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Experience", href: "/experience" },
+  { name: "Contact", href: "/contact" },
+];
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+      setIsScrolled(window.scrollY > 50);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     // Check for saved theme preference or default to dark mode
-    const savedTheme = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      setIsDarkMode(true)
-      document.documentElement.classList.add('dark')
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
     }
-  }, [])
+  }, []);
 
   const toggleTheme = () => {
-    const newTheme = !isDarkMode
-    setIsDarkMode(newTheme)
-    
-    if (newTheme) {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  }
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
 
-  const closeMenu = () => setIsOpen(false)
+    if (newTheme) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? 'bg-white/90 dark:bg-dark-950/90 backdrop-blur-md border-b border-dark-200/20 dark:border-dark-800/20 shadow-sm'
-          : 'bg-transparent'
+          ? "bg-white/90 dark:bg-dark-950/90 backdrop-blur-md border-b border-dark-200/20 dark:border-dark-800/20 shadow-sm"
+          : "bg-transparent"
       )}
     >
       <nav className="container-responsive">
@@ -102,10 +104,10 @@ export function Navigation() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'relative px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-dark-100 dark:hover:bg-dark-800',
+                  "relative px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-dark-100 dark:hover:bg-dark-800",
                   pathname === item.href
-                    ? 'text-primary-600 dark:text-primary-400'
-                    : 'text-dark-700 dark:text-dark-300 hover:text-dark-900 dark:hover:text-white'
+                    ? "text-primary-600 dark:text-primary-400"
+                    : "text-dark-700 dark:text-dark-300 hover:text-dark-900 dark:hover:text-white"
                 )}
               >
                 {item.name}
@@ -195,9 +197,9 @@ export function Navigation() {
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               className="md:hidden overflow-hidden"
             >
               <motion.div
@@ -217,10 +219,10 @@ export function Navigation() {
                       href={item.href}
                       onClick={closeMenu}
                       className={cn(
-                        'block px-4 py-3 rounded-lg font-medium transition-colors',
+                        "block px-4 py-3 rounded-lg font-medium transition-colors",
                         pathname === item.href
-                          ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
-                          : 'text-dark-700 dark:text-dark-300 hover:bg-dark-100 dark:hover:bg-dark-800 hover:text-dark-900 dark:hover:text-white'
+                          ? "bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400"
+                          : "text-dark-700 dark:text-dark-300 hover:bg-dark-100 dark:hover:bg-dark-800 hover:text-dark-900 dark:hover:text-white"
                       )}
                     >
                       {item.name}
@@ -233,5 +235,5 @@ export function Navigation() {
         </AnimatePresence>
       </nav>
     </motion.header>
-  )
+  );
 }
