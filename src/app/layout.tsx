@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   description: 'Full Stack Developer specializing in React, Next.js, React Native, Vue.js, Node.js, and Laravel. Crafting modern web and mobile applications.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'React Native', 'Vue.js', 'Node.js', 'Laravel', 'TypeScript'],
-  authors: [{ name: 'Developer' }],
-  creator: 'Developer',
+  authors: [{ name: 'A.ZINEDDINE' }],
+  creator: 'A.ZINEDDINE',
   openGraph: {
     type: 'website',
     locale: 'en_US',
