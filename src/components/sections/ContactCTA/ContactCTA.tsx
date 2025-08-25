@@ -135,12 +135,12 @@ export function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8 }}
-            className="mb-16"
+            className="mb-16 flex justify-center items-center"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary text-lg px-12 py-4 group"
+              className="btn-primary flex items-center   text-lg px-12 py-4 group"
             >
               <span>Contact us</span>
               <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
