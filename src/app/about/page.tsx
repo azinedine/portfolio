@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, easeOut } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Code2, Zap, Users, Award, Download, MapPin, Calendar } from 'lucide-react'
-import { AnimatedText } from '@/components/common/AnimatedText'
+import { PageHeader } from '@/components/common/PageHeader'
 
 const stats = [
   { icon: Code2, label: 'Projects Completed', value: '50+' },
@@ -30,66 +30,24 @@ const skills = {
   ],
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: easeOut,
-    },
-  },
-}
-
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-950 pt-20">
-      {/* Hero Section */}
-      <section className="section-padding">
-        <div className="container-responsive">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="max-w-4xl mx-auto text-center mb-16"
-          >
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium">
-                About Me
-              </span>
-            </motion.div>
-
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <AnimatedText text="Crafting Digital" className="text-dark-900 dark:text-white" />
-              <br />
-              <AnimatedText text="Experiences" className="gradient-text" delay={0.5} />
-            </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg md:text-xl text-dark-600 dark:text-dark-400 leading-relaxed max-w-3xl mx-auto"
-            >
-              I'm a passionate Full Stack Developer with over 5 years of experience creating modern, 
-              scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background-primary">
+      {/* Page Header */}
+      <PageHeader
+        badge="About Me"
+        subtitle="Crafting Digital"
+        title="Experiences"
+        description="I'm a passionate Full Stack Developer with over 5 years of experience creating modern, scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions."
+        variant="centered"
+        showBreadcrumb
+        breadcrumbItems={[
+          { label: 'About', href: '/about' }
+        ]}
+      />
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-950/20 dark:to-purple-950/20">
+      <section className="py-16 bg-gradient-to-r from-primary-900/10 to-purple-900/10">
         <div className="container-responsive">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -106,9 +64,9 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
-                className="text-center p-6 bg-white dark:bg-dark-900 rounded-xl shadow-sm hover:shadow-md transition-all"
+                className="text-center p-6 glass rounded-xl hover:bg-white/15 transition-all"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-600/20 text-primary-400 rounded-lg mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
                 <motion.div
@@ -116,11 +74,11 @@ export default function AboutPage() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
-                  className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-2"
+                  className="text-2xl md:text-3xl font-bold text-white mb-2"
                 >
                   {value}
                 </motion.div>
-                <p className="text-dark-600 dark:text-dark-400 font-medium">{label}</p>
+                <p className="text-white/60 font-medium">{label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -140,9 +98,9 @@ export default function AboutPage() {
               className="relative"
             >
               <div className="relative w-full max-w-md mx-auto">
-                {/* Placeholder for profile image */}
-                <div className="aspect-square bg-gradient-to-br from-primary-400 to-purple-500 rounded-2xl shadow-2xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                {/* Profile image with gradient border */}
+                <div className="aspect-square bg-gradient-to-br from-primary-500 via-primary-600 to-blue-600 rounded-2xl shadow-glow-lg p-1">
+                  <div className="w-full h-full bg-gradient-to-br from-primary-900/30 to-blue-900/30 rounded-xl flex items-center justify-center overflow-hidden">
                     <Code2 className="w-24 h-24 text-white/80" />
                   </div>
                 </div>
@@ -151,17 +109,17 @@ export default function AboutPage() {
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg"
+                  className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-glow text-2xl"
                 >
-                  <span className="text-2xl">🚀</span>
+                  🚀
                 </motion.div>
                 
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-green-400 rounded-full flex items-center justify-center shadow-lg"
+                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-glow text-xl"
                 >
-                  <span className="text-xl">💡</span>
+                  💡
                 </motion.div>
               </div>
             </motion.div>
@@ -173,11 +131,11 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 My Journey
               </h2>
               
-              <div className="space-y-6 text-dark-600 dark:text-dark-400">
+              <div className="space-y-6 text-white/80">
                 <p className="leading-relaxed">
                   My journey in software development started 5 years ago when I discovered my passion for creating 
                   digital solutions that make a real impact. Since then, I've had the privilege of working with 
@@ -192,11 +150,11 @@ export default function AboutPage() {
                 
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-primary-500" />
-                    <span>Based in Your City, Country</span>
+                    <MapPin className="w-5 h-5 text-primary-400" />
+                    <span>Based in San Francisco, CA</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Calendar className="w-5 h-5 text-primary-500" />
+                    <Calendar className="w-5 h-5 text-primary-400" />
                     <span>Available for freelance projects</span>
                   </div>
                 </div>
@@ -216,7 +174,7 @@ export default function AboutPage() {
       </section>
 
       {/* Skills Section */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-900/50">
+      <section className="section-padding bg-white/5 backdrop-blur-sm">
         <div className="container-responsive">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -224,10 +182,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Skills & Expertise
             </h2>
-            <p className="text-lg text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
               Here are the technologies and tools I work with to bring ideas to life
             </p>
           </motion.div>
@@ -240,7 +198,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-6">
+              <h3 className="text-2xl font-bold text-white mb-6">
                 Frontend Development
               </h3>
               <div className="space-y-4">
@@ -253,14 +211,14 @@ export default function AboutPage() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-dark-800 dark:text-dark-200">
+                      <span className="font-medium text-white">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-dark-500 dark:text-dark-500">
+                      <span className="text-sm text-white/60">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="h-2 bg-dark-200 dark:bg-dark-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                       <motion.div
                         className={`h-full ${skill.color} rounded-full`}
                         initial={{ width: 0 }}
@@ -281,7 +239,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-6">
+              <h3 className="text-2xl font-bold text-white mb-6">
                 Backend Development
               </h3>
               <div className="space-y-4">
@@ -294,14 +252,14 @@ export default function AboutPage() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-dark-800 dark:text-dark-200">
+                      <span className="font-medium text-white">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-dark-500 dark:text-dark-500">
+                      <span className="text-sm text-white/60">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="h-2 bg-dark-200 dark:bg-dark-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                       <motion.div
                         className={`h-full ${skill.color} rounded-full`}
                         initial={{ width: 0 }}
