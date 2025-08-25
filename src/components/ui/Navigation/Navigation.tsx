@@ -93,7 +93,7 @@ export function Navigation() {
               />
             </div>
             <span className="text-xl font-bold text-dark-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-              Developer
+              A.ZINEDDINE
             </span>
           </Link>
 
