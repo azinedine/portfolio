@@ -50,7 +50,7 @@ export function HeroContent() {
           >
             <Sparkles className="w-4 h-4" />
           </motion.div>
-          <span>Welcome to my digital world</span>
+          <span>{`Hello, I'm A.ZINEDDINE`}</span>
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
         </motion.div>
       </motion.div>
@@ -64,23 +64,23 @@ export function HeroContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Elevate
-          </motion.span>
-          <motion.span 
-            className="block text-white"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            Your
+            Full Stack
           </motion.span>
           <motion.span 
             className="block gradient-text-primary"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            Developer
+          </motion.span>
+          <motion.span 
+            className="block text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            Business
+            & Digital Creator
           </motion.span>
         </h1>
       </motion.div>
@@ -90,13 +90,13 @@ export function HeroContent() {
         variants={itemVariants}
         className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl"
       >
-        Braivexa is a{' '}
-        <span className="text-primary-300 font-semibold">digital solutions agency</span>{' '}
-        specializing in web and mobile app development. We provide quality services, including{' '}
-        <span className="text-white font-semibold">custom web development</span>,{' '}
-        <span className="text-cyan-300 font-semibold">UI/UX design</span>, and{' '}
-        <span className="text-green-300 font-semibold">digital transformation</span>{' '}
-        solutions for businesses worldwide.
+        {`I'm a passionate `}
+        <span className="text-primary-300 font-semibold">Full Stack Developer</span>{' '}
+        with 4+ years of experience in creating{' '}
+        <span className="text-white font-semibold">modern web applications</span>,{' '}
+        <span className="text-cyan-300 font-semibold">mobile apps</span>, and{' '}
+        <span className="text-green-300 font-semibold">scalable digital solutions</span>. 
+        I transform ideas into reality using cutting-edge technologies.
       </motion.p>
 
       {/* CTA Buttons */}
@@ -110,7 +110,7 @@ export function HeroContent() {
           className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-bold px-8 py-4 rounded-2xl shadow-glow transition-all duration-300"
         >
           <div className="flex items-center justify-center gap-3">
-            <span>Let&apos;s get started</span>
+            <span>{`Let's Work Together`}</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </div>
         </motion.button>
@@ -125,14 +125,14 @@ export function HeroContent() {
               <Play className="w-4 h-4 ml-0.5" />
             </div>
           </div>
-          <span>Watch intro video</span>
+          <span>View My Work</span>
         </motion.button>
       </motion.div>
 
       {/* Tech stack */}
       <motion.div variants={itemVariants} className="space-y-4">
         <p className="text-sm text-white/60 font-medium tracking-wide uppercase">
-          Technologies I Master
+          Technologies I Specialize In
         </p>
         <div className="flex flex-wrap gap-2">
           {techStack.map((tech, index) => (
