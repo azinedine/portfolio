@@ -1,0 +1,142 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { Play, Code2 } from 'lucide-react'
+import { FloatingElement } from '@/components/common/FloatingElements'
+
+const floatingTechs = [
+  { name: 'React', color: 'from-blue-400 to-blue-600', position: { top: '15%', right: '10%' } },
+  { name: 'Node.js', color: 'from-green-400 to-green-600', position: { top: '50%', right: '5%' } },
+  { name: 'TS', color: 'from-blue-500 to-blue-700', position: { bottom: '20%', right: '15%' } },
+  { name: 'Vue', color: 'from-green-500 to-emerald-500', position: { top: '40%', left: '8%' } },
+  { name: 'Laravel', color: 'from-red-400 to-red-600', position: { bottom: '30%', left: '12%' } },
+]
+
+export function HeroProfile() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, x: 50 }}
+      animate={{ opacity: 1, scale: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
+      className="relative flex items-center justify-center"
+    >
+      {/* Main profile container */}
+      <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+        {/* Animated background ring */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: 'conic-gradient(from 0deg, rgba(109, 74, 236, 0.5), rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3), rgba(109, 74, 236, 0.5))',
+            padding: '3px',
+          }}
+        >
+          <div className="w-full h-full bg-background-primary rounded-full" />
+        </motion.div>
+
+        {/* Inner gradient border */}
+        <div className="absolute inset-4 bg-gradient-to-br from-primary-500 via-primary-600 to-blue-600 rounded-full shadow-glow-lg">
+          {/* Profile content */}
+          <div className="absolute inset-2 bg-gradient-to-br from-background-primary to-background-secondary rounded-full flex items-center justify-center overflow-hidden">
+            {/* Profile image placeholder */}
+            <div className="w-full h-full bg-gradient-to-br from-primary-900/30 via-primary-800/20 to-blue-900/30 rounded-full flex flex-col items-center justify-center relative">
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  rotate: [0, 2, 0, -2, 0] 
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                className="text-white/80"
+              >
+                <Code2 className="w-16 h-16 mb-3" />
+              </motion.div>
+              <p className="text-white/70 font-medium text-sm">Full Stack Developer</p>
+              
+              {/* Decorative code elements */}
+              <div className="absolute top-12 left-12 text-green-400/50 font-mono text-xs">
+                &lt;dev/&gt;
+              </div>
+              <div className="absolute bottom-12 right-12 text-blue-400/50 font-mono text-xs">
+                {'{code}'}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating tech badges */}
+        {floatingTechs.map((tech, index) => (
+          <motion.div
+            key={tech.name}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
+            style={{
+              position: 'absolute',
+              ...tech.position,
+            }}
+            whileHover={{ scale: 1.1, rotate: 10 }}
+          >
+            <FloatingElement
+              duration={6 + index}
+              delay={index * 0.5}
+              yRange={8}
+              xRange={3}
+              rotateRange={3}
+              className={`px-3 py-1.5 bg-gradient-to-r ${tech.color} text-white text-xs font-bold rounded-full shadow-glow cursor-pointer`}
+            >
+              {tech.name}
+            </FloatingElement>
+          </motion.div>
+        ))}
+
+        {/* Thumbs up decorations */}
+        <FloatingElement
+          duration={5}
+          yRange={8}
+          rotateRange={8}
+          className="absolute -right-4 top-16 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-lg shadow-glow cursor-pointer hover:scale-110 transition-transform"
+        >
+          👍
+        </FloatingElement>
+
+        <FloatingElement
+          duration={6}
+          delay={1}
+          yRange={6}
+          rotateRange={6}
+          className="absolute -left-4 bottom-16 w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-lg shadow-glow cursor-pointer hover:scale-110 transition-transform"
+        >
+          👍
+        </FloatingElement>
+
+        {/* Play button overlay */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="absolute inset-0 flex items-center justify-center group"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
+        >
+          <div className="w-16 h-16 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/30 group-hover:border-primary-400/50 transition-all duration-300 shadow-glow">
+            <Play className="w-6 h-6 text-white ml-0.5 group-hover:scale-110 transition-transform" />
+          </div>
+        </motion.button>
+
+        {/* Small decorative dots */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-8 right-8 w-2 h-2 bg-cyan-400/60 rounded-full"
+        />
+        
+        <motion.div
+          animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-8 left-8 w-1.5 h-1.5 bg-pink-400/70 rounded-full"
+        />
+      </div>
+    </motion.div>
+  )
+}
