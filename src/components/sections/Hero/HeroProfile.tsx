@@ -32,33 +32,44 @@ export function HeroProfile() {
             padding: '3px',
           }}
         >
-          <div className="w-full h-full bg-background-primary rounded-full" />
+          <div className="w-full h-full rounded-full" style={{ background: 'linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)' }} />
         </motion.div>
 
         {/* Inner gradient border */}
         <div className="absolute inset-4 bg-gradient-to-br from-primary-500 via-primary-600 to-blue-600 rounded-full shadow-glow-lg">
           {/* Profile content */}
-          <div className="absolute inset-2 bg-gradient-to-br from-background-primary to-background-secondary rounded-full flex items-center justify-center overflow-hidden">
-            {/* Profile image placeholder */}
-            <div className="w-full h-full bg-gradient-to-br from-primary-900/30 via-primary-800/20 to-blue-900/30 rounded-full flex flex-col items-center justify-center relative">
+          <div className="absolute inset-2 rounded-full flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)' }}>
+            {/* Profile image placeholder - Fixed background without white shadow */}
+            <div className="w-full h-full rounded-full flex flex-col items-center justify-center relative" style={{ 
+              background: 'linear-gradient(135deg, rgba(109, 74, 236, 0.15) 0%, rgba(59, 130, 246, 0.10) 50%, rgba(16, 185, 129, 0.10) 100%)'
+            }}>
               <motion.div
                 animate={{ 
                   scale: [1, 1.05, 1],
                   rotate: [0, 2, 0, -2, 0] 
                 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="text-white/80"
+                className="text-white/90 mb-2"
               >
-                <Code2 className="w-16 h-16 mb-3" />
+                <Code2 className="w-16 h-16" />
               </motion.div>
-              <p className="text-white/70 font-medium text-sm">Full Stack Developer</p>
+              <p className="text-white/80 font-medium text-sm">A.ZINEDDINE</p>
+              <p className="text-white/60 font-medium text-xs mt-1">Full Stack Developer</p>
               
               {/* Decorative code elements */}
-              <div className="absolute top-12 left-12 text-green-400/50 font-mono text-xs">
+              <div className="absolute top-12 left-12 text-green-400/60 font-mono text-xs font-bold">
                 &lt;dev/&gt;
               </div>
-              <div className="absolute bottom-12 right-12 text-blue-400/50 font-mono text-xs">
-                {'{code}'}
+              <div className="absolute bottom-12 right-12 text-blue-400/60 font-mono text-xs font-bold">
+                {'{A.Z}'}
+              </div>
+              
+              {/* Additional decorative elements */}
+              <div className="absolute top-16 right-16 text-cyan-400/50 font-mono text-xs">
+                React
+              </div>
+              <div className="absolute bottom-16 left-16 text-purple-400/50 font-mono text-xs">
+                Next.js
               </div>
             </div>
           </div>
