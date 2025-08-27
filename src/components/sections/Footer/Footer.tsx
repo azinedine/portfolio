@@ -1,41 +1,51 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Heart, Sparkles, ArrowUp } from 'lucide-react'
-import Link from 'next/link'
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, Heart, Sparkles, ArrowUp } from "lucide-react";
+import Link from "next/link";
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-white' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-400' },
-  { icon: Mail, href: 'mailto:hello@developer.com', label: 'Email', color: 'hover:text-primary-400' },
-]
+  { icon: Github, href: "#", label: "GitHub", color: "hover:text-white" },
+  {
+    icon: Linkedin,
+    href: "#",
+    label: "LinkedIn",
+    color: "hover:text-blue-400",
+  },
+  {
+    icon: Mail,
+    href: "mailto:hello@developer.com",
+    label: "Email",
+    color: "hover:text-primary-400",
+  },
+];
 
 const quickLinks = [
-  { name: 'Support', href: '/support' },
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Terms and Conditions', href: '/terms' },
-]
+  { name: "Support", href: "/support" },
+  { name: "Privacy Policy", href: "/privacy" },
+  { name: "Terms and Conditions", href: "/terms" },
+];
 
 const services = [
-  'Web Development',
-  'Mobile Development', 
-  'UI/UX Design',
-  'Backend Development'
-]
+  "Web Development",
+  "Mobile Development",
+  "UI/UX Design",
+  "Backend Development",
+];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="relative bg-background-primary border-t border-white/10">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-10" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-600/5 to-blue-600/5 rounded-full blur-3xl" />
-      
+
       <div className="container-responsive relative z-10">
         {/* Main Footer Content */}
         <div className="py-16">
@@ -57,12 +67,13 @@ export function Footer() {
                     A.ZINEDDINE
                   </span>
                 </div>
-                
+
                 <p className="text-white/70 leading-relaxed mb-6">
-                  Full Stack Developer passionate about creating modern, scalable, and user-friendly applications. 
-                  Let's build something amazing together.
+                  Full Stack Developer passionate about creating modern,
+                  scalable, and user-friendly applications.
+                  {`Let's build something amazing together.`}
                 </p>
-                
+
                 {/* Social Links */}
                 <div className="flex gap-4">
                   {socialLinks.map(({ icon: Icon, href, label, color }) => (
@@ -153,26 +164,27 @@ export function Footer() {
                     Ready to start your next project?
                   </p>
                   <div className="space-y-2">
-                    <a 
+                    <a
                       href="mailto:hello@developer.com"
                       className="block text-primary-400 hover:text-primary-300 transition-colors"
                     >
                       amarichezineddine@gmail.com
                     </a>
-                    <a 
+                    <a
                       href="tel:+15551234567"
                       className="block text-white/60 hover:text-white transition-colors"
                     >
-                      +213 540 128 550                    </a>
+                      +213 540 128 550{" "}
+                    </a>
                   </div>
                 </div>
-                
+
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-primary text-sm px-6 py-3"
                 >
-                  Let's Talk
+                  {`Let's Talk`}
                 </motion.button>
               </motion.div>
             </div>
@@ -190,7 +202,7 @@ export function Footer() {
           <p className="text-white/50 text-sm">
             © {currentYear} Braivexa. All rights reserved.
           </p>
-          
+
           <div className="flex items-center gap-6">
             <motion.div
               className="flex items-center space-x-2 text-sm text-white/50"
@@ -199,7 +211,11 @@ export function Footer() {
               <span>Made with</span>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 <Heart className="w-4 h-4 text-red-400" fill="currentColor" />
               </motion.div>
@@ -224,7 +240,10 @@ export function Footer() {
 
       {/* Decorative elements */}
       <div className="absolute bottom-20 left-20 w-8 h-8 border border-primary-400/20 rounded rotate-45 animate-pulse hidden lg:block" />
-      <div className="absolute top-20 right-20 w-6 h-6 bg-cyan-400/20 rounded-full animate-pulse hidden lg:block" style={{ animationDelay: '1s' }} />
+      <div
+        className="absolute top-20 right-20 w-6 h-6 bg-cyan-400/20 rounded-full animate-pulse hidden lg:block"
+        style={{ animationDelay: "1s" }}
+      />
     </footer>
-  )
+  );
 }
