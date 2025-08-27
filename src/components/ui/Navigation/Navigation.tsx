@@ -18,6 +18,8 @@ const navigationItems = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [activeSection, setActiveSection] = useState('')
@@ -25,11 +27,25 @@ export function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY
+      const currentScrollY = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = Math.min(scrollTop / docHeight, 1) * 100
+      const progress = Math.min(currentScrollY / docHeight, 1) * 100
       
-      setIsScrolled(scrollTop > 10)
+      // Calculate visibility
+      const scrollDifference = Math.abs(currentScrollY - lastScrollY)
+      
+      // Only update visibility if there's significant scroll movement (prevents jitter)
+      if (scrollDifference > 5) {
+        const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > 100
+        const isAtTop = currentScrollY < 100
+        
+        // Show navbar when: at top OR scrolling up
+        // Hide when: scrolling down and not at top
+        setIsVisible(isAtTop || !isScrollingDown)
+        setLastScrollY(currentScrollY)
+      }
+      
+      setIsScrolled(currentScrollY > 10)
       setScrollProgress(progress)
 
       // Check which section is currently active
@@ -54,16 +70,28 @@ export function Navigation() {
 
       // If on homepage, also check pathname-based sections
       if (pathname === '/' && !currentSection) {
-        if (scrollTop < 100) currentSection = 'hero'
+        if (currentScrollY < 100) currentSection = 'hero'
       }
 
       setActiveSection(currentSection)
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    // Throttle scroll events for better performance
+    let ticking = false
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true })
     handleScroll() // Initial check
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [pathname])
+    return () => window.removeEventListener('scroll', throttledHandleScroll)
+  }, [lastScrollY, pathname])
 
   const closeMenu = () => setIsOpen(false)
 
@@ -84,23 +112,30 @@ export function Navigation() {
       {/* Main Navigation */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+        animate={{ 
+          y: isVisible ? 0 : -100, 
+          opacity: isVisible ? 1 : 0 
+        }}
+        transition={{ 
+          duration: 0.4, 
+          ease: [0.25, 0.46, 0.45, 0.94] 
+        }}
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{ willChange: 'transform' }}
       >
         {/* Scroll Progress Bar */}
         <motion.div
-          className="absolute top-0 left-0 h-1 bg-gradient-to-r from-primary-500 via-primary-400 to-purple-500 z-10 will-change-transform"
+          className="absolute top-0 left-0 h-1 bg-gradient-to-r from-primary-500 via-primary-400 to-purple-500 z-10"
           style={{ 
             width: `${scrollProgress}%`,
-            transform: 'translateZ(0)' // Hardware acceleration
+            willChange: 'width'
           }}
         />
 
         <nav className={cn(
-          'relative transition-all duration-500 will-change-transform w-full',
+          'relative transition-all duration-500 w-full',
           isScrolled
-            ? 'bg-black/40 backdrop-blur-2xl shadow-2xl shadow-primary-500/5'
+            ? 'bg-black/50 backdrop-blur-2xl shadow-2xl shadow-primary-500/10'
             : 'bg-white/5 backdrop-blur-xl shadow-xl'
         )}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -118,20 +153,21 @@ export function Navigation() {
                   }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="w-11 h-11 bg-gradient-to-br from-primary-400 via-primary-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg will-change-transform"
+                  className="w-11 h-11 bg-gradient-to-br from-primary-400 via-primary-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg"
+                  style={{ willChange: 'transform' }}
                 >
                   <Code2 className="w-5 h-5 text-white" />
                 </motion.div>
                 
                 {/* Glow effect */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary-400 to-purple-600 rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 will-change-transform"
+                  className="absolute inset-0 bg-gradient-to-br from-primary-400 to-purple-600 rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"
                   initial={false}
                 />
                 
                 {/* Sparkle effect */}
                 <motion.div
-                  className="absolute -top-1 -right-1 will-change-transform"
+                  className="absolute -top-1 -right-1"
                   animate={{ 
                     scale: [0, 1, 0],
                     rotate: [0, 180, 360]
@@ -148,7 +184,7 @@ export function Navigation() {
               </div>
               <div className="flex flex-col">
                 <motion.span 
-                  className="text-xl font-bold bg-gradient-to-r from-white via-gray-100 to-primary-200 bg-clip-text text-transparent will-change-transform"
+                  className="text-xl font-bold bg-gradient-to-r from-white via-gray-100 to-primary-200 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
@@ -161,7 +197,7 @@ export function Navigation() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-2 rounded-2xl p-2">
+            <div className="hidden lg:flex items-center space-x-1 relative">
               {navigationItems.map((item) => {
                 const isActive = activeItemName === item.name
                 
@@ -171,49 +207,81 @@ export function Navigation() {
                     href={item.href}
                     onMouseEnter={() => setHoveredItem(item.name)}
                     onMouseLeave={() => setHoveredItem(null)}
-                    className={cn(
-                      'relative px-4 py-2.5 rounded-xl font-medium transition-all duration-200 flex items-center gap-2 group will-change-transform',
-                      isActive
-                        ? 'text-white bg-white/15 shadow-lg'
-                        : 'text-white/70 hover:text-white hover:bg-white/10'
-                    )}
+                    className="relative px-4 py-3 font-medium transition-all duration-300 flex items-center gap-2 group"
                   >
                     {/* Icon */}
-                    <span className="text-sm group-hover:scale-110 transition-transform duration-150 will-change-transform">
+                    <motion.span 
+                      className="text-sm"
+                      animate={{ 
+                        scale: isActive ? 1.1 : 1,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
                       {item.icon}
-                    </span>
+                    </motion.span>
                     
                     {/* Text */}
-                    <span className="text-sm">{item.name}</span>
+                    <span className={cn(
+                      "text-sm font-medium transition-colors duration-200",
+                      isActive 
+                        ? "text-white" 
+                        : "text-white/70 group-hover:text-white"
+                    )}>
+                      {item.name}
+                    </span>
                     
-                    {/* Active indicator */}
-                    {isActive && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-primary-400/30 to-purple-500/20 rounded-xl will-change-transform"
-                        layoutId="activeNavItem"
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      />
-                    )}
-                    
-                    {/* Hover effect */}
+                    {/* Hover background */}
                     {hoveredItem === item.name && !isActive && (
                       <motion.div
-                        className="absolute inset-0 bg-white/5 rounded-xl will-change-transform"
-                        initial={{ scale: 0.9, opacity: 0 }}
+                        className="absolute inset-0 bg-white/5 rounded-xl"
+                        initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.9, opacity: 0 }}
-                        transition={{ duration: 0.15 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ willChange: 'transform, opacity' }}
                       />
                     )}
 
-                    {/* Active section indicator */}
+                    {/* Active underline */}
                     {isActive && (
                       <motion.div
-                        className="absolute -bottom-1 left-1/2 w-1 h-1 bg-primary-400 rounded-full"
-                        initial={{ scale: 0, x: '-50%' }}
-                        animate={{ scale: 1, x: '-50%' }}
-                        exit={{ scale: 0, x: '-50%' }}
+                        className="absolute bottom-1 left-1/2 w-8 h-0.5 bg-gradient-to-r from-primary-400 via-primary-500 to-purple-500 rounded-full"
                         layoutId="activeIndicator"
+                        initial={false}
+                        style={{ 
+                          x: '-50%',
+                          willChange: 'transform'
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 500,
+                          damping: 30,
+                          duration: 0.3
+                        }}
+                      />
+                    )}
+
+                    {/* Hover underline */}
+                    {hoveredItem === item.name && !isActive && (
+                      <motion.div
+                        className="absolute bottom-1 left-1/2 w-6 h-0.5 bg-white/30 rounded-full"
+                        initial={{ scaleX: 0, x: '-50%' }}
+                        animate={{ scaleX: 1, x: '-50%' }}
+                        exit={{ scaleX: 0, x: '-50%' }}
+                        transition={{ duration: 0.2 }}
+                        style={{ willChange: 'transform' }}
+                      />
+                    )}
+
+                    {/* Glow effect for active */}
+                    {isActive && (
+                      <motion.div
+                        className="absolute bottom-1 left-1/2 w-8 h-0.5 bg-gradient-to-r from-primary-400/60 via-primary-500/60 to-purple-500/60 rounded-full blur-sm"
+                        initial={{ scaleX: 0, x: '-50%', opacity: 0 }}
+                        animate={{ scaleX: 1, x: '-50%', opacity: 1 }}
+                        exit={{ scaleX: 0, x: '-50%', opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        style={{ willChange: 'transform, opacity' }}
                       />
                     )}
                   </Link>
@@ -230,7 +298,7 @@ export function Navigation() {
                   boxShadow: "0 10px 30px rgba(109, 74, 236, 0.3)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="hidden lg:flex items-center gap-2 bg-gradient-to-r from-primary-500 via-primary-600 to-purple-600 hover:from-primary-400 hover:to-purple-500 text-white font-semibold px-6 py-3 rounded-2xl transition-all duration-200 shadow-lg group relative overflow-hidden will-change-transform"
+                className="hidden lg:flex items-center gap-2 bg-gradient-to-r from-primary-500 via-primary-600 to-purple-600 hover:from-primary-400 hover:to-purple-500 text-white font-semibold px-6 py-3 rounded-2xl transition-all duration-200 shadow-lg group relative overflow-hidden"
               >
                 {/* Button background animation */}
                 <motion.div
@@ -241,7 +309,7 @@ export function Navigation() {
                 />
                 
                 <span className="relative z-10 text-sm">{`Let's Connect`}</span>
-                <ArrowUpRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150 will-change-transform" />
+                <ArrowUpRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150" />
               </motion.button>
 
               {/* Mobile Menu Button */}
@@ -249,7 +317,7 @@ export function Navigation() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="lg:hidden p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white hover:bg-white/20 transition-all duration-200 will-change-transform"
+                className="lg:hidden p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white hover:bg-white/20 transition-all duration-200"
                 aria-label="Toggle menu"
               >
                 <AnimatePresence mode="wait">
@@ -306,7 +374,7 @@ export function Navigation() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -50, scale: 0.95 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute top-20 left-4 right-4 bg-black/90 backdrop-blur-2xl border rounded-3xl shadow-2xl overflow-hidden will-change-transform"
+              className="absolute top-20 left-4 right-4 bg-black/90 backdrop-blur-2xl border rounded-3xl shadow-2xl overflow-hidden"
             >
               <div className="p-6 space-y-2">
                 {navigationItems.map((item, index) => {
@@ -318,19 +386,20 @@ export function Navigation() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1, duration: 0.3 }}
+                      className="relative"
                     >
                       <Link
                         href={item.href}
                         onClick={closeMenu}
                         className={cn(
-                          'flex items-center gap-4 px-4 py-4 rounded-2xl font-medium transition-all duration-200 group relative overflow-hidden will-change-transform',
+                          'flex items-center gap-4 px-4 py-4 rounded-2xl font-medium transition-all duration-200 group relative overflow-hidden',
                           isActive
                             ? 'bg-gradient-to-r from-primary-500/20 to-purple-500/20 text-white border border-primary-500/30'
                             : 'text-white/80 hover:text-white hover:bg-white/10'
                         )}
                       >
                         {/* Icon */}
-                        <span className="text-lg group-hover:scale-110 transition-transform duration-150 will-change-transform">
+                        <span className="text-lg group-hover:scale-110 transition-transform duration-150">
                           {item.icon}
                         </span>
                         
@@ -347,13 +416,25 @@ export function Navigation() {
                         </div>
                         
                         {/* Arrow */}
-                        <ArrowUpRight className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150 will-change-transform" />
+                        <ArrowUpRight className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150" />
                         
                         {/* Active indicator for mobile */}
                         {isActive && (
                           <div className="absolute right-2 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary-400 rounded-full" />
                         )}
                       </Link>
+                      
+                      {/* Mobile underline indicator */}
+                      {isActive && (
+                        <motion.div
+                          className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-400 to-purple-500 rounded-full"
+                          layoutId="mobileActiveIndicator"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          exit={{ scaleX: 0 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        />
+                      )}
                     </motion.div>
                   )
                 })}
@@ -363,11 +444,11 @@ export function Navigation() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: navigationItems.length * 0.1 + 0.1 }}
-                  className="pt-4 border-t mt-4"
+                  className="pt-4 border-t border-white/10 mt-4"
                 >
                   <button
                     onClick={closeMenu}
-                    className="w-full bg-gradient-to-r from-primary-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-2xl transition-all duration-200 hover:from-primary-400 hover:to-purple-500 shadow-lg flex items-center justify-center gap-2 will-change-transform"
+                    className="w-full bg-gradient-to-r from-primary-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-2xl transition-all duration-200 hover:from-primary-400 hover:to-purple-500 shadow-lg flex items-center justify-center gap-2"
                   >
                     <span>{`Let's Connect`}</span>
                     <ArrowUpRight className="w-4 h-4" />
