@@ -54,7 +54,7 @@ export function Footer() {
                     <Sparkles className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-2xl font-bold gradient-text-primary">
-                    Braivexa
+                    A.ZINEDDINE
                   </span>
                 </div>
                 
@@ -157,14 +157,13 @@ export function Footer() {
                       href="mailto:hello@developer.com"
                       className="block text-primary-400 hover:text-primary-300 transition-colors"
                     >
-                      hello@developer.com
+                      amarichezineddine@gmail.com
                     </a>
                     <a 
                       href="tel:+15551234567"
                       className="block text-white/60 hover:text-white transition-colors"
                     >
-                      +1 (555) 123-4567
-                    </a>
+                      +213 540 128 550                    </a>
                   </div>
                 </div>
                 
@@ -206,7 +205,7 @@ export function Footer() {
               </motion.div>
               <span>and</span>
               <Sparkles className="w-4 h-4 text-primary-400" />
-              <span>by Braivexa</span>
+              <span>by A.ZINEDDINE</span>
             </motion.div>
 
             {/* Back to top button */}
