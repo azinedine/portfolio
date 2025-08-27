@@ -39,7 +39,7 @@ export function ContactCTA() {
             transition={{ delay: 0.4 }}
             className="text-xl text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto"
           >
-            Ready to transform your ideas into reality? Get in touch today and let's create something extraordinary together.
+            {`Ready to transform your ideas into reality? Get in touch today and let's create something extraordinary together.`}
           </motion.p>
 
           {/* Contact Methods */}
