@@ -173,7 +173,7 @@ export function Services() {
           className="text-center mt-16"
         >
           <p className="text-white/70 mb-8">
-            Ready to start your project? Let's discuss your requirements.
+            {`Ready to start your project? Let's discuss your requirements.`}
           </p>
           
           <motion.button
