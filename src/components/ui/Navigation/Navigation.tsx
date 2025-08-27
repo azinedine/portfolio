@@ -220,14 +220,54 @@ export function Navigation() {
                       {item.icon}
                     </motion.span>
                     
-                    {/* Text */}
+                    {/* Text with underline container */}
                     <span className={cn(
-                      "text-sm font-medium transition-colors duration-200",
+                      "text-sm font-medium transition-colors duration-200 relative",
                       isActive 
                         ? "text-white" 
                         : "text-white/70 group-hover:text-white"
                     )}>
                       {item.name}
+                      
+                      {/* Active underline - directly under text */}
+                      {isActive && (
+                        <motion.div
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-400 via-primary-500 to-purple-500 rounded-full"
+                          layoutId="activeTextIndicator"
+                          initial={false}
+                          style={{ willChange: 'transform' }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 30,
+                            duration: 0.3
+                          }}
+                        />
+                      )}
+
+                      {/* Hover underline - directly under text */}
+                      {hoveredItem === item.name && !isActive && (
+                        <motion.div
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/40 rounded-full"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          exit={{ scaleX: 0 }}
+                          transition={{ duration: 0.2 }}
+                          style={{ transformOrigin: 'center', willChange: 'transform' }}
+                        />
+                      )}
+
+                      {/* Glow effect for active - under text */}
+                      {isActive && (
+                        <motion.div
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-400/60 via-primary-500/60 to-purple-500/60 rounded-full blur-sm"
+                          initial={{ scaleX: 0, opacity: 0 }}
+                          animate={{ scaleX: 1, opacity: 1 }}
+                          exit={{ scaleX: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ transformOrigin: 'center', willChange: 'transform, opacity' }}
+                        />
+                      )}
                     </span>
                     
                     {/* Hover background */}
@@ -238,49 +278,6 @@ export function Navigation() {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.8, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        style={{ willChange: 'transform, opacity' }}
-                      />
-                    )}
-
-                    {/* Active underline */}
-                    {isActive && (
-                      <motion.div
-                        className="absolute bottom-1 left-1/2 w-8 h-0.5 bg-gradient-to-r from-primary-400 via-primary-500 to-purple-500 rounded-full"
-                        layoutId="activeIndicator"
-                        initial={false}
-                        style={{ 
-                          x: '-50%',
-                          willChange: 'transform'
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 30,
-                          duration: 0.3
-                        }}
-                      />
-                    )}
-
-                    {/* Hover underline */}
-                    {hoveredItem === item.name && !isActive && (
-                      <motion.div
-                        className="absolute bottom-1 left-1/2 w-6 h-0.5 bg-white/30 rounded-full"
-                        initial={{ scaleX: 0, x: '-50%' }}
-                        animate={{ scaleX: 1, x: '-50%' }}
-                        exit={{ scaleX: 0, x: '-50%' }}
-                        transition={{ duration: 0.2 }}
-                        style={{ willChange: 'transform' }}
-                      />
-                    )}
-
-                    {/* Glow effect for active */}
-                    {isActive && (
-                      <motion.div
-                        className="absolute bottom-1 left-1/2 w-8 h-0.5 bg-gradient-to-r from-primary-400/60 via-primary-500/60 to-purple-500/60 rounded-full blur-sm"
-                        initial={{ scaleX: 0, x: '-50%', opacity: 0 }}
-                        animate={{ scaleX: 1, x: '-50%', opacity: 1 }}
-                        exit={{ scaleX: 0, x: '-50%', opacity: 0 }}
-                        transition={{ duration: 0.3 }}
                         style={{ willChange: 'transform, opacity' }}
                       />
                     )}
