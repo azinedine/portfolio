@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Code2, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 
 type LogoProps = {
   onClick?: () => void
@@ -23,10 +24,11 @@ export function Logo({ onClick }: LogoProps) {
           }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="w-11 h-11 bg-gradient-to-br from-primary-400 via-primary-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg"
+          className="w-11 h-11  rounded-2xl flex items-center justify-center shadow-lg"
           style={{ willChange: 'transform' }}
         >
-          <Code2 className="w-5 h-5 text-white" />
+          {/* <Code2 className="w-5 h-5 text-white" /> */}
+          <Image src="/logo.png" alt="Logo" width={44} height={44} />
         </motion.div>
 
         <motion.div
@@ -47,7 +49,7 @@ export function Logo({ onClick }: LogoProps) {
             repeatDelay: 1
           }}
         >
-          <Sparkles className="w-3 h-3 text-yellow-400" />
+          <Sparkles className="w-3 h-3 text-purple-300" />
         </motion.div>
       </div>
       <div className="flex flex-col">
