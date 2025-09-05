@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Heart, Sparkles, ArrowUp } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const socialLinks = [
@@ -60,12 +61,18 @@ export function Footer() {
               >
                 {/* Logo */}
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center shadow-glow">
-                    <Sparkles className="w-5 h-5 text-white" />
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    <Image src="/logo.png" alt="Logo" width={44} height={44} />
                   </div>
+                  <div className="flex flex-col">
+
                   <span className="text-2xl font-bold gradient-text-primary">
                     A.ZINEDDINE
                   </span>
+                  <span className="text-xs text-white/50 font-medium tracking-wider">
+                    Software Engineer
+                  </span>
+                  </div>
                 </div>
 
                 <p className="text-white/70 leading-relaxed mb-6">
