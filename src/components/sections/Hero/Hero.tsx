@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { useEffect, useState, useCallback, useMemo } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronDown, Plus, Star, Sparkles } from 'lucide-react'
-import { BackgroundOrbs } from '@/components/common/BackgroundOrbs'
-import { FloatingElement } from '@/components/common/FloatingElements'
-import { HeroContent } from './HeroContent'
-import { HeroProfile } from './HeroProfile'
+import { useEffect, useState, useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
+import { ChevronDown, Plus, Star, Sparkles } from "lucide-react";
+import { BackgroundOrbs } from "@/components/common/BackgroundOrbs";
+import { FloatingElement } from "@/components/common/FloatingElements";
+import { HeroContent } from "./HeroContent";
+import { HeroProfile } from "./HeroProfile";
 
 // Memoized decorative elements to prevent re-renders
 const DecorativeElements = () => (
@@ -38,36 +38,36 @@ const DecorativeElements = () => (
       <Sparkles className="w-6 h-6 text-cyan-400/50" />
     </FloatingElement>
   </>
-)
+);
 
 // Memoized geometric shapes
 const GeometricShapes = () => (
   <>
     <motion.div
-      animate={{ 
+      animate={{
         rotate: 360,
         scale: [1, 1.05, 1],
       }}
-      transition={{ 
+      transition={{
         rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-        scale: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+        scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
       }}
       className="absolute top-32 right-1/4 w-20 h-20 border border-primary-400/30 rounded-lg backdrop-blur-sm"
     />
-    
+
     <motion.div
-      animate={{ 
+      animate={{
         rotate: -360,
-        y: [0, -15, 0]
+        y: [0, -15, 0],
       }}
-      transition={{ 
+      transition={{
         rotate: { duration: 30, repeat: Infinity, ease: "linear" },
-        y: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+        y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
       }}
       className="absolute bottom-40 left-1/3 w-16 h-16 border border-cyan-400/30 rounded-full backdrop-blur-sm"
     />
   </>
-)
+);
 
 // Memoized scroll indicator
 const ScrollIndicator = ({ onClick }: { onClick: () => void }) => (
@@ -78,7 +78,7 @@ const ScrollIndicator = ({ onClick }: { onClick: () => void }) => (
     className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center cursor-pointer"
     onClick={onClick}
   >
-    <motion.p 
+    <motion.p
       className="text-white/60 text-sm mb-3 font-medium"
       animate={{ opacity: [0.6, 1, 0.6] }}
       transition={{ duration: 3, repeat: Infinity }}
@@ -98,57 +98,66 @@ const ScrollIndicator = ({ onClick }: { onClick: () => void }) => (
     </motion.div>
     <motion.div
       animate={{ y: [0, 3, 0] }}
-      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      transition={{
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: 0.5,
+      }}
       className="mt-1"
     >
       <ChevronDown className="w-4 h-4 text-white/40 mx-auto" />
     </motion.div>
   </motion.div>
-)
+);
 
 export function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // Optimized mouse move handler with useCallback to prevent re-renders
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    setMousePosition({ 
+    setMousePosition({
       x: (e.clientX - window.innerWidth / 2) / 100,
-      y: (e.clientY - window.innerHeight / 2) / 100
-    })
-  }, [])
+      y: (e.clientY - window.innerHeight / 2) / 100,
+    });
+  }, []);
 
   // Optimized scroll handler
   const handleScrollToNext = useCallback(() => {
-    const nextSection = document.querySelector('[data-section="why-choose"]') || 
-                       document.querySelector('section:nth-of-type(2)')
+    const nextSection =
+      document.querySelector('[data-section="why-choose"]') ||
+      document.querySelector("section:nth-of-type(2)");
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' })
+      nextSection.scrollIntoView({ behavior: "smooth" });
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     // Throttled mouse move for better performance
-    let timeoutId: NodeJS.Timeout
+    let timeoutId: NodeJS.Timeout;
     const throttledMouseMove = (e: MouseEvent) => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(() => handleMouseMove(e), 16) // ~60fps
-    }
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => handleMouseMove(e), 16); // ~60fps
+    };
 
-    window.addEventListener('mousemove', throttledMouseMove, { passive: true })
+    window.addEventListener("mousemove", throttledMouseMove, { passive: true });
     return () => {
-      window.removeEventListener('mousemove', throttledMouseMove)
-      clearTimeout(timeoutId)
-    }
-  }, [handleMouseMove])
+      window.removeEventListener("mousemove", throttledMouseMove);
+      clearTimeout(timeoutId);
+    };
+  }, [handleMouseMove]);
 
   // Memoized mouse follower style
-  const mouseFollowerStyle = useMemo(() => ({
-    background: 'radial-gradient(circle, rgba(109, 74, 236, 0.06) 13%, rgba(59, 130, 246, 0.03) 10%, transparent 40%)',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-
-  }), [])
+  const mouseFollowerStyle = useMemo(
+    () => ({
+      background:
+        "radial-gradient(circle, rgba(109, 74, 236, 0.06) 13%, rgba(59, 130, 246, 0.03) 10%, transparent 40%)",
+      left: "50%",
+      top: "50%",
+      transform: "translate(-50%, -50%)",
+    }),
+    []
+  );
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg">
@@ -168,7 +177,7 @@ export function Hero() {
           y: mousePosition.y,
         }}
         transition={{
-          type: 'spring',
+          type: "spring",
           stiffness: 50,
           damping: 15,
         }}
@@ -186,5 +195,5 @@ export function Hero() {
       {/* Scroll Indicator */}
       <ScrollIndicator onClick={handleScrollToNext} />
     </section>
-  )
+  );
 }
