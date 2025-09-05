@@ -26,7 +26,7 @@ export const portfolioItems: PortfolioItem[] = [
     color: "from-teal-500 to-green-500",
     links: {
       demo: "https://effi-tech.net/",
-      github: "#",
+      github: "https://github.com/Braivexa-agency/effitech",
     },
     status: "completed",
     featured: true,
