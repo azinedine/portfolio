@@ -57,17 +57,6 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-primary-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
             <div className="flex gap-3">
-              {onViewDetails && (
-                <motion.button
-                  onClick={() => onViewDetails(project)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                  title="View Details"
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                </motion.button>
-              )}
               <motion.a
                 href={project.links.demo}
                 target="_blank"
