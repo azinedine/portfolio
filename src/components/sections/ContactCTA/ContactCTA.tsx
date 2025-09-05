@@ -57,15 +57,15 @@ export function ContactCTA() {
                 description: "a.zineddine@dev.com",
                 action: "Send Email",
                 color: "from-red-500 to-pink-500",
-                href: "mailto:a.zineddine@dev.com"
+                href: "mailto:amarichezineddine@gmail.com"
               },
               {
                 icon: Phone,
                 title: "Call Me",
-                description: "+213 (555) 123-456",
+                description: "+213 (540) 12 85 50",
                 action: "Call Now",
                 color: "from-green-500 to-emerald-500",
-                href: "tel:+213555123456"
+                href: "tel:+213540128550"
               },
               {
                 icon: MessageCircle,
@@ -73,7 +73,7 @@ export function ContactCTA() {
                 description: "Available 24/7",
                 action: "Start Chat",
                 color: "from-blue-500 to-cyan-500",
-                href: "#"
+                href: "https://www.facebook.com/amzinedine"
               }
             ].map((method, index) => (
               <motion.div
