@@ -1,9 +1,26 @@
-'use client'
+"use client";
 
-import { easeOut, motion } from 'framer-motion'
-import { ExternalLink, Github, ArrowRight, RotateCcw, Eye } from 'lucide-react'
+import { easeOut, motion } from "framer-motion";
+import { ExternalLink, Github, ArrowRight, Eye } from "lucide-react";
+import Link from "next/link";
 
 const portfolioItems = [
+  {
+    id: 6,
+    title: "Website for an electric company",
+    category: "Web Development",
+    description: "Property listing and management",
+    image: "project-6",
+    technologies: ["Next.js", "TypeScript", "Prisma"],
+    color: "from-teal-500 to-green-500",
+    links: {
+      demo: "#",
+      github: "#",
+    },
+    status: "completed",
+    featured: true,
+    photo: "/projects/real-estate-portal.png",
+  },
   {
     id: 1,
     title: "E-Commerce Platform",
@@ -11,16 +28,16 @@ const portfolioItems = [
     description: "Modern e-commerce solution",
     image: "project-1",
     technologies: ["React", "Node.js", "MongoDB"],
-    color: "from-blue-500 to-cyan-500"
+    color: "from-blue-500 to-cyan-500",
   },
   {
     id: 2,
     title: "Mobile Banking App",
-    category: "Mobile App", 
+    category: "Mobile App",
     description: "Secure banking application",
     image: "project-2",
     technologies: ["React Native", "Firebase"],
-    color: "from-green-500 to-emerald-500"
+    color: "from-green-500 to-emerald-500",
   },
   {
     id: 3,
@@ -29,7 +46,7 @@ const portfolioItems = [
     description: "Beautiful restaurant website",
     image: "project-3",
     technologies: ["Next.js", "Tailwind"],
-    color: "from-orange-500 to-red-500"
+    color: "from-orange-500 to-red-500",
   },
   {
     id: 4,
@@ -38,7 +55,7 @@ const portfolioItems = [
     description: "Analytics dashboard",
     image: "project-4",
     technologies: ["Vue.js", "Laravel"],
-    color: "from-purple-500 to-pink-500"
+    color: "from-purple-500 to-pink-500",
   },
   {
     id: 5,
@@ -47,18 +64,9 @@ const portfolioItems = [
     description: "Complete travel booking platform",
     image: "project-5",
     technologies: ["Flutter", "Node.js", "PostgreSQL"],
-    color: "from-indigo-500 to-blue-500"
+    color: "from-indigo-500 to-blue-500",
   },
-  {
-    id: 6,
-    title: "Real Estate Portal",
-    category: "Web Development",
-    description: "Property listing and management",
-    image: "project-6",
-    technologies: ["Next.js", "TypeScript", "Prisma"],
-    color: "from-teal-500 to-green-500"
-  }
-]
+];
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -67,7 +75,7 @@ const containerVariants = {
       staggerChildren: 0.15,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -79,9 +87,13 @@ const itemVariants = {
       ease: easeOut,
     },
   },
-}
+};
 
-const PortfolioCard = ({ project, index }: { project: typeof portfolioItems[0], index: number }) => (
+const PortfolioCard = ({
+  project,
+}: {
+  project: (typeof portfolioItems)[0];
+}) => (
   <motion.div
     variants={itemVariants}
     whileHover={{ y: -5, scale: 1.02 }}
@@ -91,13 +103,17 @@ const PortfolioCard = ({ project, index }: { project: typeof portfolioItems[0], 
       {/* Project Image - Smaller */}
       <div className="relative aspect-video overflow-hidden">
         {/* Gradient background */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-75`} />
-        
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-75`}
+        />
+
         {/* Project preview */}
         <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
           <div className="text-center">
             <div className="w-12 h-12 mx-auto mb-2 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-              <span className="text-sm font-bold text-white">{project.category.charAt(0)}</span>
+              <span className="text-sm font-bold text-white">
+                {project.category.charAt(0)}
+              </span>
             </div>
             <p className="text-white/80 text-xs">{project.category}</p>
           </div>
@@ -141,7 +157,7 @@ const PortfolioCard = ({ project, index }: { project: typeof portfolioItems[0], 
         <h3 className="text-base font-bold text-white mb-1 group-hover:text-primary-300 transition-colors">
           {project.title}
         </h3>
-        
+
         <p className="text-white/60 text-xs mb-3 leading-relaxed">
           {project.description}
         </p>
@@ -159,20 +175,18 @@ const PortfolioCard = ({ project, index }: { project: typeof portfolioItems[0], 
         </div>
 
         {/* View Project Link */}
-        <motion.div
-          className="flex items-center gap-1 text-primary-400 font-medium text-xs group-hover:gap-2 transition-all"
-        >
+        <motion.div className="flex items-center gap-1 text-primary-400 font-medium text-xs group-hover:gap-2 transition-all">
           <span>View Details</span>
           <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
         </motion.div>
       </div>
     </div>
   </motion.div>
-)
+);
 
 export function Portfolio() {
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section id="projects" className="section-padding relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-10" />
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-primary-600/8 to-blue-600/8 rounded-full blur-3xl" />
@@ -193,12 +207,13 @@ export function Portfolio() {
           </h2>
 
           <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
-            Explore my latest work and discover how I bring ideas to life through code.
+            Explore my latest work and discover how I bring ideas to life
+            through code.
           </p>
 
           {/* Filter buttons - Smaller */}
           <div className="flex flex-wrap justify-center gap-2 mb-4">
-            {['All', 'Web Dev', 'Mobile', 'Design'].map((filter) => (
+            {["All", "Web Dev", "Mobile", "Design"].map((filter) => (
               <motion.button
                 key={filter}
                 whileHover={{ scale: 1.05 }}
@@ -219,8 +234,8 @@ export function Portfolio() {
           viewport={{ once: true }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
-          {portfolioItems.map((project, index) => (
-            <PortfolioCard key={project.id} project={project} index={index} />
+          {portfolioItems.map((project) => (
+            <PortfolioCard key={project.id} project={project} />
           ))}
         </motion.div>
 
@@ -232,21 +247,29 @@ export function Portfolio() {
           transition={{ delay: 0.3 }}
           className="text-center"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg group flex items-center justify-center gap-2 mx-auto"
-          >
-            <span>View All Projects</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </motion.button>
+          <Link href="/projects">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg group flex items-center justify-center gap-2 mx-auto"
+            >
+              <span>View All Projects</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </motion.button>
+          </Link>
         </motion.div>
 
         {/* Simplified decorations */}
         <div className="absolute top-20 right-16 w-2 h-2 bg-primary-400/40 rounded-full animate-pulse" />
-        <div className="absolute bottom-20 left-16 w-1.5 h-1.5 bg-cyan-400/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 right-8 w-1 h-1 bg-pink-400/40 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+        <div
+          className="absolute bottom-20 left-16 w-1.5 h-1.5 bg-cyan-400/40 rounded-full animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute top-1/2 right-8 w-1 h-1 bg-pink-400/40 rounded-full animate-pulse"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
     </section>
-  )
+  );
 }
