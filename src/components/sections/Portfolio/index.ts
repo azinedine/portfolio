@@ -1,1 +1,8 @@
 export { Portfolio } from './Portfolio'
+export { PortfolioCard } from './PortfolioCard'
+export { PortfolioHeader } from './PortfolioHeader'
+export { PortfolioGrid } from './PortfolioGrid'
+export { ProjectModal } from './ProjectModal'
+export { usePortfolio } from './usePortfolio'
+export { portfolioItems, portfolioCategories } from './portfolioData'
+export type { PortfolioItem } from './portfolioData'
