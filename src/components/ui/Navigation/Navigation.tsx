@@ -51,7 +51,7 @@ export function Navigation() {
           'relative transition-all duration-500 w-full',
           isScrolled
             ? 'bg-black/50 backdrop-blur-2xl shadow-2xl shadow-primary-500/10'
-            : 'bg-white/5 backdrop-blur-xl shadow-xl'
+            : 'bg-white/3 backdrop-blur-xl shadow-xl'
         )}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <Logo onClick={closeMenu} />
