@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Code2, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 import Image from 'next/image'
 
 type LogoProps = {
