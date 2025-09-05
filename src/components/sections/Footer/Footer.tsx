@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Heart, Sparkles, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const socialLinks = [
   { icon: Github, href: "#", label: "GitHub", color: "hover:text-white" },
@@ -226,9 +225,7 @@ export function Footer() {
               >
                 <Heart className="w-4 h-4 text-red-400" fill="currentColor" />
               </motion.div>
-              <span>and</span>
-              <Sparkles className="w-4 h-4 text-primary-400" />
-              <span>by A.ZINEDDINE</span>
+              <span>| A.ZINEDDINE</span>
             </motion.div>
 
             {/* Back to top button */}
