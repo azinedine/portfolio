@@ -59,7 +59,7 @@ export function Logo({ onClick }: LogoProps) {
           A.ZINEDDINE
         </motion.span>
         <span className="text-xs text-white/50 font-medium tracking-wider">
-          Full Stack Dev
+          Software Engineer
         </span>
       </div>
     </Link>
