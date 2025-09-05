@@ -143,10 +143,11 @@ export function Hero() {
 
   // Memoized mouse follower style
   const mouseFollowerStyle = useMemo(() => ({
-    background: 'radial-gradient(circle, rgba(109, 74, 236, 0.06) 0%, rgba(59, 130, 246, 0.03) 50%, transparent 100%)',
+    background: 'radial-gradient(circle, rgba(109, 74, 236, 0.06) 13%, rgba(59, 130, 246, 0.03) 10%, transparent 40%)',
     left: '50%',
     top: '50%',
     transform: 'translate(-50%, -50%)',
+
   }), [])
 
   return (
