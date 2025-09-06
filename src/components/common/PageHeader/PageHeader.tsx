@@ -46,7 +46,6 @@ export function PageHeader({
   title,
   subtitle,
   description,
-  badge,
   showBackButton = false,
   showBreadcrumb = false,
   breadcrumbItems = [],
@@ -74,12 +73,12 @@ export function PageHeader({
         </div>
       )}
 
-      <div className="container-responsive relative z-10">
+      <div className="container-responsive  relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className={`${isCentered ? 'text-center' : ''} ${isMinimal ? 'max-w-4xl' : 'max-w-5xl'} ${isCentered ? 'mx-auto' : ''}`}
+          className={`${isCentered ? 'text-center' : ''} ${isMinimal ? 'max-w-4xl' : 'w-full'} ${isCentered ? 'mx-auto' : ''} px-16`}
         >
           {/* Back Button */}
           {showBackButton && (
@@ -124,17 +123,8 @@ export function PageHeader({
             </motion.nav>
           )}
 
-          {/* Badge */}
-          {badge && (
-            <motion.div variants={itemVariants} className={`mb-6 ${isCentered ? '' : ''}`}>
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600/20 border border-primary-500/30 text-primary-300 rounded-full text-sm font-medium backdrop-blur-sm">
-                {badge}
-              </span>
-            </motion.div>
-          )}
-
           {/* Title */}
-          <motion.div variants={itemVariants} className="mb-6">
+          <motion.div variants={itemVariants} className="mb-3">
             <h1 className={`font-bold leading-tight ${
               isMinimal 
                 ? 'text-3xl md:text-4xl' 
