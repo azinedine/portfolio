@@ -12,7 +12,7 @@ export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
   if (featuredProjects.length === 0) return null
 
   return (
-    <section className="pb-16">
+    <section className="pb-16 pt-16">
       <div className="container-responsive">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
