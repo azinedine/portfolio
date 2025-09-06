@@ -171,13 +171,13 @@ export function Footer() {
                   </p>
                   <div className="space-y-2">
                     <a
-                      href="mailto:hello@developer.com"
+                      href="mailto:amarichezineddine@gmail.com"
                       className="block text-primary-400 hover:text-primary-300 transition-colors"
                     >
-                      amarichezineddine@gmail.com
+                      a.zineddine@dev.com
                     </a>
                     <a
-                      href="tel:+15551234567"
+                      href="tel:+2130540128550"
                       className="block text-white/60 hover:text-white transition-colors"
                     >
                       +213 540 128 550{" "}
