@@ -104,4 +104,4 @@ export const portfolioItems: PortfolioItem[] = [
   },
 ]
 
-export const portfolioCategories = ["All", "Web Dev", "Mobile", "Design"]
+export const portfolioCategories = ["All", "Web Development", "Mobile App", "UI/UX Design"]
