@@ -40,6 +40,7 @@ export function Portfolio() {
     closeModal,
   } = usePortfolio();
 
+
   return (
     <section id="projects" className="section-padding relative overflow-hidden">
       {/* Background elements */}
@@ -54,6 +55,7 @@ export function Portfolio() {
           selectedCategory={selectedCategory}
           onCategoryChange={setSelectedCategory}
         />
+
 
         {/* Portfolio Grid */}
         <PortfolioGrid
