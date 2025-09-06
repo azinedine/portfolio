@@ -1,35 +1,11 @@
 "use client";
 
-import { easeOut } from "framer-motion";
 import { useProjectsPage } from "./useProjectsPage";
 import { FeaturedProjects } from "./FeaturedProjects";
 import { ProjectsFilter } from "./ProjectsFilter";
 import { ProjectsGrid } from "./ProjectsGrid";
 import { ProjectsCTA } from "./ProjectsCTA";
 import { PageHeader } from "@/components/common/PageHeader";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: easeOut,
-    },
-  },
-};
 
 export default function ProjectsPage() {
   const {
@@ -42,7 +18,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-dark-950">
- 
       <PageHeader
         badge="Projects"
         subtitle="Crafting Digital"
