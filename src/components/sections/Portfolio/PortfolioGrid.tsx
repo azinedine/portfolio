@@ -19,14 +19,21 @@ export function PortfolioGrid({
   itemVariants,
   onViewDetails
 }: PortfolioGridProps) {
+  if (projects.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-white/70 text-lg">No projects found for the selected category.</p>
+      </div>
+    )
+  }
+
   return (
     <>
       {/* Portfolio Grid */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        animate="visible"
         className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
       >
         {projects.map((project) => (
