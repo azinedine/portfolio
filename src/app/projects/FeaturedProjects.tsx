@@ -21,7 +21,7 @@ export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
           className="mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4">
-            Featured Projectsss
+            Featured Projects
           </h2>
           <p className="text-dark-600 dark:text-dark-400">
             Highlighting my most impactful and innovative work
