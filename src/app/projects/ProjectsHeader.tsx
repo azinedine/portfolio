@@ -1,30 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { AnimatedText } from '@/components/common/AnimatedText'
 
 type ProjectsHeaderProps = {
-  containerVariants: {
-    hidden: { opacity: number }
-    visible: {
-      opacity: number
-      transition: {
-        staggerChildren: number
-        delayChildren: number
-      }
-    }
-  }
-  itemVariants: {
-    hidden: { opacity: number; y: number }
-    visible: {
-      opacity: number
-      y: number
-      transition: {
-        duration: number
-        ease: any
-      }
-    }
-  }
+  containerVariants: Variants
+  itemVariants: Variants
 }
 
 export function ProjectsHeader({ containerVariants, itemVariants }: ProjectsHeaderProps) {
