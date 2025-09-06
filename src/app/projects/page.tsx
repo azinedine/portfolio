@@ -2,7 +2,6 @@
 
 import { easeOut } from "framer-motion";
 import { useProjectsPage } from "./useProjectsPage";
-import { ProjectsHeader } from "./ProjectsHeader";
 import { FeaturedProjects } from "./FeaturedProjects";
 import { ProjectsFilter } from "./ProjectsFilter";
 import { ProjectsGrid } from "./ProjectsGrid";
@@ -42,11 +41,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-dark-950 pt-20">
-      {/* Hero Section */}
-      <ProjectsHeader
-        containerVariants={containerVariants}
-        itemVariants={itemVariants}
-      />
+ 
 
       {/* Featured Projects */}
       <FeaturedProjects featuredProjects={featuredProjects} />
