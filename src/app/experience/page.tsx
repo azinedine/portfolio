@@ -290,7 +290,7 @@ export default function ExperiencePage() {
               Career Timeline
             </h2>
             <p className="text-dark-600 dark:text-dark-400 text-center max-w-2xl mx-auto">
-              From education to professional experience, here's my journey in tech
+              From education to professional experience, here&apos;s my journey in tech
             </p>
           </motion.div>
 
@@ -385,7 +385,7 @@ export default function ExperiencePage() {
               Ready to Work Together?
             </h2>
             <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
-              With years of experience and a proven track record, I'm ready to help bring your next project to life.
+              With years of experience and a proven track record, I&apos;m ready to help bring your next project to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
