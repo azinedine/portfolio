@@ -40,8 +40,6 @@ export default function ProjectsPage() {
     setSelectedCategory,
   } = useProjectsPage();
 
-  console.log('categories', categories)
-
   return (
     <div className="min-h-screen bg-white dark:bg-dark-950 pt-20">
       {/* Hero Section */}
