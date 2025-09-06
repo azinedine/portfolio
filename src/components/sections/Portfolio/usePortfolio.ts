@@ -26,15 +26,7 @@ export function usePortfolio(): UsePortfolioReturn {
       return portfolioItems
     }
     
-    // Map category names to match the data
-    const categoryMap: Record<string, string> = {
-      'Web Dev': 'Web Development',
-      'Mobile': 'Mobile App',
-      'Design': 'UI/UX Design'
-    }
-    
-    const mappedCategory = categoryMap[selectedCategory] || selectedCategory
-    return portfolioItems.filter(project => project.category === mappedCategory)
+    return portfolioItems.filter(project => project.category === selectedCategory)
   }, [selectedCategory])
 
   const featuredProjects = useMemo(() => {
