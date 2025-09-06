@@ -1,34 +1,42 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Code2, Zap, Users, Award, Download, MapPin, Calendar } from 'lucide-react'
-import { PageHeader } from '@/components/common/PageHeader'
+import { motion } from "framer-motion";
+import {
+  Code2,
+  Zap,
+  Users,
+  Award,
+  Download,
+  MapPin,
+  Calendar,
+} from "lucide-react";
+import { PageHeader } from "@/components/common/PageHeader";
 
 const stats = [
-  { icon: Code2, label: 'Projects Completed', value: '50+' },
-  { icon: Users, label: 'Happy Clients', value: '30+' },
-  { icon: Zap, label: 'Years Experience', value: '5+' },
-  { icon: Award, label: 'Awards Won', value: '8' },
-]
+  { icon: Code2, label: "Projects Completed", value: "50+" },
+  { icon: Users, label: "Happy Clients", value: "30+" },
+  { icon: Zap, label: "Years Experience", value: "5+" },
+  { icon: Award, label: "Awards Won", value: "8" },
+];
 
 const skills = {
   frontend: [
-    { name: 'React.js', level: 95, color: 'bg-blue-500' },
-    { name: 'Next.js', level: 90, color: 'bg-gray-800' },
-    { name: 'TypeScript', level: 85, color: 'bg-blue-600' },
-    { name: 'Vue.js', level: 80, color: 'bg-green-500' },
-    { name: 'React Native', level: 88, color: 'bg-cyan-500' },
-    { name: 'Tailwind CSS', level: 92, color: 'bg-teal-500' },
+    { name: "React.js", level: 95, color: "bg-blue-500" },
+    { name: "Next.js", level: 90, color: "bg-gray-800" },
+    { name: "TypeScript", level: 85, color: "bg-blue-600" },
+    { name: "Vue.js", level: 80, color: "bg-green-500" },
+    { name: "React Native", level: 88, color: "bg-cyan-500" },
+    { name: "Tailwind CSS", level: 92, color: "bg-teal-500" },
   ],
   backend: [
-    { name: 'Node.js', level: 90, color: 'bg-green-600' },
-    { name: 'Laravel', level: 85, color: 'bg-red-500' },
-    { name: 'PostgreSQL', level: 82, color: 'bg-blue-700' },
-    { name: 'MongoDB', level: 78, color: 'bg-green-700' },
-    { name: 'Redis', level: 75, color: 'bg-red-600' },
-    { name: 'Docker', level: 80, color: 'bg-blue-500' },
+    { name: "Node.js", level: 90, color: "bg-green-600" },
+    { name: "Laravel", level: 85, color: "bg-red-500" },
+    { name: "PostgreSQL", level: 82, color: "bg-blue-700" },
+    { name: "MongoDB", level: 78, color: "bg-green-700" },
+    { name: "Redis", level: 75, color: "bg-red-600" },
+    { name: "Docker", level: 80, color: "bg-blue-500" },
   ],
-}
+};
 
 export default function AboutPage() {
   return (
@@ -41,9 +49,7 @@ export default function AboutPage() {
         description="I'm a passionate Full Stack Developer with over 5 years of experience creating modern, scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions."
         variant="centered"
         showBreadcrumb
-        breadcrumbItems={[
-          { label: 'About', href: '/about' }
-        ]}
+        breadcrumbItems={[{ label: "About", href: "/about" }]}
       />
 
       {/* Stats Section */}
@@ -73,7 +79,11 @@ export default function AboutPage() {
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
+                  transition={{
+                    delay: index * 0.1 + 0.3,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                   className="text-2xl md:text-3xl font-bold text-white mb-2"
                 >
                   {value}
@@ -104,7 +114,7 @@ export default function AboutPage() {
                     <Code2 className="w-24 h-24 text-white/80" />
                   </div>
                 </div>
-                
+
                 {/* Floating elements */}
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
@@ -113,7 +123,7 @@ export default function AboutPage() {
                 >
                   🚀
                 </motion.div>
-                
+
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 1 }}
@@ -134,20 +144,22 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 My Journey
               </h2>
-              
+
               <div className="space-y-6 text-white/80">
                 <p className="leading-relaxed">
-                  My journey in software development started 5 years ago when I discovered my passion for creating 
-                  digital solutions that make a real impact. Since then, I've had the privilege of working with 
-                  startups, agencies, and established companies to bring their ideas to life.
+                  {`  My journey in software development started 5 years ago when I
+                  discovered my passion for creating digital solutions that make
+                  a real impact. Since then, I've had the privilege of working
+                  with startups, agencies, and established companies to bring
+                  their ideas to life.`}
                 </p>
-                
+
                 <p className="leading-relaxed">
-                  I specialize in full-stack development with a focus on React ecosystem, but I'm always eager to 
+                  {`   I specialize in full-stack development with a focus on React ecosystem, but I'm always eager to 
                   learn new technologies and tackle challenging problems. My approach combines technical expertise 
-                  with creative problem-solving to deliver exceptional results.
+                  with creative problem-solving to deliver exceptional results.`}
                 </p>
-                
+
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-primary-400" />
@@ -186,7 +198,8 @@ export default function AboutPage() {
               Skills & Expertise
             </h2>
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              Here are the technologies and tools I work with to bring ideas to life
+              Here are the technologies and tools I work with to bring ideas to
+              life
             </p>
           </motion.div>
 
@@ -286,11 +299,11 @@ export default function AboutPage() {
             className="text-center bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl p-12 text-white"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Let's Work Together
+              Let&apos;s Work Together
             </h2>
             <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
-              Ready to bring your ideas to life? I'm always excited to work on new projects 
-              and collaborate with amazing people.
+              Ready to bring your ideas to life? I&apos;m always excited to work on
+              new projects and collaborate with amazing people.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
@@ -312,5 +325,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
