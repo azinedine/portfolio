@@ -1,108 +1,16 @@
-'use client'
+"use client";
 
-import { motion, easeOut } from 'framer-motion'
-import { Briefcase, GraduationCap, Award, Calendar, MapPin, ExternalLink } from 'lucide-react'
-import { AnimatedText } from '@/components/common/AnimatedText'
-
-const experiences = [
-  {
-    id: 1,
-    type: 'work',
-    title: 'Senior Full Stack Developer',
-    company: 'TechFlow Solutions',
-    location: 'San Francisco, CA',
-    period: '2022 - Present',
-    description: 'Lead a team of 5 developers in building scalable web applications. Architected and implemented microservices infrastructure that improved system performance by 40%.',
-    achievements: [
-      'Led the development of a real-time collaboration platform serving 50k+ users',
-      'Implemented CI/CD pipelines reducing deployment time by 60%',
-      'Mentored junior developers and conducted technical interviews',
-      'Reduced application load time by 35% through code optimization'
-    ],
-    technologies: ['React', 'Node.js', 'AWS', 'Docker', 'PostgreSQL', 'Redis'],
-    link: 'https://techflow.com'
-  },
-  {
-    id: 2,
-    type: 'work',
-    title: 'Full Stack Developer',
-    company: 'InnovateLab',
-    location: 'Remote',
-    period: '2020 - 2022',
-    description: 'Developed and maintained multiple client projects ranging from e-commerce platforms to data visualization dashboards.',
-    achievements: [
-      'Built 15+ production applications with 99.9% uptime',
-      'Integrated payment systems processing $2M+ in transactions',
-      'Implemented responsive designs increasing mobile engagement by 45%',
-      'Collaborated with cross-functional teams in agile environment'
-    ],
-    technologies: ['Vue.js', 'Laravel', 'MySQL', 'Stripe', 'Tailwind CSS'],
-    link: 'https://innovatelab.com'
-  },
-  {
-    id: 3,
-    type: 'work',
-    title: 'Frontend Developer',
-    company: 'StartupXYZ',
-    location: 'New York, NY',
-    period: '2019 - 2020',
-    description: 'Focused on creating intuitive user interfaces and improving user experience across web and mobile platforms.',
-    achievements: [
-      'Redesigned main product interface increasing user satisfaction by 30%',
-      'Developed React Native mobile app with 4.8 App Store rating',
-      'Established component library used across 10+ projects',
-      'Improved website accessibility compliance to WCAG 2.1 standards'
-    ],
-    technologies: ['React', 'React Native', 'TypeScript', 'Sass', 'Firebase'],
-    link: 'https://startupxyz.com'
-  }
-]
-
-const education = [
-  {
-    id: 1,
-    type: 'education',
-    title: 'Bachelor of Science in Computer Science',
-    institution: 'University of Technology',
-    location: 'Boston, MA',
-    period: '2015 - 2019',
-    description: 'Graduated Magna Cum Laude with a focus on software engineering and web technologies.',
-    achievements: [
-      'GPA: 3.8/4.0',
-      'President of Computer Science Club',
-      'Winner of Annual Hackathon 2018',
-      'Dean\'s List for 6 consecutive semesters'
-    ],
-    technologies: ['Java', 'Python', 'C++', 'SQL', 'Data Structures', 'Algorithms']
-  }
-]
-
-const certifications = [
-  {
-    id: 1,
-    title: 'AWS Certified Solutions Architect',
-    issuer: 'Amazon Web Services',
-    date: '2023',
-    credentialId: 'AWS-SA-2023-001',
-    link: '#'
-  },
-  {
-    id: 2,
-    title: 'Google Cloud Professional Developer',
-    issuer: 'Google Cloud',
-    date: '2022',
-    credentialId: 'GCP-PD-2022-002',
-    link: '#'
-  },
-  {
-    id: 3,
-    title: 'Meta Frontend Developer Professional',
-    issuer: 'Meta',
-    date: '2021',
-    credentialId: 'META-FE-2021-003',
-    link: '#'
-  }
-]
+import { motion, easeOut } from "framer-motion";
+import {
+  Briefcase,
+  GraduationCap,
+  Award,
+  Calendar,
+  MapPin,
+  ExternalLink,
+} from "lucide-react";
+import { AnimatedText } from "@/components/common/AnimatedText";
+import { certifications, education, experiences } from "./data";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -113,7 +21,7 @@ const containerVariants = {
       delayChildren: 0.2,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, x: -30 },
@@ -125,14 +33,18 @@ const itemVariants = {
       ease: easeOut,
     },
   },
-}
+};
 
-const TimelineItem = ({ item, index, isLast }: { 
-  item: typeof experiences[0] | typeof education[0], 
-  index: number, 
-  isLast: boolean 
+const TimelineItem = ({
+  item,
+  index,
+  isLast,
+}: {
+  item: (typeof experiences)[0] | (typeof education)[0];
+  index: number;
+  isLast: boolean;
 }) => {
-  const Icon = item.type === 'work' ? Briefcase : GraduationCap
+  const Icon = item.type === "work" ? Briefcase : GraduationCap;
 
   return (
     <motion.div
@@ -146,7 +58,7 @@ const TimelineItem = ({ item, index, isLast }: {
       {!isLast && (
         <div className="absolute left-6 top-12 w-px h-full bg-gradient-to-b from-primary-400 to-transparent" />
       )}
-      
+
       {/* Timeline icon */}
       <div className="flex items-start gap-6">
         <div className="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center border-4 border-white dark:border-dark-950 shadow-lg">
@@ -166,8 +78,10 @@ const TimelineItem = ({ item, index, isLast }: {
                   {item.title}
                 </h3>
                 <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium">
-                  <span>{'company' in item ? item.company : item.institution}</span>
-                  {'link' in item && item.link && (
+                  <span>
+                    {"company" in item ? item.company : item.institution}
+                  </span>
+                  {"link" in item && item.link && (
                     <motion.a
                       href={item.link}
                       target="_blank"
@@ -180,7 +94,7 @@ const TimelineItem = ({ item, index, isLast }: {
                   )}
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-2 mt-2 lg:mt-0">
                 <span className="inline-flex items-center gap-1 text-sm text-dark-500 dark:text-dark-500">
                   <Calendar className="w-4 h-4" />
@@ -205,7 +119,10 @@ const TimelineItem = ({ item, index, isLast }: {
               </h4>
               <ul className="space-y-1">
                 {item.achievements.map((achievement, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-dark-600 dark:text-dark-400">
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 text-dark-600 dark:text-dark-400"
+                  >
                     <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
                     <span>{achievement}</span>
                   </li>
@@ -233,16 +150,20 @@ const TimelineItem = ({ item, index, isLast }: {
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
 export default function ExperiencePage() {
   const allItems = [...experiences, ...education].sort((a, b) => {
     // Sort by year (newest first)
-    const yearA = parseInt(a.period.split(' - ')[1] === 'Present' ? '2024' : a.period.split(' - ')[1])
-    const yearB = parseInt(b.period.split(' - ')[1] === 'Present' ? '2024' : b.period.split(' - ')[1])
-    return yearB - yearA
-  })
+    const yearA = parseInt(
+      a.period.split(" - ")[1] === "Present" ? "2024" : a.period.split(" - ")[1]
+    );
+    const yearB = parseInt(
+      b.period.split(" - ")[1] === "Present" ? "2024" : b.period.split(" - ")[1]
+    );
+    return yearB - yearA;
+  });
 
   return (
     <div className="min-h-screen bg-white dark:bg-dark-950 pt-20">
@@ -261,17 +182,28 @@ export default function ExperiencePage() {
               </span>
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <AnimatedText text="Professional" className="text-dark-900 dark:text-white" />
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            >
+              <AnimatedText
+                text="Professional"
+                className="text-dark-900 dark:text-white"
+              />
               <br />
-              <AnimatedText text="Experience" className="gradient-text" delay={0.5} />
+              <AnimatedText
+                text="Experience"
+                className="gradient-text"
+                delay={0.5}
+              />
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
               className="text-lg md:text-xl text-dark-600 dark:text-dark-400 leading-relaxed max-w-3xl mx-auto"
             >
-              A timeline of my career journey, education, and professional growth in the world of software development.
+              A timeline of my career journey, education, and professional
+              growth in the world of software development.
             </motion.p>
           </motion.div>
         </div>
@@ -290,7 +222,8 @@ export default function ExperiencePage() {
               Career Timeline
             </h2>
             <p className="text-dark-600 dark:text-dark-400 text-center max-w-2xl mx-auto">
-              From education to professional experience, here&apos;s my journey in tech
+              From education to professional experience, here&apos;s my journey
+              in tech
             </p>
           </motion.div>
 
@@ -320,7 +253,8 @@ export default function ExperiencePage() {
               Certifications & Awards
             </h2>
             <p className="text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
-              Professional certifications that validate my expertise in various technologies
+              Professional certifications that validate my expertise in various
+              technologies
             </p>
           </motion.div>
 
@@ -343,15 +277,15 @@ export default function ExperiencePage() {
                     {cert.date}
                   </span>
                 </div>
-                
+
                 <h3 className="font-bold text-dark-900 dark:text-white mb-2">
                   {cert.title}
                 </h3>
-                
+
                 <p className="text-dark-600 dark:text-dark-400 mb-3">
                   {cert.issuer}
                 </p>
-                
+
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-dark-500 dark:text-dark-500">
                     ID: {cert.credentialId}
@@ -385,7 +319,8 @@ export default function ExperiencePage() {
               Ready to Work Together?
             </h2>
             <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
-              With years of experience and a proven track record, I&apos;m ready to help bring your next project to life.
+              With years of experience and a proven track record, I&apos;m ready
+              to help bring your next project to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
@@ -407,5 +342,5 @@ export default function ExperiencePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
