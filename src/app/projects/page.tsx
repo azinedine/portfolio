@@ -6,6 +6,7 @@ import { FeaturedProjects } from "./FeaturedProjects";
 import { ProjectsFilter } from "./ProjectsFilter";
 import { ProjectsGrid } from "./ProjectsGrid";
 import { ProjectsCTA } from "./ProjectsCTA";
+import { PageHeader } from "@/components/common/PageHeader";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -40,8 +41,17 @@ export default function ProjectsPage() {
   } = useProjectsPage();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-950 pt-20">
+    <div className="min-h-screen bg-white dark:bg-dark-950">
  
+      <PageHeader
+        badge="Projects"
+        subtitle="Crafting Digital"
+        title="Experiences"
+        description="I'm a passionate Full Stack Developer with over 5 years of experience creating modern, scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions."
+        variant="centered"
+        showBreadcrumb
+        breadcrumbItems={[{ label: "Projects", href: "/projects" }]}
+      />
 
       {/* Featured Projects */}
       <FeaturedProjects featuredProjects={featuredProjects} />
