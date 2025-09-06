@@ -297,7 +297,7 @@ export default function ExperiencePage() {
           <div className="max-w-4xl mx-auto">
             {allItems.map((item, index) => (
               <TimelineItem
-                key={item.id}
+                key={item.id + index}
                 item={item}
                 index={index}
                 isLast={index === allItems.length - 1}
