@@ -134,29 +134,29 @@ export const portfolioItems: PortfolioItem[] = [
     },
     status: "completed",
   },
-  {
-    id: 4,
-    title: "Taki Mobile App",
-    category: "Web Development",
-    description:
-      "Taki mobile app is a mobile app that allows users to manage their business expenses and income.",
-    photos: [
-      "/taki-mobile-app-1.png",
-      "/taki-mobile-app-2.png",
-      "/taki-mobile-app-3.png",
-      "/taki-mobile-app-4.png",
-      "/taki-mobile-app-5.png",
-      "/taki-mobile-app-6.png",
-      "/taki-mobile-app-7.png",
-    ],
-    technologies: ["React Native", "Laravel"],
-    color: "from-purple-500 to-pink-500",
-    links: {
-      demo: "https://example.com",
-      github: "https://github.com/username/project",
-    },
-    status: "completed",
-  },
+  // {
+  //   id: 4,
+  //   title: "Taki Mobile App",
+  //   category: "Web Development",
+  //   description:
+  //     "Taki mobile app is a mobile app that allows users to manage their business expenses and income.",
+  //   photos: [
+  //     "/taki-mobile-app-1.png",
+  //     "/taki-mobile-app-2.png",
+  //     "/taki-mobile-app-3.png",
+  //     "/taki-mobile-app-4.png",
+  //     "/taki-mobile-app-5.png",
+  //     "/taki-mobile-app-6.png",
+  //     "/taki-mobile-app-7.png",
+  //   ],
+  //   technologies: ["React Native", "Laravel"],
+  //   color: "from-purple-500 to-pink-500",
+  //   links: {
+  //     demo: "https://example.com",
+  //     github: "https://github.com/username/project",
+  //   },
+  //   status: "completed",
+  // },
 
  
 ];
