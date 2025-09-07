@@ -1,9 +1,69 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, easeOut } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter, Clock, CheckCircle } from 'lucide-react'
 import { AnimatedText } from '@/components/common/AnimatedText'
+
+// Centralized animation variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+}
+
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+}
+
+const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+}
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+}
 
 const contactInfo = [
   {
@@ -56,29 +116,6 @@ const socialLinks = [
     color: 'hover:text-blue-400'
   }
 ]
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: easeOut,
-    },
-  },
-}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -146,7 +183,7 @@ export default function ContactPage() {
               variants={itemVariants}
               className="text-lg md:text-xl text-dark-600 dark:text-dark-400 leading-relaxed max-w-3xl mx-auto"
             >
-              Have a project in mind or want to collaborate? I'd love to hear about your ideas and discuss how we can work together to bring them to life.
+              Have a project in mind or want to collaborate? I&apos;d love to hear about your ideas and discuss how we can work together to bring them to life.
             </motion.p>
           </motion.div>
         </div>
@@ -157,10 +194,9 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Information */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              variants={slideInLeft}
+              initial="hidden"
+              animate="visible"
               className="lg:col-span-1"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-6">
@@ -168,7 +204,7 @@ export default function ContactPage() {
               </h2>
               
               <p className="text-dark-600 dark:text-dark-400 mb-8">
-                Ready to start your project? Feel free to reach out through any of these channels, and I'll get back to you within 24 hours.
+                Ready to start your project? Feel free to reach out through any of these channels, and I&apos;ll get back to you within 24 hours.
               </p>
 
               {/* Contact Details */}
@@ -221,10 +257,9 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={slideInRight}
+              initial="hidden"
+              animate="visible"
               className="lg:col-span-2"
             >
               <div className="bg-white dark:bg-dark-900 rounded-2xl border border-dark-200 dark:border-dark-800 p-8 shadow-sm">
@@ -241,7 +276,7 @@ export default function ContactPage() {
                   >
                     <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                     <p className="text-green-800 dark:text-green-300 font-medium">
-                      Thank you for your message! I'll get back to you soon.
+                      Thank you for your message! I&apos;ll get back to you soon.
                     </p>
                   </motion.div>
                 )}
@@ -370,9 +405,9 @@ export default function ContactPage() {
       <section className="section-padding bg-gray-50 dark:bg-dark-900/50">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4">
@@ -383,7 +418,12 @@ export default function ContactPage() {
             </p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto grid gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl mx-auto grid gap-6"
+          >
             {[
               {
                 question: "What's your typical project timeline?",
@@ -404,10 +444,7 @@ export default function ContactPage() {
             ].map((faq, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                variants={scaleIn}
                 className="bg-white dark:bg-dark-900 rounded-xl p-6 border border-dark-200 dark:border-dark-800"
               >
                 <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
@@ -418,7 +455,7 @@ export default function ContactPage() {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -426,16 +463,16 @@ export default function ContactPage() {
       <section className="section-padding">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="text-center bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl p-12 text-white"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to Start Your Project?
             </h2>
             <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
-              Don't wait to bring your ideas to life. Let's schedule a free consultation to discuss your project and how I can help make it a reality.
+              Don&apos;t wait to bring your ideas to life. Let&apos;s schedule a free consultation to discuss your project and how I can help make it a reality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
