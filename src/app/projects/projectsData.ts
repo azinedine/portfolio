@@ -2,161 +2,139 @@
 export type ProjectItem = {
   id: number
   title: string
-  description: string
-  image?: string // Keep for backward compatibility
-  photos?: string[] // New photos array for carousel
-  technologies: string[]
   category: string
-  date: string
-  featured: boolean
-  status?: string // Add status like portfolio
+  description: string
+  color: string
+  photos?: string[]
+  technologies: string[]
+  date?: string
+  featured?: boolean
+  status?: string  
   links: {
     demo: string
     github: string
-  }
+  },
 }
 
 export const projectsData: ProjectItem[] = [
   {
-    id: 1,
-    title: "E-Commerce Platform",
+    id: 12,
+    title: "EFFI Tech Website",
+    category: "Web Development",
     description:
-      "A modern e-commerce platform built with Next.js, featuring real-time inventory, payment integration, and admin dashboard.",
+      "High-performance industrial systems and engineering services designed to optimize energy efficiency, extend equipment lifespan, and ensure reliable operation across diverse industrial sectors.",
     photos: [
-      "/api/placeholder/600/400",
-      "/api/placeholder/600/401",
-      "/api/placeholder/600/402"
+      "/electric-company.png",
+      "/electric-company-2.png", 
+      "/electric-company-3.png",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "PostgreSQL", "Stripe"],
-    category: "Web App",
-    date: "2024",
-    status: "Completed",
-    featured: true,
+    technologies: ["Next.js", "TypeScript", "Prisma"],
+    color: "from-teal-500 to-green-500",
     links: {
-      demo: "https://example.com",
+      demo: "https://effi-tech.net/",
+      github: "https://github.com/Braivexa-agency/effitech",
+    },
+    status: "completed",
+    featured: true,
+  },
+  {
+    id: 1,
+    title: "DIASPO Application",
+    category: "Mobile App",
+    description:
+      "DIASPO is a mobile application that allows users to manage their business expenses and income.",
+    photos: ["/diaspo-2.png", "/diaspo-1.png", "/diaspo-3.png"],
+    technologies: ["React Native", "Laravel", "PostgreSQL"],
+    color: "from-blue-500 to-cyan-500",
+    links: {
+      demo: "https://diaspo.io",
       github: "https://github.com/username/project",
     },
+    status: "completed",
   },
   {
     id: 2,
-    title: "Task Management Mobile App",
+    title: "Dashboard for an e-commerce platform",
+    category: "Web Development",
     description:
-      "Cross-platform mobile app for team collaboration and task management with real-time sync and offline support.",
+      "Vendor and customer dashboard for an e-commerce platform, with features like order management, product management, and customer management.",
     photos: [
-      "/api/placeholder/600/410",
-      "/api/placeholder/600/411"
+      "/e-commerce-dashboard-1.png",
+      "/e-commerce-dashboard-2.png",
+      "/e-commerce-dashboard-3.png",
+      "/e-commerce-dashboard-4.png",
+      "/e-commerce-dashboard-5.png",
+      "/e-commerce-dashboard-6.png",
+      "/e-commerce-dashboard-7.png",
     ],
-    technologies: ["React Native", "Expo", "Node.js", "MongoDB", "Socket.io"],
-    category: "Mobile App",
-    date: "2024",
-    status: "In Progress",
-    featured: true,
+    technologies: ["React", "Laravel", "SQLite"],
+    color: "from-green-500 to-emerald-500",
     links: {
-      demo: "https://example.com",
+      demo: "https://e-commerce-dashboard.com",
       github: "https://github.com/username/project",
     },
+    status: "completed",
   },
   {
     id: 3,
-    title: "AI-Powered Analytics Dashboard",
+    title: "Taki dashboard",
+    category: "Web Development",
     description:
-      "Business intelligence dashboard with machine learning insights and interactive data visualizations.",
+      "Taki dashboard is a dashboard for a platform that allows users to manage their business expenses and income.",
     photos: [
-      "/api/placeholder/600/420"
+      "/taki-dashboard-1.png",
+      "/taki-dashboard-2.png",
+      "/taki-dashboard-3.png",
+      "/taki-dashboard-4.png",
     ],
-    technologies: ["Vue.js", "Python", "TensorFlow", "D3.js", "FastAPI"],
-    category: "Web App",
-    date: "2023",
-    status: "Completed",
-    featured: false,
+    technologies: ["Vue.js", "Laravel", "SQLite"],
+    color: "from-orange-500 to-red-500",
     links: {
-      demo: "https://example.com",
+      demo: "https://taqqee.com",
       github: "https://github.com/username/project",
     },
+    status: "completed",
   },
   {
-    id: 4,
-    title: "Real Estate Platform",
+    id: 8,
+    title: "Mushaf Al Djazair App",
+    category: "Mobile App",
     description:
-      "Full-stack real estate platform with property listings, virtual tours, and CRM functionality.",
+      "Mushaf Al Djazair App is a mobile app that allows users to read the Quran and listen to the recitation, it also allows users to search for surahs and verses,and more.",
     photos: [
-      "/api/placeholder/600/430",
-      "/api/placeholder/600/431",
-      "/api/placeholder/600/432",
-      "/api/placeholder/600/433"
+      "/mushaf-al-djazair-app-1.png",
+      "/mushaf-al-djazair-app-2.png",
+      "/mushaf-al-djazair-app-3.png",
+      "/mushaf-al-djazair-app-4.png",
     ],
-    technologies: ["Laravel", "Vue.js", "MySQL", "AWS", "WebRTC"],
-    category: "Web App",
-    date: "2023",
-    status: "Completed",
-    featured: false,
+    technologies: ["React Native", "Laravel"],
+    color: "from-indigo-500 to-blue-500",
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
     },
+    status: "completed",
   },
   {
     id: 5,
-    title: "Fitness Tracking App",
+    title: "Nice WIndow UI/UX Design",
+    category: "UI/UX Design",
     description:
-      "Mobile fitness app with workout tracking, nutrition logging, and social features for fitness enthusiasts.",
+      "Nice Window UI/UX Design is a design system that allows users to manage their business expenses and income.",
     photos: [
-      "/api/placeholder/600/440",
-      "/api/placeholder/600/441"
-    ],
-    technologies: ["React Native", "Node.js", "MongoDB", "Redis", "HealthKit"],
-    category: "Mobile App",
-    date: "2023",
-    status: "Completed",
-    featured: false,
-    links: {
-      demo: "https://example.com",
-      github: "https://github.com/username/project",
-    },
-  },
-  {
-    id: 6,
-    title: "Cryptocurrency Portfolio Tracker",
-    description:
-      "Real-time crypto portfolio tracking with advanced charts, alerts, and market analysis.",
-    photos: [
-      "/api/placeholder/600/450"
-    ],
-    technologies: [
-      "React",
-      "Node.js",
-      "WebSocket",
-      "Chart.js",
-      "CoinGecko API",
-    ],
-    category: "Web App",
-    date: "2022",
-    status: "Completed",
-    featured: false,
-    links: {
-      demo: "https://example.com",
-      github: "https://github.com/username/project",
-    },
-  },
-  {
-    id: 7,
-    title: "Brand Identity Design System",
-    description:
-      "Complete brand identity and design system for a modern tech startup, including logo, colors, typography, and components.",
-    photos: [
-      "/api/placeholder/600/460",
-      "/api/placeholder/600/461",
-      "/api/placeholder/600/462"
+      "/nice-window-1.png",
+      "/nice-window-2.png",
+      "/nice-window-3.png",
+      "/nice-window-4.png",
+      "/nice-window-5.png",
     ],
     technologies: ["Figma", "Adobe Creative Suite", "Design System", "Prototyping"],
-    category: "Design",
-    date: "2024",
-    status: "Completed",
-    featured: false,
+    color: "from-indigo-500 to-blue-500",
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
     },
+    status: "completed",
   },
 ]
 
