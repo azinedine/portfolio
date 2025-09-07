@@ -48,13 +48,13 @@ type ProjectCardProps = {
 };
 
 export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectCardProps) => {
-  // Convert single image to array for carousel compatibility
+  // Convert photos to array for carousel compatibility
   const images = useMemo(() => {
     if (project.photos?.length) {
       return project.photos.filter(Boolean);
     }
-    return project.image ? [project.image] : [];
-  }, [project.photos, project.image]);
+    return [];
+  }, [project.photos]);
 
   return (
     <motion.div
