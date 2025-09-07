@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ExternalLink, Github, Eye } from "lucide-react";
-import Image from "next/image";
+import MediaCarousel from "./MediaCarousel";
 import { type PortfolioItem } from "./portfolioData";
 
 type PortfolioCardProps = {
@@ -12,6 +12,12 @@ type PortfolioCardProps = {
 };
 
 export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCardProps) {
+  const images = (project as PortfolioItem)?.photos?.length
+    ? (project as PortfolioItem).photos
+    : project.photos
+    ? (project as PortfolioItem).photos
+    : [];
+
   return (
     <motion.div
       variants={variants}
@@ -19,66 +25,45 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
       className="group cursor-pointer"
     >
       <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-400/30 transition-all duration-300">
-        {/* Project Image */}
-        <div className="relative aspect-video overflow-hidden">
-          {project.photo ? (
-            <Image
-              src={project.photo}
-              alt={project.title}
-              width={500}
-              height={500}
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          ) : (
-            <>
-              {/* Gradient background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-75`}
-              />
+        {/* Project Image (carousel) */}
+        <div className="relative">
+          <MediaCarousel
+            images={images}
+            alt={project.title}
+            heightClass="h-48 md:h-60 lg:h-66"
+            roundedClass="rounded-none" 
+          />
 
-              {/* Project preview */}
-              <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-12 h-12 mx-auto mb-2 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    <span className="text-sm font-bold text-white">
-                      {project.category.charAt(0)}
-                    </span>
-                  </div>
-                  <p className="text-white/80 text-xs">{project.category}</p>
-                </div>
-              </div>
-            </>
-          )}
-
-          {/* Overlay for both image and gradient */}
-          <div className="absolute inset-0 bg-black/20" />
-
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-primary-900/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+          {/* Hover overlay actions */}
+          <div className="pointer-events-none absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-primary-900/80 opacity-0 group-hover:opacity-90 transition-all duration-300 flex items-center justify-center">
             <div className="flex gap-3">
-              <motion.a
-                href={project.links.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                title="View Live Demo"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-              </motion.a>
-              <motion.a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                title="View Source Code"
-              >
-                <Github className="w-3.5 h-3.5" />
-              </motion.a>
+              {project.links?.demo && (
+                <motion.a
+                  href={project.links.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  title="View Live Demo"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </motion.a>
+              )}
+              {project.links?.github && (
+                <motion.a
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  title="View Source Code"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                </motion.a>
+              )}
             </div>
           </div>
         </div>
@@ -134,3 +119,5 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
     </motion.div>
   );
 }
+
+export default PortfolioCard;
