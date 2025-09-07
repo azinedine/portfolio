@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, easeOut } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   Briefcase,
   GraduationCap,
@@ -12,7 +12,8 @@ import {
 import { AnimatedText } from "@/components/common/AnimatedText";
 import { certifications, education, experiences } from "./data";
 
-const containerVariants = {
+// Centralized animation variants
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -23,14 +24,38 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
       duration: 0.6,
-      ease: easeOut,
+      ease: "easeOut",
+    },
+  },
+};
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
     },
   },
 };
@@ -48,10 +73,10 @@ const TimelineItem = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      variants={slideInLeft}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: index * 0.1 }}
       className="relative"
     >
       {/* Timeline line */}
@@ -207,9 +232,9 @@ export default function ExperiencePage() {
       <section className="section-padding bg-gray-50 dark:bg-dark-900/50">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4 text-center">
@@ -238,9 +263,9 @@ export default function ExperiencePage() {
       <section className="section-padding">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4">
@@ -252,14 +277,16 @@ export default function ExperiencePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {certifications.map((cert, index) => (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
+          >
+            {certifications.map((cert) => (
               <motion.div
                 key={cert.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                variants={scaleIn}
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-dark-200 dark:border-dark-800"
               >
@@ -296,7 +323,7 @@ export default function ExperiencePage() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -304,9 +331,9 @@ export default function ExperiencePage() {
       <section className="section-padding bg-gray-50 dark:bg-dark-900/50">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="text-center bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl p-12 text-white"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
