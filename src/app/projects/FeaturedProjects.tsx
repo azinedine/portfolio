@@ -29,11 +29,10 @@ export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project) => (
             <ProjectCard
               key={`featured-${project.id}`}
               project={project}
-              index={index}
             />
           ))}
         </div>
