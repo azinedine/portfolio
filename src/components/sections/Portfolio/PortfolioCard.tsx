@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ExternalLink, Github, Eye } from "lucide-react";
-import MediaCarousel from "./MediaCarousel";
+import { MediaCarousel } from "./MediaCarousel";
 import { type PortfolioItem } from "./portfolioData";
 
 type PortfolioCardProps = {
