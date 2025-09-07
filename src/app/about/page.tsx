@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   Code2,
   Zap,
@@ -11,6 +11,66 @@ import {
   Calendar,
 } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
+
+// Centralized animation variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 const stats = [
   { icon: Code2, label: "Projects Completed", value: "50+" },
@@ -54,38 +114,24 @@ export default function AboutPage() {
       <section className="py-16 bg-gradient-to-r from-primary-900/10 to-purple-900/10">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
             className="grid grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {stats.map(({ icon: Icon, label, value }, index) => (
+            {stats.map(({ icon: Icon, label, value }) => (
               <motion.div
                 key={label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                variants={scaleIn}
                 whileHover={{ scale: 1.05 }}
                 className="text-center p-6 glass rounded-xl hover:bg-white/15 transition-all"
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-600/20 text-primary-400 rounded-lg mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: index * 0.1 + 0.3,
-                    type: "spring",
-                    stiffness: 200,
-                  }}
-                  className="text-2xl md:text-3xl font-bold text-white mb-2"
-                >
+                <div className="text-2xl md:text-3xl font-bold text-white mb-2">
                   {value}
-                </motion.div>
+                </div>
                 <p className="text-white/60 font-medium">{label}</p>
               </motion.div>
             ))}
@@ -99,10 +145,9 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              variants={slideInLeft}
+              initial="hidden"
+              animate="visible"
               className="relative"
             >
               <div className="relative w-full max-w-md mx-auto">
@@ -134,10 +179,9 @@ export default function AboutPage() {
 
             {/* Content */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={slideInRight}
+              initial="hidden"
+              animate="visible"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 My Journey
@@ -145,17 +189,17 @@ export default function AboutPage() {
 
               <div className="space-y-6 text-white/80">
                 <p className="leading-relaxed">
-                  {`  My journey in software development started 5 years ago when I
+                  My journey in software development started 5 years ago when I
                   discovered my passion for creating digital solutions that make
-                  a real impact. Since then, I've had the privilege of working
+                  a real impact. Since then, I&apos;ve had the privilege of working
                   with startups, agencies, and established companies to bring
-                  their ideas to life.`}
+                  their ideas to life.
                 </p>
 
                 <p className="leading-relaxed">
-                  {`   I specialize in full-stack development with a focus on React ecosystem, but I'm always eager to 
+                  I specialize in full-stack development with a focus on React ecosystem, but I&apos;m always eager to 
                   learn new technologies and tackle challenging problems. My approach combines technical expertise 
-                  with creative problem-solving to deliver exceptional results.`}
+                  with creative problem-solving to deliver exceptional results.
                 </p>
 
                 <div className="space-y-3">
@@ -187,9 +231,9 @@ export default function AboutPage() {
       <section className="section-padding bg-white/5 backdrop-blur-sm">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -204,10 +248,9 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Frontend Skills */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              variants={slideInLeft}
+              initial="hidden"
+              animate="visible"
             >
               <h3 className="text-2xl font-bold text-white mb-6">
                 Frontend Development
@@ -216,9 +259,9 @@ export default function AboutPage() {
                 {skills.frontend.map((skill, index) => (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="visible"
                     transition={{ delay: index * 0.1 }}
                   >
                     <div className="flex justify-between items-center mb-2">
@@ -233,9 +276,8 @@ export default function AboutPage() {
                       <motion.div
                         className={`h-full ${skill.color} rounded-full`}
                         initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
+                        animate={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
                       />
                     </div>
                   </motion.div>
@@ -245,10 +287,9 @@ export default function AboutPage() {
 
             {/* Backend Skills */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={slideInRight}
+              initial="hidden"
+              animate="visible"
             >
               <h3 className="text-2xl font-bold text-white mb-6">
                 Backend Development
@@ -257,9 +298,9 @@ export default function AboutPage() {
                 {skills.backend.map((skill, index) => (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="visible"
                     transition={{ delay: index * 0.1 }}
                   >
                     <div className="flex justify-between items-center mb-2">
@@ -274,9 +315,8 @@ export default function AboutPage() {
                       <motion.div
                         className={`h-full ${skill.color} rounded-full`}
                         initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
+                        animate={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
                       />
                     </div>
                   </motion.div>
@@ -291,9 +331,9 @@ export default function AboutPage() {
       <section className="section-padding">
         <div className="container-responsive">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             className="text-center bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl p-12 text-white"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
