@@ -10,11 +10,6 @@ interface PageHeaderProps {
   description?: string
   badge?: string
   showBackButton?: boolean
-  showBreadcrumb?: boolean
-  breadcrumbItems?: Array<{
-    label: string
-    href: string
-  }>
   backgroundPattern?: 'dots' | 'grid' | 'none'
   variant?: 'default' | 'centered' | 'minimal'
 }
@@ -47,8 +42,6 @@ export function PageHeader({
   subtitle,
   description,
   showBackButton = false,
-  showBreadcrumb = false,
-  breadcrumbItems = [],
   backgroundPattern = 'dots',
   variant = 'default'
 }: PageHeaderProps) {
@@ -93,35 +86,6 @@ export function PageHeader({
             </motion.div>
           )}
 
-          {/* Breadcrumb */}
-          {showBreadcrumb && breadcrumbItems.length > 0 && (
-            <motion.nav variants={itemVariants} className="mb-6" aria-label="Breadcrumb">
-              <div className="flex items-center gap-2 text-sm">
-                <Link
-                  href="/"
-                  className="flex items-center gap-1 text-white/60 hover:text-white transition-colors"
-                >
-                  <Home className="w-4 h-4" />
-                  <span>Home</span>
-                </Link>
-                {breadcrumbItems.map((item, index) => (
-                  <div key={item.href} className="flex items-center gap-2">
-                    <span className="text-white/40">/</span>
-                    <Link
-                      href={item.href}
-                      className={`transition-colors ${
-                        index === breadcrumbItems.length - 1
-                          ? 'text-primary-400 font-medium'
-                          : 'text-white/60 hover:text-white'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </motion.nav>
-          )}
 
           {/* Title */}
           <motion.div variants={itemVariants} className="mb-3">
