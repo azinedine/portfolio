@@ -1,13 +1,15 @@
-// projectsData.ts - Fixed version
+// Updated projectsData.ts with photos array support
 export type ProjectItem = {
   id: number
   title: string
   description: string
-  image: string
+  image?: string // Keep for backward compatibility
+  photos?: string[] // New photos array for carousel
   technologies: string[]
   category: string
   date: string
   featured: boolean
+  status?: string // Add status like portfolio
   links: {
     demo: string
     github: string
@@ -20,10 +22,15 @@ export const projectsData: ProjectItem[] = [
     title: "E-Commerce Platform",
     description:
       "A modern e-commerce platform built with Next.js, featuring real-time inventory, payment integration, and admin dashboard.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/401",
+      "/api/placeholder/600/402"
+    ],
     technologies: ["Next.js", "React", "TypeScript", "PostgreSQL", "Stripe"],
     category: "Web App",
     date: "2024",
+    status: "Completed",
     featured: true,
     links: {
       demo: "https://example.com",
@@ -35,10 +42,14 @@ export const projectsData: ProjectItem[] = [
     title: "Task Management Mobile App",
     description:
       "Cross-platform mobile app for team collaboration and task management with real-time sync and offline support.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/410",
+      "/api/placeholder/600/411"
+    ],
     technologies: ["React Native", "Expo", "Node.js", "MongoDB", "Socket.io"],
     category: "Mobile App",
     date: "2024",
+    status: "In Progress",
     featured: true,
     links: {
       demo: "https://example.com",
@@ -50,10 +61,13 @@ export const projectsData: ProjectItem[] = [
     title: "AI-Powered Analytics Dashboard",
     description:
       "Business intelligence dashboard with machine learning insights and interactive data visualizations.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/420"
+    ],
     technologies: ["Vue.js", "Python", "TensorFlow", "D3.js", "FastAPI"],
     category: "Web App",
     date: "2023",
+    status: "Completed",
     featured: false,
     links: {
       demo: "https://example.com",
@@ -65,10 +79,16 @@ export const projectsData: ProjectItem[] = [
     title: "Real Estate Platform",
     description:
       "Full-stack real estate platform with property listings, virtual tours, and CRM functionality.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/430",
+      "/api/placeholder/600/431",
+      "/api/placeholder/600/432",
+      "/api/placeholder/600/433"
+    ],
     technologies: ["Laravel", "Vue.js", "MySQL", "AWS", "WebRTC"],
     category: "Web App",
     date: "2023",
+    status: "Completed",
     featured: false,
     links: {
       demo: "https://example.com",
@@ -80,10 +100,14 @@ export const projectsData: ProjectItem[] = [
     title: "Fitness Tracking App",
     description:
       "Mobile fitness app with workout tracking, nutrition logging, and social features for fitness enthusiasts.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/440",
+      "/api/placeholder/600/441"
+    ],
     technologies: ["React Native", "Node.js", "MongoDB", "Redis", "HealthKit"],
     category: "Mobile App",
     date: "2023",
+    status: "Completed",
     featured: false,
     links: {
       demo: "https://example.com",
@@ -95,7 +119,9 @@ export const projectsData: ProjectItem[] = [
     title: "Cryptocurrency Portfolio Tracker",
     description:
       "Real-time crypto portfolio tracking with advanced charts, alerts, and market analysis.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/450"
+    ],
     technologies: [
       "React",
       "Node.js",
@@ -105,22 +131,27 @@ export const projectsData: ProjectItem[] = [
     ],
     category: "Web App",
     date: "2022",
+    status: "Completed",
     featured: false,
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
     },
   },
-  // Add a Design project to match your categories
   {
     id: 7,
     title: "Brand Identity Design System",
     description:
       "Complete brand identity and design system for a modern tech startup, including logo, colors, typography, and components.",
-    image: "/api/placeholder/600/400",
+    photos: [
+      "/api/placeholder/600/460",
+      "/api/placeholder/600/461",
+      "/api/placeholder/600/462"
+    ],
     technologies: ["Figma", "Adobe Creative Suite", "Design System", "Prototyping"],
     category: "Design",
     date: "2024",
+    status: "Completed",
     featured: false,
     links: {
       demo: "https://example.com",
@@ -129,11 +160,7 @@ export const projectsData: ProjectItem[] = [
   },
 ]
 
-// Generate categories dynamically from actual data to avoid mismatches
 export const projectCategories = [
   "All", 
   ...Array.from(new Set(projectsData.map(project => project.category))).sort()
 ]
-
-// Alternative: If you want to keep your predefined categories, make sure they match your data
-// export const projectCategories = ["All", "Web App", "Mobile App", "Design"]
