@@ -1,12 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, Github, Calendar, Tag } from "lucide-react";
-import Image from "next/image";
+import { motion, Variants } from "framer-motion";
+import { ExternalLink, Github, Tag, Eye } from "lucide-react";
 import { memo, useMemo } from "react";
 import { type ProjectItem } from "./projectsData";
+import MediaCarousel from "@/components/sections/Portfolio/MediaCarousel";
 
-// Separate components for better modularity
 const ActionButton = memo(({ 
   href, 
   icon: Icon, 
@@ -21,7 +20,7 @@ const ActionButton = memo(({
   if (!href) return null;
 
   const baseClasses = variant === "icon" 
-    ? "p-2 bg-white/90 dark:bg-dark-900/90 text-dark-700 dark:text-dark-300 rounded-full shadow-sm hover:bg-white dark:hover:bg-dark-800 transition-colors"
+    ? "w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
     : "flex-1 text-center text-sm py-2";
 
   return (
@@ -35,189 +34,120 @@ const ActionButton = memo(({
       title={title}
       aria-label={title}
     >
-      <Icon className="w-4 h-4" />
+      <Icon className="w-3.5 h-3.5" />
     </motion.a>
   );
 });
 
 ActionButton.displayName = "ActionButton";
 
-const TechTag = memo(({ tech }: { tech: string }) => (
-  <span className="px-2 py-1 bg-dark-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 text-xs rounded-md font-medium">
-    {tech}
-  </span>
-));
-
-TechTag.displayName = "TechTag";
-
-const ProjectImage = memo(({ 
-  project, 
-  className 
-}: { 
-  project: ProjectItem; 
-  className?: string;
-}) => (
-  <div className={`relative h-48 bg-gradient-to-br from-primary-400 to-purple-500 overflow-hidden ${className || ""}`}>
-    {project.image ? (
-      <Image
-        src={project.image}
-        alt={`${project.title} project preview`}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        priority={project.featured}
-      />
-    ) : (
-      <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-        <span className="text-white text-lg font-semibold" aria-hidden="true">
-          Project Preview
-        </span>
-      </div>
-    )}
-
-    {project.featured && (
-      <div className="absolute top-4 left-4">
-        <span 
-          className="bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full"
-          role="badge"
-          aria-label="Featured project"
-        >
-          Featured
-        </span>
-      </div>
-    )}
-
-    <div className="absolute top-4 right-4 flex gap-2">
-      <ActionButton 
-        href={project.links?.demo} 
-        icon={ExternalLink} 
-        title="View Live Demo" 
-      />
-      <ActionButton 
-        href={project.links?.github} 
-        icon={Github} 
-        title="View Source Code" 
-      />
-    </div>
-  </div>
-));
-
-ProjectImage.displayName = "ProjectImage";
-
 type ProjectCardProps = {
   project: ProjectItem;
-  index: number;
+  variants?: Variants;
+  onViewDetails?: (project: ProjectItem) => void;
 };
 
-export const ProjectCard = memo(({ project, index }: ProjectCardProps) => {
-  // Memoize animation variants for better performance
-  const cardVariants = useMemo(() => ({
-    initial: { opacity: 0, scale: 0.9 },
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.9 }
-  }), []);
-
-  const animationProps = useMemo(() => ({
-    variants: cardVariants,
-    initial: "initial",
-    animate: "animate",
-    exit: "exit",
-    transition: { duration: 0.3, delay: index * 0.1 },
-    whileHover: { y: -5 }
-  }), [cardVariants, index]);
-
-  // Ensure required data exists
-  if (!project) {
-    return null;
-  }
+export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectCardProps) => {
+  // Convert single image to array for carousel compatibility
+  const images = useMemo(() => {
+    if (project.photos?.length) {
+      return project.photos.filter(Boolean);
+    }
+    return project.image ? [project.image] : [];
+  }, [project.photos, project.image]);
 
   return (
-    <motion.article
-      {...animationProps}
-      className="bg-white dark:bg-dark-900 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-dark-200 dark:border-dark-800"
-      role="article"
-      aria-labelledby={`project-title-${index}`}
+    <motion.div
+      variants={variants}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="group cursor-pointer"
     >
-      <ProjectImage project={project} />
+      <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-400/30 transition-all duration-300">
+        {/* Project Image with Carousel */}
+        <div className="relative">
+          <MediaCarousel
+            images={images}
+            alt={project.title}
+            heightClass="h-48 md:h-60 lg:h-66"
+            roundedClass="rounded-none"
+          />
 
-      {/* Project Content */}
-      <div className="p-6 space-y-4">
-        {/* Meta Information */}
-        <div className="flex items-center justify-between">
-          {project.category && (
-            <span className="inline-flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 font-medium">
-              <Tag className="w-3 h-3" aria-hidden="true" />
-              <span className="sr-only">Category:</span>
-              {project.category}
-            </span>
+          {/* Featured Badge */}
+          {project.featured && (
+            <div className="absolute top-4 left-4 z-10">
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400/90 backdrop-blur-sm rounded-full text-yellow-900 text-sm font-bold">
+                ⭐ Featured
+              </span>
+            </div>
           )}
-          {project.date && (
-            <time 
-              className="flex items-center gap-1 text-sm text-dark-500 dark:text-dark-500"
-              dateTime={project.date}
-            >
-              <Calendar className="w-3 h-3" aria-hidden="true" />
-              <span className="sr-only">Date:</span>
-              {project.date}
-            </time>
-          )}
+
+          {/* Hover overlay actions */}
+          <div className="pointer-events-none absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-primary-900/80 opacity-0 group-hover:opacity-90 transition-all duration-300 flex items-center justify-center">
+            <div className="flex gap-3">
+              <ActionButton 
+                href={project.links?.demo} 
+                icon={ExternalLink} 
+                title="View Live Demo" 
+              />
+              <ActionButton 
+                href={project.links?.github} 
+                icon={Github} 
+                title="View Source Code" 
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Title */}
-        <h3 
-          id={`project-title-${index}`}
-          className="text-xl font-bold text-dark-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors cursor-pointer"
-        >
-          {project.title}
-        </h3>
+        {/* Project Info */}
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs text-primary-400 font-medium">
+              {project.category}
+            </span>
+            <span className="text-xs text-white/50">{project.date}</span>
+          </div>
 
-        {/* Description */}
-        {project.description && (
-          <p className="text-dark-600 dark:text-dark-400 text-sm leading-relaxed line-clamp-3">
+          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
+            {project.title}
+          </h3>
+
+          <p className="text-white/70 text-sm mb-4 line-clamp-2">
             {project.description}
           </p>
-        )}
 
-        {/* Technologies */}
-        {project.technologies?.length > 0 && (
-          <div className="flex flex-wrap gap-2" role="list" aria-label="Technologies used">
-            {project.technologies.map((tech) => (
-              <TechTag key={tech} tech={tech} />
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.slice(0, 3).map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-1 bg-white/10 text-white/80 text-xs rounded-md font-medium"
+              >
+                {tech}
+              </span>
             ))}
+            {project.technologies.length > 3 && (
+              <span className="px-2 py-1 bg-white/10 text-white/80 text-xs rounded-md font-medium">
+                +{project.technologies.length - 3}
+              </span>
+            )}
           </div>
-        )}
 
-        {/* Action Buttons */}
-        <div className="flex gap-3 pt-2">
-          {project.links?.demo && (
-            <motion.a
-              href={project.links.demo}
-              target="_blank"
-              rel="noopener noreferrer"
+          {/* View Details Button */}
+          {onViewDetails && (
+            <motion.button
+              onClick={() => onViewDetails(project)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex-1 btn-primary text-center text-sm py-2"
-              aria-label={`View live demo of ${project.title}`}
+              className="w-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
             >
-              View Live
-            </motion.a>
-          )}
-          {project.links?.github && (
-            <motion.a
-              href={project.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex-1 btn-secondary text-center text-sm py-2"
-              aria-label={`View source code of ${project.title}`}
-            >
-              Source Code
-            </motion.a>
+              <Eye className="w-4 h-4" />
+              <span>View Details</span>
+            </motion.button>
           )}
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
 });
 
