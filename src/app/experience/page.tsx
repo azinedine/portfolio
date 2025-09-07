@@ -176,12 +176,6 @@ export default function ExperiencePage() {
             animate="visible"
             className="max-w-4xl mx-auto text-center mb-16"
           >
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium">
-                My Journey
-              </span>
-            </motion.div>
-
             <motion.h1
               variants={itemVariants}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
