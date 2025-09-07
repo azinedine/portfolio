@@ -17,9 +17,9 @@ export type PortfolioItem = {
 export const portfolioItems: PortfolioItem[] = [
   {
     id: 6,
-    title: "Website for an electric company",
+    title: "EFFI Tech Website",
     category: "Web Development",
-    description: "Property listing and management",
+    description: "High-performance industrial systems and engineering services designed to optimize energy efficiency, extend equipment lifespan, and ensure reliable operation across diverse industrial sectors.",
     photos: [
       "/electric-company.png",
       "/electric-company-2.png",       // new photo, use your actual filenames/paths
@@ -36,33 +36,42 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 1,
-    title: "E-Commerce Platform",
-    category: "Web Development",
-    description: "Modern e-commerce solution",
+    title: "DIASPO Application",
+    category: "Mobile App",
+    description: "DIASPO is a mobile application that allows users to manage their business expenses and income.",
     photos: [
-      "/project-1-main.png",
-      "/project-1-checkout.png"
+      "/diaspo-2.png",
+      "/diaspo-1.png",
+      "/diaspo-3.png",
+ 
     ],
-    technologies: ["React", "Node.js", "MongoDB"],
+    technologies: ["React Native", "Laravel", "PostgreSQL"],
     color: "from-blue-500 to-cyan-500",
     links: {
-      demo: "https://example.com",
+      demo: "https://diaspo.io",
       github: "https://github.com/username/project",
     },
     status: "completed",
   },
   {
     id: 2,
-    title: "Mobile Banking App",
-    category: "Mobile App",
-    description: "Secure banking application",
+    title: "Dashboard for an e-commerce platform",
+    category: "Web Development",
+    description: "Vendor and customer dashboard for an e-commerce platform, with features like order management, product management, and customer management.",
     photos: [
-      "/project-2-main.png"
+      "/e-commerce-dashboard-1.png",
+      "/e-commerce-dashboard-2.png",
+      "/e-commerce-dashboard-3.png",
+      "/e-commerce-dashboard-4.png",
+      "/e-commerce-dashboard-5.png",
+      "/e-commerce-dashboard-6.png",
+      "/e-commerce-dashboard-7.png",
+ 
     ],
-    technologies: ["React Native", "Firebase"],
+    technologies: ["React", "Laravel", "SQLite"],
     color: "from-green-500 to-emerald-500",
     links: {
-      demo: "https://example.com",
+      demo: "https://e-commerce-dashboard.com",
       github: "https://github.com/username/project",
     },
     status: "completed",
