@@ -24,8 +24,6 @@ export default function ProjectsPage() {
         title="Experiences"
         description="I'm a passionate Full Stack Developer with over 5 years of experience creating modern, scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions."
         variant="centered"
-        showBreadcrumb
-        breadcrumbItems={[{ label: "Projects", href: "/projects" }]}
       />
 
       {/* Featured Projects */}
