@@ -38,16 +38,22 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             <div className="bg-white dark:bg-dark-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
               {/* Header */}
               <div className="relative">
-                {/* Project Image */}
-                <div className="relative h-64 md:h-80 overflow-hidden">
-                  {project.photo ? (
-                    <Image
-                      src={project.photo}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                    />
+                {/* Scrollable Photo Gallery */}
+                <div className="relative h-64 md:h-80">
+                  {project.photos && project.photos.length > 0 ? (
+                    <div className="overflow-x-auto flex gap-4 h-full px-4">
+                      {project.photos.map((photo, i) => (
+                        <div key={i} className="relative h-64 md:h-80 w-80 flex-shrink-0 rounded-lg overflow-hidden border border-white/30 shadow-lg">
+                          <Image
+                            src={photo}
+                            alt={`${project.title} photo ${i + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                          />
+                        </div>
+                      ))}
+                    </div>
                   ) : (
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-90`}
@@ -55,20 +61,20 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   )}
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/40" />
+                  <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
                   {/* Close Button */}
                   <motion.button
                     onClick={onClose}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                    className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
                   >
                     <X className="w-5 h-5" />
                   </motion.button>
 
                   {/* Project Badge */}
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-4 left-4 z-10">
                     <span className="inline-flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium">
                       <Tag className="w-3 h-3" />
                       {project.category}
@@ -77,7 +83,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
                   {/* Featured Badge */}
                   {project.featured && (
-                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
+                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
                       <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400/90 backdrop-blur-sm rounded-full text-yellow-900 text-sm font-bold">
                         ⭐ Featured
                       </span>
@@ -93,7 +99,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-2">
                     {project.title}
                   </h2>
-                  
                   <div className="flex items-center gap-4 text-sm text-dark-600 dark:text-dark-400 mb-4">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
@@ -104,7 +109,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       {project.category}
                     </span>
                   </div>
-
                   <p className="text-lg text-dark-600 dark:text-dark-400 leading-relaxed">
                     {project.description}
                   </p>
@@ -141,7 +145,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     <span>View Live Demo</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </motion.a>
-                  
                   <motion.a
                     href={project.links.github}
                     target="_blank"
