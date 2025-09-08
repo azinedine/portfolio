@@ -8,8 +8,7 @@ import {
   Clock, 
   CheckCircle,
   Search,
-  ChevronDown,
-  ChevronUp
+  ChevronDown
 } from "lucide-react";
 import { AnimatedText } from "@/components/common/AnimatedText";
 import { useState } from "react";
@@ -48,7 +47,7 @@ const faqs = [
   {
     id: 1,
     question: "How can I contact you for a project?",
-    answer: "You can reach out to me through the contact form on the contact page, email me directly at zineddine.dev@gmail.com, or call me at +213 555 123 456. I typically respond within 24 hours."
+    answer: "You can reach out to me through the contact form on the contact page, email me directly at amarichezineddine@gmail.com, or call me at +213 540 128 550. I typically respond within 24 hours."
   },
   {
     id: 2,
@@ -261,33 +260,41 @@ export default function SupportPage() {
                 variants={scaleIn}
                 className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-800/50 overflow-hidden"
               >
-                <button
+                <motion.button
                   onClick={() => toggleFAQ(faq.id)}
+                  whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
+                  whileTap={{ scale: 0.98 }}
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                 >
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white pr-4">
                     {faq.question}
                   </h3>
-                  {expandedFAQ === faq.id ? (
-                    <ChevronUp className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                  )}
-                </button>
-                
-                {expandedFAQ === faq.id && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 pb-6"
+                    animate={{ rotate: expandedFAQ === faq.id ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
+                    <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
+                  </motion.div>
+                </motion.button>
+                
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: expandedFAQ === faq.id ? "auto" : 0,
+                    opacity: expandedFAQ === faq.id ? 1 : 0
+                  }}
+                  transition={{
+                    duration: 0.4,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 pb-6">
                     <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                       {faq.answer}
                     </p>
-                  </motion.div>
-                )}
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
