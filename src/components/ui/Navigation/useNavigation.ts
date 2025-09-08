@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { navigationItems } from './navigationItems'
 export type ActiveItemName = string
 
@@ -12,8 +12,10 @@ type UseNavigationReturn = {
   hoveredItem: string | null
   scrollProgress: number
   activeItemName: ActiveItemName
+  pathname: string
   toggleOpen: () => void
   closeMenu: () => void
+  navigateToContact: () => void
   onItemHover: (name: string | null) => void
 }
 
@@ -26,7 +28,9 @@ export function useNavigation(): UseNavigationReturn {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [activeSection, setActiveSection] = useState('')
   const pathname = usePathname()
+  const router = useRouter()
 
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
@@ -86,7 +90,15 @@ export function useNavigation(): UseNavigationReturn {
     return () => window.removeEventListener('scroll', throttledHandleScroll)
   }, [lastScrollY, pathname])
 
-  const closeMenu = () => setIsOpen(false)
+  const closeMenu = () => {
+    setIsOpen(false)
+  }
+  
+  const navigateToContact = () => {
+    setIsOpen(false)
+    router.push('/contact')
+  }
+  
   const toggleOpen = () => setIsOpen(prev => !prev)
   const onItemHover = (name: string | null) => setHoveredItem(name)
 
@@ -104,8 +116,10 @@ export function useNavigation(): UseNavigationReturn {
     hoveredItem,
     scrollProgress,
     activeItemName,
+    pathname,
     toggleOpen,
     closeMenu,
+    navigateToContact,
     onItemHover,
   }
 }
