@@ -136,8 +136,8 @@ export const APP_CONFIG = {
   
   export const PORTFOLIO_STATS = [
     { label: 'Projects Completed', value: '50+', icon: 'Code2' },
-    { label: 'Happy Clients', value: '30+', icon: 'Users' },
-    { label: 'Years Experience', value: '5+', icon: 'Zap' },
+    { label: 'Happy Clients', value: '20+', icon: 'Users' },
+    { label: 'Years Experience', value: '4+', icon: 'Zap' },
     { label: 'Awards Won', value: '8', icon: 'Award' },
   ] as const
   
