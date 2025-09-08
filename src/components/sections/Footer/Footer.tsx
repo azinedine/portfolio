@@ -5,16 +5,21 @@ import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
 import Image from "next/image";
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub", color: "hover:text-white" },
+  {
+    icon: Github,
+    href: "https://github.com/azinedine",
+    label: "GitHub",
+    color: "hover:text-white",
+  },
   {
     icon: Linkedin,
-    href: "#",
+    href: "https://www.linkedin.com/in/zineddineamariche/",
     label: "LinkedIn",
     color: "hover:text-blue-400",
   },
   {
     icon: Mail,
-    href: "mailto:hello@developer.com",
+    href: "mailto:amarichezineddine@gmail.com",
     label: "Email",
     color: "hover:text-primary-400",
   },
@@ -64,13 +69,12 @@ export function Footer() {
                     <Image src="/logo.png" alt="Logo" width={44} height={44} />
                   </div>
                   <div className="flex flex-col">
-
-                  <span className="text-2xl font-bold gradient-text-primary">
-                    A.ZINEDDINE
-                  </span>
-                  <span className="text-xs text-white/50 font-medium tracking-wider">
-                    Software Engineer
-                  </span>
+                    <span className="text-2xl font-bold gradient-text-primary">
+                      A.ZINEDDINE
+                    </span>
+                    <span className="text-xs text-white/50 font-medium tracking-wider">
+                      Software Engineer
+                    </span>
                   </div>
                 </div>
 
