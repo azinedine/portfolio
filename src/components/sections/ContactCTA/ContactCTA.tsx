@@ -1,16 +1,26 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { ArrowRight, Mail, Phone, MessageCircle, Plus, Send } from 'lucide-react'
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Mail,
+  Phone,
+  MessageCircle,
+  Plus,
+  Send,
+  Link,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function ContactCTA() {
+  const router = useRouter();
   return (
     <section className="section-padding relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-20" />
       <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-primary-600/10 to-blue-600/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-primary-500/10 rounded-full blur-3xl" />
-      
+
       <div className="container-responsive relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -57,7 +67,7 @@ export function ContactCTA() {
                 description: "a.zineddine@dev.com",
                 action: "Send Email",
                 color: "from-red-500 to-pink-500",
-                href: "mailto:amarichezineddine@gmail.com"
+                href: "mailto:amarichezineddine@gmail.com",
               },
               {
                 icon: Phone,
@@ -65,7 +75,7 @@ export function ContactCTA() {
                 description: "+213 (540) 12 85 50",
                 action: "Call Now",
                 color: "from-green-500 to-emerald-500",
-                href: "tel:+213540128550"
+                href: "tel:+213540128550",
               },
               {
                 icon: MessageCircle,
@@ -73,8 +83,8 @@ export function ContactCTA() {
                 description: "Available 24/7",
                 action: "Start Chat",
                 color: "from-blue-500 to-cyan-500",
-                href: "https://www.facebook.com/amzinedine"
-              }
+                href: "https://www.facebook.com/amzinedine",
+              },
             ].map((method, index) => (
               <motion.div
                 key={method.title}
@@ -86,13 +96,19 @@ export function ContactCTA() {
                 className="group"
               >
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 p-6 rounded-2xl text-center hover:bg-white/10 transition-all duration-300">
-                  <div className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300`}>
+                  <div
+                    className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300`}
+                  >
                     <method.icon className="w-7 h-7 text-white" />
                   </div>
-                  
-                  <h3 className="text-lg font-bold text-white mb-2">{method.title}</h3>
-                  <p className="text-white/70 text-sm mb-4">{method.description}</p>
-                  
+
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {method.title}
+                  </h3>
+                  <p className="text-white/70 text-sm mb-4">
+                    {method.description}
+                  </p>
+
                   <motion.a
                     href={method.href}
                     whileHover={{ scale: 1.05 }}
@@ -120,9 +136,9 @@ export function ContactCTA() {
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold px-10 py-4 rounded-2xl transition-all duration-300 shadow-lg group flex items-center mx-auto"
             >
-              <Send className="w-5 h-5 mr-3 group-hover:translate-x-0.5 transition-transform" />
-              <span className="text-lg">{`Let's Work Together`}</span>
-              <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                <Send className="w-5 h-5 mr-3 group-hover:translate-x-0.5 transition-transform" />
+                <span className="text-lg">{`Let's Work Together`}</span>
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </motion.div>
 
@@ -137,7 +153,7 @@ export function ContactCTA() {
             {[
               { number: "50+", label: "Projects Completed" },
               { number: "98%", label: "Client Satisfaction" },
-              { number: "24h", label: "Response Time" }
+              { number: "24h", label: "Response Time" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -159,8 +175,14 @@ export function ContactCTA() {
 
       {/* Floating decorative elements */}
       <div className="absolute top-32 right-20 w-8 h-8 border border-primary-400/30 rounded rotate-45 animate-pulse" />
-      <div className="absolute bottom-32 left-20 w-6 h-6 bg-cyan-400/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 right-10 w-4 h-4 bg-pink-400/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+      <div
+        className="absolute bottom-32 left-20 w-6 h-6 bg-cyan-400/40 rounded-full animate-pulse"
+        style={{ animationDelay: "1s" }}
+      />
+      <div
+        className="absolute top-1/2 right-10 w-4 h-4 bg-pink-400/50 rounded-full animate-pulse"
+        style={{ animationDelay: "2s" }}
+      />
 
       {/* Plus decorations */}
       <motion.div
@@ -179,5 +201,5 @@ export function ContactCTA() {
         <Plus className="w-5 h-5" />
       </motion.div>
     </section>
-  )
+  );
 }
