@@ -336,7 +336,7 @@ export default function SupportPage() {
                     Contact Me
                   </motion.a>
                   <motion.a
-                    href="mailto:zineddine.dev@gmail.com"
+                    href="mailto:amarichezineddine@gmail.com"
                     whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-white/30 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm"
