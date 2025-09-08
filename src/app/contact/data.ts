@@ -42,8 +42,8 @@ export const contactInfo: ContactInfo[] = [
   {
     icon: Mail,
     label: "Email",
-    value: "zineddine.dev@gmail.com",
-    href: "mailto:zineddine.dev@gmail.com",
+    value: "a.zineddine@dev.com",
+    href: "mailto:amarichezineddine@gmail.com",
     color: "text-red-500",
   },
   {
