@@ -18,7 +18,6 @@ import StatCard from "./StatCard";
 import ValueCard from "./ValueCard";
 import FunFactCard from "./FunFactCard";
 import SkillBar from "./SkillBar";
-import Image from "next/image";
 
 export default function AboutPage() {
   return (
