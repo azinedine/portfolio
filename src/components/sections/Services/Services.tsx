@@ -4,7 +4,6 @@ import { easeOut, motion } from "framer-motion";
 import {
   Code2,
   Palette,
-  Camera,
   Video,
   Smartphone,
   Database,
@@ -87,10 +86,8 @@ const itemVariants = {
 
 const ServiceCard = ({
   service,
-  index,
 }: {
   service: (typeof services)[0];
-  index: number;
 }) => (
   <motion.div
     variants={itemVariants}
@@ -125,7 +122,7 @@ const ServiceCard = ({
 
 export function Services() {
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section id="services" className="section-padding relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-grid opacity-10" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-600/10 to-blue-600/10 rounded-full blur-3xl" />
@@ -178,11 +175,10 @@ export function Services() {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {services.map((service, index) => (
+            {services.map((service) => (
               <ServiceCard
                 key={service.title}
                 service={service}
-                index={index}
               />
             ))}
           </motion.div>
