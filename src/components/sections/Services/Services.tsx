@@ -9,56 +9,59 @@ import {
   Smartphone,
   Database,
   X,
+  Wrench,
 } from "lucide-react";
 
 const services = [
   {
-    icon: Code2,
-    title: "Development",
-    description: "Create a platform with the best and coolest quality from us.",
-    color: "from-blue-500 to-cyan-500",
-    bgColor: "from-blue-500/20 to-cyan-500/10",
-  },
-  {
-    icon: Palette,
-    title: "UI/UX Designer",
-    description:
-      "We provide UI/UX Design services, and of course with the best quality.",
-    color: "from-pink-500 to-rose-500",
-    bgColor: "from-pink-500/20 to-rose-500/10",
-  },
-  {
     icon: Smartphone,
     title: "Mobile Development",
     description:
-      "We provide Mobile App development services with the best quality.",
+      "Building high-quality mobile apps with React Native & Expo, optimized for both iOS and Android.",
     color: "from-green-500 to-emerald-500",
     bgColor: "from-green-500/20 to-emerald-500/10",
   },
   {
-    icon: Camera,
-    title: "Photography",
+    icon: Code2,
+    title: "Web Development",
     description:
-      "We provide Photography services, and of course with the best quality.",
-    color: "from-purple-500 to-violet-500",
-    bgColor: "from-purple-500/20 to-violet-500/10",
+      "Modern websites and dashboards using React, Next.js, and Laravel — fast, secure, and scalable.",
+    color: "from-blue-500 to-cyan-500",
+    bgColor: "from-blue-500/20 to-cyan-500/10",
+  },
+  {
+    icon: Database,
+    title: "Backend & APIs",
+    description:
+      "Robust backend solutions with Laravel, Node.js & MongoDB — powering your apps with reliability.",
+    color: "from-indigo-500 to-blue-500",
+    bgColor: "from-indigo-500/20 to-blue-500/10",
+  },
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    description:
+      "Clean, modern, and user-friendly designs that bring your product vision to life.",
+    color: "from-pink-500 to-rose-500",
+    bgColor: "from-pink-500/20 to-rose-500/10",
   },
   {
     icon: Video,
-    title: "Videography",
-    description: "Create a platform with the best and coolest quality from us.",
+    title: "Digital Marketing",
+    description:
+      "Boosting your brand with social media ads, SEO, and creative campaigns under my own brand.",
     color: "from-orange-500 to-red-500",
     bgColor: "from-orange-500/20 to-red-500/10",
   },
   {
-    icon: Database,
-    title: "Backend Development",
-    description:
-      "We provide Backend development services with the best quality.",
-    color: "from-indigo-500 to-blue-500",
-    bgColor: "from-indigo-500/20 to-blue-500/10",
+    icon: Wrench,
+    title: "Technical Consulting",
+    description: "Providing expert guidance on architecture, technology stack selection, and development best practices.",
+    color: "from-orange-500 to-red-500",
+    bgColor: "from-orange-500/20 to-red-500/10",
   },
 ];
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
