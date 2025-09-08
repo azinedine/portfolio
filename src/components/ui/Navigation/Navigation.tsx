@@ -17,8 +17,10 @@ export function Navigation() {
     hoveredItem,
     scrollProgress,
     activeItemName,
+    pathname,
     toggleOpen,
     closeMenu,
+    navigateToContact,
     onItemHover,
   } = useNavigation()
 
@@ -63,7 +65,9 @@ export function Navigation() {
             />
 
             <div className="flex items-center space-x-3">
-              <CtaButton />
+              {pathname !== '/contact' && (
+                <CtaButton onClick={navigateToContact} />
+              )}
               <MenuToggle isOpen={isOpen} onToggle={toggleOpen} />
             </div>
           </div>
