@@ -135,17 +135,17 @@ export const certifications: Certification[] = [
   {
     id: 3,
     title: 'React Native Specialist',
-    issuer: 'Meta',
+    issuer: 'More than 1000 hours of training',
     date: '2023',
-    credentialId: 'META-RN-2023-003',
+    credentialId: '1000+ hours of training',
     link: '#'
   },
   {
     id: 4,
     title: 'Project Management Professional',
-    issuer: 'PMI',
+    issuer: 'More than 4 years of experience in development',
     date: '2024',
-    credentialId: 'PMI-PMP-2024-004',
+    credentialId: '4+ years of experience in development',
     link: '#'
   }
 ];
