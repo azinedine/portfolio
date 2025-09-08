@@ -1,9 +1,8 @@
 "use client";
 
-import { easeOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
 import { type ProjectItem } from "./projectsData";
-import { Star } from "lucide-react";
 
 type FeaturedProjectsProps = {
   featuredProjects: ProjectItem[];
