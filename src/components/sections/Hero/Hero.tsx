@@ -185,8 +185,8 @@ export function Hero() {
       />
 
       {/* Main Content */}
-      <div className="container-responsive relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container-responsive  section-padding relative z-10 ">
+        <div className="grid lg:grid-cols-2 gap-16 items-center ">
           <HeroContent />
           <HeroProfile />
         </div>
