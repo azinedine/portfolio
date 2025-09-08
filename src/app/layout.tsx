@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'A.ZINEDDINE | Full Stack Developer - 5+ Years Experience',
+    default: 'A.ZINEDDINE | Full Stack Developer - 4+ Years Experience',
     template: '%s | A.ZINEDDINE Portfolio'
   },
   description: 'A.ZINEDDINE - Expert Full Stack Developer with 5+ years experience. Delivered 50+ cutting-edge web & mobile applications using React v19, Next.js 15, React Native v0.79, Vue.js, Node.js & Laravel. 98% client satisfaction rate.',
