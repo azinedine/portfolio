@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ExternalLink, Github, Tag, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye } from "lucide-react";
 import { memo, useMemo } from "react";
 import { type ProjectItem } from "./projectsData";
 import MediaCarousel from "@/components/sections/Portfolio/MediaCarousel";
@@ -68,14 +68,14 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
           <MediaCarousel
             images={images}
             alt={project.title}
-            heightClass="h-48 md:h-60 lg:h-66"
+            heightClass="h-48 sm:h-52 md:h-60 lg:h-66"
             roundedClass="rounded-none"
           />
 
           {/* Featured Badge */}
           {project.featured && (
-            <div className="absolute top-4 left-4 z-10">
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400/90 backdrop-blur-sm rounded-full text-yellow-900 text-sm font-bold">
+            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+              <span className="inline-flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1 bg-yellow-400/90 backdrop-blur-sm rounded-full text-yellow-900 text-xs sm:text-sm font-bold">
                 ⭐ Featured
               </span>
             </div>
@@ -100,7 +100,7 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
         </div>
 
         {/* Project Info */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs text-primary-400 font-medium">
               {project.category}
@@ -108,7 +108,7 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
             <span className="text-xs text-white/50">{project.date}</span>
           </div>
 
-          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
+          <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
             {project.title}
           </h3>
 
@@ -117,7 +117,7 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
           </p>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
             {project.technologies.slice(0, 3).map((tech) => (
               <span
                 key={tech}
@@ -139,7 +139,7 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
               onClick={() => onViewDetails(project)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
             >
               <Eye className="w-4 h-4" />
               <span>View Details</span>
