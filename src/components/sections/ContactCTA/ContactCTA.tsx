@@ -132,6 +132,7 @@ export function ContactCTA() {
             className="mb-12"
           >
             <motion.button
+              onClick={() => router.push('/contact')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold px-10 py-4 rounded-2xl transition-all duration-300 shadow-lg group flex items-center mx-auto"
@@ -142,34 +143,7 @@ export function ContactCTA() {
             </motion.button>
           </motion.div>
 
-          {/* Bottom stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1 }}
-            className="grid grid-cols-3 gap-8 max-w-2xl mx-auto"
-          >
-            {[
-              { number: "50+", label: "Projects Completed" },
-              { number: "98%", label: "Client Satisfaction" },
-              { number: "24h", label: "Response Time" },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.1 + index * 0.1, duration: 0.4 }}
-                className="text-center"
-              >
-                <div className="text-2xl md:text-3xl font-bold gradient-text-primary mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-white/60 text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+    
         </motion.div>
       </div>
 
