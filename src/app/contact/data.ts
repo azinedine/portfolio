@@ -49,14 +49,14 @@ export const contactInfo: ContactInfo[] = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+213 555 123 456",
-    href: "tel:+213555123456",
+    value: "+213 540 128 550",
+    href: "tel:+213540128550",
     color: "text-green-500",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "Blida, Algeria",
+    value: "Khemis Miliana, Algeria",
     href: "#",
     color: "text-blue-500",
   },
