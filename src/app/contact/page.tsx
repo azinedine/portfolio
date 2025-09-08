@@ -12,9 +12,25 @@ import FAQCard from "./FAQCard";
 
 export default function ContactPage() {
   const handleFormSubmit = async (formData: FormData) => {
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log('Form submitted:', formData);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const result = await response.json();
+      console.log('Message sent successfully:', result);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      throw error; // Re-throw to let the form handle the error
+    }
   };
 
   return (
