@@ -1,19 +1,23 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { ProjectCard } from './ProjectCard'
-import { type ProjectItem } from './projectsData'
+import { easeOut, motion } from "framer-motion";
+import { ProjectCard } from "./ProjectCard";
+import { type ProjectItem } from "./projectsData";
+import { Star } from "lucide-react";
 
 type FeaturedProjectsProps = {
-  featuredProjects: ProjectItem[]
-}
+  featuredProjects: ProjectItem[];
+};
+
+
 
 export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
-  if (featuredProjects.length === 0) return null
+  if (featuredProjects.length === 0) return null;
 
   return (
     <section className="pb-16 pt-16">
       <div className="container-responsive">
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,13 +34,10 @@ export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {featuredProjects.map((project) => (
-            <ProjectCard
-              key={`featured-${project.id}`}
-              project={project}
-            />
+            <ProjectCard key={`featured-${project.id}`} project={project} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
