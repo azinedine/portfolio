@@ -154,7 +154,7 @@ export default function ContactPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <motion.a
-                    href="tel:+213555123456"
+                    href="tel:+213540128550"
                     whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-white text-purple-600 hover:bg-gray-50 font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg"
