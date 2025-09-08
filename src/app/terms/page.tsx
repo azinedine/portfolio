@@ -273,9 +273,9 @@ export default function TermsPage() {
                   For questions about these terms or to discuss specific project requirements:
                 </p>
                 <div className="space-y-2 text-gray-700 dark:text-gray-300">
-                  <p><strong>Email:</strong> zineddine.dev@gmail.com</p>
-                  <p><strong>Phone:</strong> +213 555 123 456</p>
-                  <p><strong>Location:</strong> Blida, Algeria</p>
+                  <p><strong>Email:</strong> amarichezineddine@gmail.com</p>
+                  <p><strong>Phone:</strong> +213 540 128 550</p>
+                  <p><strong>Location:</strong> Khemis Miliana, Algeria</p>
                 </div>
               </motion.div>
 
