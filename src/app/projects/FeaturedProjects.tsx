@@ -14,24 +14,24 @@ export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
   if (featuredProjects.length === 0) return null;
 
   return (
-    <section className="pb-16 pt-16">
+    <section className="pb-12 pt-12 sm:pb-16 sm:pt-16 ">
       <div className="container-responsive">
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-3 sm:mb-4">
             Featured Projects
           </h2>
-          <p className="text-dark-600 dark:text-dark-400">
+          <p className="text-sm sm:text-base text-dark-600 dark:text-dark-400">
             Highlighting my most impactful and innovative work
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {featuredProjects.map((project) => (
             <ProjectCard key={`featured-${project.id}`} project={project} />
           ))}
