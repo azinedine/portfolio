@@ -209,7 +209,7 @@ export default function AboutPage() {
                   className="flex items-center gap-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl"
                 >
                   <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                  <span className="font-medium text-gray-900 dark:text-white">Based in Blida, Algeria</span>
+                  <span className="font-medium text-gray-900 dark:text-white">Based in Khemis Miliana, Algeria</span>
                 </motion.div>
                 <motion.div 
                   whileHover={{ x: 10 }}
@@ -228,11 +228,12 @@ export default function AboutPage() {
               </div>
 
               <motion.button
+                onClick={() => window.open('/Zineddine_Amariche_Resume.pdf', '_blank')}
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg"
+                className="group flex items-center gap-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg"
               >
-                <Download className="w-5 h-5" />
+                <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Download Resume
               </motion.button>
             </motion.div>
