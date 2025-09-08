@@ -1,7 +1,7 @@
 "use client";
 
 import { easeOut } from "framer-motion";
- 
+
 import { PageHeader } from "@/components/common/PageHeader";
 import { ProjectsFilter } from "./ProjectsFilter";
 import { ProjectsGrid } from "./ProjectsGrid";
@@ -51,12 +51,15 @@ export default function ProjectsPage() {
         badge="Projects"
         subtitle="Crafting Digital"
         title="Experiences"
-        description="I'm a passionate Full Stack Developer with over 5 years of experience creating modern, scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions."
+        description="I'm a passionate Full Stack Developer with over 4+ years of experience creating modern, scalable applications. I love turning complex problems into simple, beautiful, and intuitive solutions."
         variant="centered"
       />
 
+      <div className="section-padding">
+        <FeaturedProjects featuredProjects={featuredProjects} />
+      </div>
       {/* Featured Projects */}
-      <FeaturedProjects featuredProjects={featuredProjects} />
+      {/* <FeaturedProjects featuredProjects={featuredProjects} /> */}
 
       {/* All Projects */}
       <section className="section-padding relative overflow-hidden">
