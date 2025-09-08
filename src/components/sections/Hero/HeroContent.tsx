@@ -2,6 +2,7 @@
 
 import { easeOut, motion } from "framer-motion";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 const techStack = [
   "React.js",
@@ -117,29 +118,33 @@ export function HeroContent() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 mb-12"
         >
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-bold px-8 py-4 rounded-2xl shadow-glow transition-all duration-300"
           >
-            <div className="flex items-center justify-center gap-3">
+            <Link
+              href="/contact"
+              className="group flex items-center justify-center gap-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-bold px-8 py-4 rounded-2xl shadow-glow transition-all duration-300 min-h-[56px]"
+            >
               <span>{`Let's Work Together`}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </motion.button>
+            </Link>
+          </motion.div>
 
-          <motion.button
+          <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 text-white font-semibold rounded-2xl transition-all duration-300 hover:bg-white/15"
           >
-            <div className="relative">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/60 transition-all duration-300">
-                <Play className="w-4 h-4 ml-0.5" />
+            <Link
+              href="/projects"
+              className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 text-white font-semibold rounded-2xl transition-all duration-300 hover:bg-white/15 min-h-[56px]"
+            >
+              <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/60 transition-all duration-300">
+                <Play className="w-2 h-2 ml-0.5" />
               </div>
-            </div>
-            <span>View My Work</span>
-          </motion.button>
+              <span>View My Work</span>
+            </Link>
+          </motion.div>
         </motion.div>
 
         {/* Tech stack */}
