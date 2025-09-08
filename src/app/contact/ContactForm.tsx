@@ -19,6 +19,7 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -30,6 +31,7 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
     try {
       await onSubmit(formData);
@@ -46,6 +48,7 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       console.error('Form submission error:', error);
+      setError('Failed to send message. Please try again or contact me directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -67,6 +70,20 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
           <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
           <p className="text-green-800 dark:text-green-300 font-medium">
             Thank you for your message! I&apos;ll get back to you soon.
+          </p>
+        </motion.div>
+      )}
+
+      {/* Error Message */}
+      {error && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-3"
+        >
+          <div className="w-5 h-5 text-red-600 dark:text-red-400">⚠️</div>
+          <p className="text-red-800 dark:text-red-300 font-medium">
+            {error}
           </p>
         </motion.div>
       )}
