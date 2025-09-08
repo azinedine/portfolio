@@ -1,8 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
+import { ArrowRight, Download } from 'lucide-react'
 
 export function ProjectsCTA() {
+  const router = useRouter();
+
+  const handleStartProject = () => {
+    router.push('/contact');
+  };
+
+  const handleViewResume = () => {
+    // Open resume in new tab
+    window.open('/Zineddine_Amariche_Resume.pdf', '_blank');
+  };
+
   return (
     <section className="section-padding">
       <div className="container-responsive">
@@ -21,18 +34,22 @@ export function ProjectsCTA() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
+              onClick={handleStartProject}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-primary-600 hover:bg-primary-50 font-semibold px-8 py-3 rounded-lg transition-colors"
+              className="group bg-white text-primary-600 hover:bg-primary-50 font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
-              Start a Project
+              <span>Start a Project</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </motion.button>
             <motion.button
+              onClick={handleViewResume}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-lg transition-colors"
+              className="group border border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm"
             >
-              View Resume
+              <Download className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span>View Resume</span>
             </motion.button>
           </div>
         </motion.div>
