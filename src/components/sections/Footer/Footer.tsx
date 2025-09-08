@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 const socialLinks = [
   {
@@ -44,6 +45,10 @@ export function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const router = useRouter();
+
+  const pathname = usePathname();
 
   return (
     <footer className="relative bg-background-primary border-t border-white/10">
@@ -189,13 +194,16 @@ export function Footer() {
                   </div>
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary text-sm px-6 py-3 mx-auto sm:mx-0"
-                >
-                  {`Let's Talk`}
-                </motion.button>
+                {pathname !== "/contact" && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn-primary text-sm px-6 py-3 mx-auto sm:mx-0"
+                    onClick={() => router.push("/contact")}
+                  >
+                    {`Let's Talk`}
+                  </motion.button>
+                )}
               </motion.div>
             </div>
           </div>
@@ -227,7 +235,10 @@ export function Footer() {
                   ease: "easeInOut",
                 }}
               >
-                <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-400" fill="currentColor" />
+                <Heart
+                  className="w-3 h-3 sm:w-4 sm:h-4 text-red-400"
+                  fill="currentColor"
+                />
               </motion.div>
               <span className="hidden xs:inline">| A.ZINEDDINE</span>
               <span className="xs:hidden">| AZ</span>
