@@ -56,6 +56,7 @@ export const skills = {
     { name: "Vue.js", level: 85, color: "from-green-500 to-green-600", icon: "🌟" },
     { name: "TypeScript", level: 88, color: "from-blue-600 to-blue-700", icon: "🔷" },
     { name: "Tailwind CSS", level: 95, color: "from-teal-500 to-teal-600", icon: "🎨" },
+    { name: "JavaScript ES6+", level: 95, color: "from-yellow-500 to-orange-500", icon: "🔥" },
   ],
   backend: [
     { name: "Node.js", level: 90, color: "from-green-600 to-green-700", icon: "🟢" },
@@ -63,7 +64,8 @@ export const skills = {
     { name: "MongoDB", level: 85, color: "from-green-700 to-green-800", icon: "🍃" },
     { name: "PostgreSQL", level: 80, color: "from-blue-700 to-blue-800", icon: "🐘" },
     { name: "Firebase", level: 82, color: "from-yellow-500 to-orange-500", icon: "🔥" },
-    { name: "Docker", level: 75, color: "from-blue-500 to-blue-600", icon: "🐳" },
+    { name: "Express.js", level: 82, color: "from-yellow-500 to-orange-500", icon: "🔥" },
+    { name: "MySQL", level: 82, color: "from-yellow-500 to-orange-500", icon: "🔥" },
   ],
 };
 
