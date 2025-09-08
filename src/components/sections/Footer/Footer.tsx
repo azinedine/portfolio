@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const socialLinks = [
   {
@@ -41,14 +42,30 @@ const services = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const router = useRouter();
-
-  const pathname = usePathname();
+  const navigateToServices = () => {
+    if (pathname !== '/') {
+      // If not on home page, navigate to home with hash
+      router.push('/#services');
+    } else {
+      // If already on home page, just scroll to services
+      const servicesSection = document.getElementById('services');
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <footer className="relative bg-background-primary border-t border-white/10">
@@ -123,13 +140,12 @@ export function Footer() {
                 <ul className="space-y-2 sm:space-y-3">
                   {services.map((service) => (
                     <li key={service}>
-                      <motion.a
-                        href="#"
-                        whileHover={{ x: 5 }}
-                        className="text-white/60 hover:text-primary-400 transition-all duration-200 inline-block text-sm sm:text-base"
+                      <button
+                        onClick={navigateToServices}
+                        className="text-white/60 hover:text-primary-400 transition-all duration-200 inline-block text-sm sm:text-base text-left hover:translate-x-1"
                       >
                         {service}
-                      </motion.a>
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -194,15 +210,13 @@ export function Footer() {
                   </div>
                 </div>
 
-                {pathname !== "/contact" && (
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary text-sm px-6 py-3 mx-auto sm:mx-0"
+                {isClient && pathname !== "/contact" && (
+                  <button
+                    className="btn-primary text-sm px-6 py-3 mx-auto sm:mx-0 hover:scale-105 active:scale-95 transition-transform duration-200"
                     onClick={() => router.push("/contact")}
                   >
                     {`Let's Talk`}
-                  </motion.button>
+                  </button>
                 )}
               </motion.div>
             </div>
