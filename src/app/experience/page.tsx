@@ -1,255 +1,120 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import {
-  Briefcase,
-  GraduationCap,
-  Award,
-  Calendar,
-  MapPin,
-  ExternalLink,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Code2 } from "lucide-react";
 import { AnimatedText } from "@/components/common/AnimatedText";
-import { certifications, education, experiences } from "./data";
-
-// Centralized animation variants
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
-const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
-const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
-const TimelineItem = ({
-  item,
-  index,
-  isLast,
-}: {
-  item: (typeof experiences)[0] | (typeof education)[0];
-  index: number;
-  isLast: boolean;
-}) => {
-  const Icon = item.type === "work" ? Briefcase : GraduationCap;
-
-  return (
-    <motion.div
-      variants={slideInLeft}
-      initial="hidden"
-      animate="visible"
-      transition={{ delay: index * 0.1 }}
-      className="relative"
-    >
-      {/* Timeline line */}
-      {!isLast && (
-        <div className="absolute left-6 top-12 w-px h-full bg-gradient-to-b from-primary-400 to-transparent" />
-      )}
-
-      {/* Timeline icon */}
-      <div className="flex items-start gap-6">
-        <div className="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center border-4 border-white dark:border-dark-950 shadow-lg">
-          <Icon className="w-5 h-5 text-primary-600 dark:text-primary-400" />
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 pb-12">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-dark-200 dark:border-dark-800"
-          >
-            {/* Header */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-bold text-dark-900 dark:text-white mb-1">
-                  {item.title}
-                </h3>
-                <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium">
-                  <span>
-                    {"company" in item ? item.company : item.institution}
-                  </span>
-                  {"link" in item && item.link && (
-                    <motion.a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      className="text-dark-400 hover:text-primary-600 dark:hover:text-primary-400"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-2 mt-2 lg:mt-0">
-                <span className="inline-flex items-center gap-1 text-sm text-dark-500 dark:text-dark-500">
-                  <Calendar className="w-4 h-4" />
-                  {item.period}
-                </span>
-                <span className="inline-flex items-center gap-1 text-sm text-dark-500 dark:text-dark-500">
-                  <MapPin className="w-4 h-4" />
-                  {item.location}
-                </span>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-dark-600 dark:text-dark-400 mb-4">
-              {item.description}
-            </p>
-
-            {/* Achievements */}
-            <div className="mb-4">
-              <h4 className="font-semibold text-dark-900 dark:text-white mb-2">
-                Key Achievements:
-              </h4>
-              <ul className="space-y-1">
-                {item.achievements.map((achievement, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-2 text-dark-600 dark:text-dark-400"
-                  >
-                    <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Technologies */}
-            <div>
-              <h4 className="font-semibold text-dark-900 dark:text-white mb-2">
-                Technologies Used:
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {item.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 text-sm rounded-md font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+import { experiences, education, certifications, ExperienceItem } from "./data";
+import { containerVariants, itemVariants } from "./animations";
+import TimelineItem from "./TimelineItem";
+import CertificationCard from "./CertificationCard";
 
 export default function ExperiencePage() {
-  const allItems = [...experiences, ...education].sort((a, b) => {
+  const allItems: ExperienceItem[] = [...experiences, ...education].sort((a, b) => {
     // Sort by year (newest first)
-    const yearA = parseInt(
-      a.period.split(" - ")[1] === "Present" ? "2024" : a.period.split(" - ")[1]
-    );
-    const yearB = parseInt(
-      b.period.split(" - ")[1] === "Present" ? "2024" : b.period.split(" - ")[1]
-    );
-    return yearB - yearA;
+    const getYear = (period: string) => {
+      if (period.includes('Today') || period.includes('Present')) return 2024;
+      const match = period.match(/(\d{4})/g);
+      return match ? Math.max(...match.map(Number)) : 0;
+    };
+    
+    return getYear(b.period) - getYear(a.period);
   });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-950 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/30 pt-20">
+      {/* Floating background elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-40 right-10 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl animate-pulse delay-2000" />
+      </div>
+
       {/* Hero Section */}
-      <section className="section-padding">
-        <div className="container-responsive">
+      <section className="relative section-padding">
+        <div className="container mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-4xl mx-auto text-center mb-16"
+            className="max-w-4xl mx-auto text-center mb-20"
           >
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full font-semibold text-sm mb-6"
+            >
+              <Code2 className="w-4 h-4" />
+              Professional Journey
+            </motion.div>
+
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
             >
               <AnimatedText
-                text="Professional"
-                className="text-dark-900 dark:text-white"
+                text="My Professional"
+                className="text-gray-900 dark:text-white"
               />
               <br />
               <AnimatedText
                 text="Experience"
-                className="gradient-text"
+                className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent"
                 delay={0.5}
               />
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-dark-600 dark:text-dark-400 leading-relaxed max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto font-light"
             >
-              A timeline of my career journey, education, and professional
-              growth in the world of software development.
+              From education to full-stack development and project management - 
+              a journey of continuous learning and growth in the tech industry.
             </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex items-center justify-center gap-8 mt-12"
+            >
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">4+</div>
+                <div className="text-gray-600 dark:text-gray-400">Years Experience</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300 dark:bg-gray-700" />
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">50+</div>
+                <div className="text-gray-600 dark:text-gray-400">Projects Completed</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300 dark:bg-gray-700" />
+              <div className="text-center">
+                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">20+</div>
+                <div className="text-gray-600 dark:text-gray-400">Happy Clients</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-900/50">
-        <div className="container-responsive">
+      {/* Timeline Section */}
+      <section className="relative section-padding">
+        <div className="container mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Career Timeline
             </h2>
-            <p className="text-dark-600 dark:text-dark-400 text-center max-w-2xl mx-auto">
-              From education to professional experience, here&apos;s my journey
-              in tech
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-light">
+              From education to professional experience, here&apos;s my journey through 
+              the evolving landscape of technology and software development
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             {allItems.map((item, index) => (
               <TimelineItem
-                key={item.id + index}
+                key={`${item.type}-${item.id}`}
                 item={item}
                 index={index}
                 isLast={index === allItems.length - 1}
@@ -259,21 +124,21 @@ export default function ExperiencePage() {
         </div>
       </section>
 
-      {/* Certifications */}
-      <section className="section-padding">
-        <div className="container-responsive">
+      {/* Certifications Section */}
+      <section className="relative section-padding bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+        <div className="container mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Certifications & Awards
             </h2>
-            <p className="text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
-              Professional certifications that validate my expertise in various
-              technologies
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-light">
+              Professional certifications that validate my expertise and commitment 
+              to staying current with industry standards
             </p>
           </motion.div>
 
@@ -281,83 +146,60 @@ export default function ExperiencePage() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
           >
-            {certifications.map((cert) => (
-              <motion.div
+            {certifications.map((cert, index) => (
+              <CertificationCard
                 key={cert.id}
-                variants={scaleIn}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border border-dark-200 dark:border-dark-800"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                    <Award className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-                  </div>
-                  <span className="text-sm text-dark-500 dark:text-dark-500 font-medium">
-                    {cert.date}
-                  </span>
-                </div>
-
-                <h3 className="font-bold text-dark-900 dark:text-white mb-2">
-                  {cert.title}
-                </h3>
-
-                <p className="text-dark-600 dark:text-dark-400 mb-3">
-                  {cert.issuer}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-dark-500 dark:text-dark-500">
-                    ID: {cert.credentialId}
-                  </span>
-                  <motion.a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.a>
-                </div>
-              </motion.div>
+                certification={cert}
+                index={index}
+              />
             ))}
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gray-50 dark:bg-dark-900/50">
-        <div className="container-responsive">
+      <section className="relative section-padding">
+        <div className="container mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="text-center bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl p-12 text-white"
+            className="text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Work Together?
-            </h2>
-            <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
-              With years of experience and a proven track record, I&apos;m ready
-              to help bring your next project to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-primary-600 hover:bg-primary-50 font-semibold px-8 py-3 rounded-lg transition-colors"
-              >
-                Hire Me
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-lg transition-colors"
-              >
-                Download Resume
-              </motion.button>
+            <div className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-3xl p-16 text-white overflow-hidden">
+              {/* Background pattern */}
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iNyIvPjwvZz48L2c+PC9zdmc+')] opacity-20" />
+              
+              <div className="relative z-10">
+                <motion.h2 
+                  whileHover={{ scale: 1.05 }}
+                  className="text-4xl md:text-5xl font-bold mb-6"
+                >
+                  Ready to Work Together?
+                </motion.h2>
+                <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto font-light">
+                  With years of experience in full-stack development, mobile applications, 
+                  and project management, I&apos;m ready to help bring your next project to life.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <motion.button
+                    whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white text-purple-600 hover:bg-gray-50 font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg"
+                  >
+                    Hire Me Now
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border-2 border-white/30 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm"
+                  >
+                    Download Resume
+                  </motion.button>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
