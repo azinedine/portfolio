@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import NextImage from "next/image";
 import {
   Code2,
   Download,
@@ -17,6 +18,7 @@ import StatCard from "./StatCard";
 import ValueCard from "./ValueCard";
 import FunFactCard from "./FunFactCard";
 import SkillBar from "./SkillBar";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -100,15 +102,50 @@ export default function AboutPage() {
             >
               <div className="relative w-full max-w-lg mx-auto">
                 {/* Profile image with gradient border */}
-                <div className="relative aspect-square bg-gradient-to-br from-purple-500 via-blue-600 to-indigo-600 rounded-3xl shadow-2xl shadow-purple-500/25 p-2">
-                  <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm rounded-2xl flex items-center justify-center overflow-hidden border border-white/20">
-                    <div className="text-center">
-                      <Code2 className="w-32 h-32 text-white/90 mx-auto mb-4" />
-                      <div className="text-white/80 font-bold text-2xl">A.ZINEDDINE</div>
-                      <div className="text-white/60 text-lg">Full Stack Developer</div>
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="relative aspect-square bg-gradient-to-br from-purple-500 via-blue-600 to-indigo-600 rounded-3xl shadow-2xl shadow-purple-500/25 p-2 group cursor-pointer"
+                >
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                    {/* Background Image */}
+                    <NextImage 
+                      src="/me.jpg" 
+                      alt="A.ZINEDDINE - Full Stack Developer" 
+                      fill
+                      className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:opacity-80" 
+                      priority
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-blue-900/30 to-indigo-900/40 group-hover:from-purple-900/60 group-hover:via-blue-900/50 group-hover:to-indigo-900/60 transition-all duration-500" />
+                    
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="mb-4"
+                      >
+                        <Code2 className="w-16 h-16 text-white/90 mx-auto mb-4 group-hover:text-white transition-colors duration-300" />
+                      </motion.div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="space-y-2"
+                      >
+                        <div className="text-white font-bold text-2xl group-hover:text-white transition-colors duration-300">
+                          A.ZINEDDINE
+                        </div>
+                        <div className="text-white/80 text-lg group-hover:text-white/90 transition-colors duration-300">
+                          Full Stack Developer
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Floating elements */}
                 <motion.div
