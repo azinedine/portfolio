@@ -118,8 +118,8 @@ export const faqs: FAQ[] = [
 // Budget Options
 export const budgetOptions = [
   { value: "", label: "Select budget range" },
-  { value: "5k-10k", label: "$5,000 - $10,000" },
-  { value: "10k-25k", label: "$10,000 - $25,000" },
-  { value: "25k-50k", label: "$25,000 - $50,000" },
-  { value: "50k+", label: "$50,000+" },
+  { value: "dzd5k-dz10k", label: "dzd5000,00 - dzd100,000" },
+  { value: "dzd10k-dzd25k", label: "dzd100,000 - dzd250,000" },
+  { value: "dzd25k-dzd50k", label: "dzd250,000 - dzd500,000" },
+  { value: "dzd50k+", label: "dzd500,000+" },
 ];
