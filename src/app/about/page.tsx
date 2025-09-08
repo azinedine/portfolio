@@ -18,8 +18,11 @@ import StatCard from "./StatCard";
 import ValueCard from "./ValueCard";
 import FunFactCard from "./FunFactCard";
 import SkillBar from "./SkillBar";
+import { useRouter } from "next/navigation";
 
 export default function AboutPage() {
+
+  const router = useRouter()
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/30 pt-20">
       {/* Floating background elements */}
@@ -389,19 +392,14 @@ export default function AboutPage() {
                   and collaborate with amazing people to create something extraordinary.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
+               
                   <motion.button
-                    whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-white text-purple-600 hover:bg-gray-50 font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg"
-                  >
-                    Start a Project
-                  </motion.button>
-                  <motion.button
+                    onClick={() => router.push('/contact')}
                     whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-white/30 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm"
                   >
-                    Get in Touch
+                    {`Let's Work Together`}
                   </motion.button>
                 </div>
               </div>
