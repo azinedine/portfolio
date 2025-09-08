@@ -7,6 +7,7 @@ import { experiences, education, certifications, ExperienceItem } from "./data";
 import { containerVariants, itemVariants } from "./animations";
 import TimelineItem from "./TimelineItem";
 import CertificationCard from "./CertificationCard";
+import { useRouter } from "next/navigation";
 
 export default function ExperiencePage() {
   const allItems: ExperienceItem[] = [...experiences, ...education].sort((a, b) => {
@@ -19,6 +20,13 @@ export default function ExperiencePage() {
     
     return getYear(b.period) - getYear(a.period);
   });
+
+  const router = useRouter();
+
+  const downloadResume = () => {
+    const resumeUrl = '/Zineddine_Amariche_Resume.pdf';
+    window.open(resumeUrl, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/30 pt-20">
@@ -185,6 +193,7 @@ export default function ExperiencePage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <motion.button
+                    onClick={() => router.push('/contact')}
                     whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-white text-purple-600 hover:bg-gray-50 font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg"
@@ -192,6 +201,7 @@ export default function ExperiencePage() {
                     Hire Me Now
                   </motion.button>
                   <motion.button
+                    onClick={() => downloadResume()}
                     whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-white/30 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm"
