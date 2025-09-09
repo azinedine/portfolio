@@ -4,12 +4,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle } from "lucide-react";
 import { FormData, budgetOptions } from "./data";
+import emailjs from '@emailjs/browser';
 
-interface ContactFormProps {
-  onSubmit: (formData: FormData) => Promise<void>;
-}
-
-const ContactForm = ({ onSubmit }: ContactFormProps) => {
+const ContactForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -34,7 +31,25 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
     setError(null);
     
     try {
-      await onSubmit(formData);
+      // EmailJS configuration
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'your-service-id';
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'your-template-id';
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'your-public-key';
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        budget: formData.budget || 'Not specified',
+        to_email: 'amarichezineddine@gmail.com',
+        reply_to: formData.email,
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
       setIsSubmitted(true);
       setFormData({
         name: '',
@@ -47,7 +62,7 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
       // Reset success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('EmailJS error:', error);
       setError('Failed to send message. Please try again or contact me directly.');
     } finally {
       setIsSubmitting(false);
