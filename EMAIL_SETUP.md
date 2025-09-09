@@ -1,69 +1,101 @@
-# Email Setup Guide
+# EmailJS Setup Guide
 
 ## Contact Form Email Integration
 
-Your contact form is now set up to send emails to your inbox! Here's how to complete the setup:
+Your contact form is now set up to send emails using EmailJS! This is a client-side email service that doesn't require any server setup.
 
-## Option 1: Web3Forms (Recommended - Free)
+## EmailJS Setup (Recommended - Free)
 
-1. **Get your access key:**
-   - Go to [Web3Forms.com](https://web3forms.com/)
+1. **Create EmailJS Account:**
+   - Go to [EmailJS.com](https://www.emailjs.com/)
    - Sign up for a free account
-   - Create a new form and get your access key
+   - Verify your email address
 
-2. **Set up environment variables:**
+2. **Set up Email Service:**
+   - Go to "Email Services" in your dashboard
+   - Click "Add New Service"
+   - Choose your email provider (Gmail, Outlook, etc.)
+   - Follow the setup instructions for your provider
+
+3. **Create Email Template:**
+   - Go to "Email Templates" in your dashboard
+   - Click "Create New Template"
+   - Use this template content:
+
+   **Subject:** Portfolio Contact: {{subject}}
+   
+   **Body:**
+   ```
+   New Contact Form Submission
+   
+   Contact Details:
+   - Name: {{from_name}}
+   - Email: {{from_email}}
+   - Subject: {{subject}}
+   - Budget: {{budget}}
+   
+   Message:
+   {{message}}
+   
+   ---
+   This message was sent from your portfolio contact form.
+   Reply to: {{reply_to}}
+   ```
+
+4. **Get Your Credentials:**
+   - Note down your Service ID, Template ID, and Public Key
+   - These are found in your EmailJS dashboard
+
+5. **Set up Environment Variables:**
    - Create a `.env.local` file in your project root
-   - Add your access key:
+   - Add your EmailJS credentials:
    ```
-   WEB3FORMS_ACCESS_KEY=your-access-key-here
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your-service-id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your-template-id
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your-public-key
    ```
 
-3. **Test the form:**
-   - The form will now send emails to your registered email address
-   - You'll receive both the contact form submission and an auto-reply
-
-## Option 2: Alternative Email Services
-
-If you prefer other services, you can modify `/src/app/api/contact/route.ts`:
-
-### Formspree
-- Sign up at [Formspree.io](https://formspree.io/)
-- Replace the Web3Forms code with Formspree API calls
-
-### EmailJS
-- Sign up at [EmailJS.com](https://www.emailjs.com/)
-- Use their client-side SDK instead of server-side API
-
-### Custom SMTP
-- Use Nodemailer with your email provider
-- Add SMTP credentials to environment variables
+6. **Test the Form:**
+   - Fill out and submit the contact form
+   - Check your email for the message
 
 ## Current Features
 
+✅ **Client-Side Email**: No server setup required
 ✅ **Form Validation**: Required fields are validated
 ✅ **Error Handling**: Shows user-friendly error messages
 ✅ **Success Feedback**: Confirms when message is sent
-✅ **Auto-reply**: Sends confirmation to the user
 ✅ **Responsive Design**: Works on all devices
 ✅ **Professional Formatting**: Well-formatted email templates
+✅ **Free Service**: EmailJS free tier includes 200 emails/month
 
 ## Testing
 
 1. Fill out the contact form on your website
 2. Check your email for the message
-3. Verify the user receives an auto-reply
-4. Test error handling by submitting invalid data
+3. Test error handling by submitting invalid data
+4. Verify all form fields are included in the email
 
 ## Troubleshooting
 
-- **Form not sending**: Check your access key in `.env.local`
-- **No emails received**: Check spam folder and verify email service setup
+- **Form not sending**: Check your EmailJS credentials in `.env.local`
+- **No emails received**: Check spam folder and verify EmailJS service setup
 - **Build errors**: Ensure all environment variables are set correctly
+- **Template errors**: Verify your EmailJS template uses the correct variable names
+
+## EmailJS Benefits
+
+- **No Server Required**: Works entirely client-side
+- **Free Tier**: 200 emails per month for free
+- **Easy Setup**: Simple configuration process
+- **Multiple Providers**: Supports Gmail, Outlook, Yahoo, etc.
+- **Template System**: Easy to customize email formatting
 
 ## Security Notes
 
 - Never commit your `.env.local` file to version control
-- Use environment variables for all sensitive data
-- Consider rate limiting for production use
+- EmailJS handles security on their end
+- Public keys are safe to expose (they're meant to be public)
+- Consider upgrading to paid plan for production use
 
-Your contact form is now fully functional! 🎉
+Your contact form is now fully functional with EmailJS! 🎉
