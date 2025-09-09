@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     default: 'A.ZINEDDINE | Full Stack Developer - 4+ Years Experience',
     template: '%s | A.ZINEDDINE Portfolio'
   },
-  description: 'A.ZINEDDINE - Expert Full Stack Developer with 5+ years experience. Delivered 50+ cutting-edge web & mobile applications using React v19, Next.js 15, React Native v0.79, Vue.js, Node.js & Laravel. 98% client satisfaction rate.',
+  description: 'A.ZINEDDINE - Expert Full Stack Developer with 4+ years experience. Delivered 50+ cutting-edge web & mobile applications using React v19, Next.js 15, React Native v0.81, Vue.js, Node.js & Laravel. 98% client satisfaction rate.',
   keywords: [
     'A.ZINEDDINE',
     'Full Stack Developer',
     'React v19 Developer',
     'Next.js 15 Expert',
-    'React Native v0.79',
+    'React Native v0.81',
     'Vue.js Developer', 
     'TypeScript Expert',
     'Laravel 12 Developer',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     'Modern Web Applications',
     'Mobile App Development',
     'Freelance Developer',
-    '5+ Years Experience',
+    '4+ Years Experience',
     '50+ Projects Delivered'
   ],
   authors: [{ name: 'A.ZINEDDINE', url: 'https://azineddine.dev' }],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://azineddine.dev',
-    title: 'A.ZINEDDINE | Expert Full Stack Developer - 5+ Years',
+    title: 'A.ZINEDDINE | Expert Full Stack Developer - 4+ Years',
     description: 'Transforming ideas into reality with cutting-edge technologies. 50+ projects delivered, 30+ satisfied clients, 98% success rate.',
     siteName: 'A.ZINEDDINE - Full Stack Developer Portfolio',
     images: [
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     site: '@azineddine_dev',
     creator: '@azineddine_dev',
     title: 'A.ZINEDDINE | Full Stack Developer - Modern Web & Mobile Apps',
-    description: '5+ years crafting cutting-edge applications with React v19, Next.js 15, React Native & Laravel. 50+ successful projects delivered.',
+    description: '4+ years crafting cutting-edge applications with React v19, Next.js 15, React Native & Laravel. 50+ successful projects delivered.',
     images: {
       url: 'https://azineddine.dev/twitter-card.jpg',
       alt: 'A.ZINEDDINE Full Stack Developer Portfolio',
