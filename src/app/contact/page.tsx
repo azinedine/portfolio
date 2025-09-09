@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import { AnimatedText } from "@/components/common/AnimatedText";
-import { contactInfo, socialLinks, faqs, FormData } from "./data";
+import { contactInfo, socialLinks, faqs } from "./data";
 import { containerVariants, itemVariants, slideInLeft, slideInRight } from "./animations";
 import ContactInfoCard from "./ContactInfoCard";
 import SocialLinks from "./SocialLinks";
@@ -11,27 +11,6 @@ import ContactForm from "./ContactForm";
 import FAQCard from "./FAQCard";
 
 export default function ContactPage() {
-  const handleFormSubmit = async (formData: FormData) => {
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      const result = await response.json();
-      console.log('Message sent successfully:', result);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      throw error; // Re-throw to let the form handle the error
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/30 pt-20">
@@ -109,7 +88,7 @@ export default function ContactPage() {
               animate="visible"
               className="lg:col-span-2"
             >
-              <ContactForm onSubmit={handleFormSubmit} />
+              <ContactForm />
             </motion.div>
           </div>
         </div>
