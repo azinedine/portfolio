@@ -74,14 +74,14 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
             <span className="text-xs text-primary-400 font-medium">
               {project.category}
             </span>
-            <span className="text-xs text-white/50">{project.status}</span>
+            <span className="text-xs text-gray-500 dark:text-white/50">{project.status}</span>
           </div>
 
-          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-400 transition-colors">
             {project.title}
           </h3>
 
-          <p className="text-white/70 text-sm mb-4 line-clamp-2">
+          <p className="text-gray-600 dark:text-white/70 text-sm mb-4 line-clamp-2">
             {project.description}
           </p>
 
@@ -90,13 +90,13 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
             {project.technologies.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-1 bg-white/10 text-white/80 text-xs rounded-md font-medium"
+                className="px-2 py-1 bg-gray-200/50 dark:bg-white/10 text-gray-700 dark:text-white/80 text-xs rounded-md font-medium"
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > 3 && (
-              <span className="px-2 py-1 bg-white/10 text-white/80 text-xs rounded-md font-medium">
+              <span className="px-2 py-1 bg-gray-200/50 dark:bg-white/10 text-gray-700 dark:text-white/80 text-xs rounded-md font-medium">
                 +{project.technologies.length - 3}
               </span>
             )}
@@ -108,7 +108,7 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
               onClick={() => onViewDetails(project)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full bg-gray-200/50 dark:bg-white/10 hover:bg-gray-300/50 dark:hover:bg-white/20 text-gray-700 dark:text-white text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
             >
               <Eye className="w-4 h-4" />
               <span>View Details</span>
