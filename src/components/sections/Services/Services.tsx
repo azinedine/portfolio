@@ -147,11 +147,11 @@ export function Services() {
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="block text-white">The Service I</span>
+            <span className="block text-gray-900 dark:text-white">The Service I</span>
             <span className="block gradient-text-primary">Provide For You</span>
           </h2>
 
-          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
             I offer comprehensive digital solutions tailored to your business
             needs, from development to design and beyond.
           </p>
