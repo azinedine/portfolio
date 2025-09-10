@@ -1,0 +1,1 @@
+export { GlobalScrollIndicator } from './GlobalScrollIndicator'
