@@ -92,7 +92,7 @@ const ServiceCard = ({
   <motion.div
     variants={itemVariants}
     whileHover={{ scale: 1.05, y: -5 }}
-    className="card-service group cursor-pointer"
+    className="bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
   >
     {/* Service Icon */}
     <div
@@ -102,12 +102,12 @@ const ServiceCard = ({
     </div>
 
     {/* Service Title */}
-    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-primary-300 transition-colors">
+    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors">
       {service.title}
     </h3>
 
     {/* Service Description */}
-    <p className="text-white/70 leading-relaxed mb-6">{service.description}</p>
+    <p className="text-gray-600 dark:text-white/70 leading-relaxed mb-6">{service.description}</p>
 
     {/* Hover indicator */}
     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -160,9 +160,9 @@ export function Services() {
           <motion.button
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute top-0 right-8 w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+            className="absolute top-0 right-8 w-12 h-12 bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300/50 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-gray-200/80 dark:hover:bg-white/20 transition-all duration-300"
           >
-            <X className="w-5 h-5 text-white" />
+            <X className="w-5 h-5 text-gray-700 dark:text-white" />
           </motion.button>
         </motion.div>
 
