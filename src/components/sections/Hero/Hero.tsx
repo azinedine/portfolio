@@ -111,7 +111,7 @@ export function Hero() {
   );
 
   return (
-    <section id="hero" className="relative min-h-screen py-16 sm:py-20 flex items-center justify-center overflow-hidden hero-bg">
+    <section id="hero" className="relative min-h-screen py-12 sm:py-16 md:py-20 flex items-center justify-center overflow-hidden hero-bg">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-grid dark:bg-dark-900 opacity-30 dark:opacity-15" />
