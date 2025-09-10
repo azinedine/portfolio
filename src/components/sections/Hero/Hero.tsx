@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Plus, Star, Sparkles } from "lucide-react";
 import { BackgroundOrbs } from "@/components/common/BackgroundOrbs";
 import { FloatingElement } from "@/components/common/FloatingElements";
-import { Grid, GridItem } from "@/components/common/Grid";
 import { HeroContent } from "./HeroContent";
 import { HeroProfile } from "./HeroProfile";
 
@@ -138,21 +137,14 @@ export function Hero() {
 
       {/* Main Content */}
       <div className="container-responsive section-padding relative z-10">
-        <Grid 
-          cols={2} 
-          gap="xl" 
-          align="center" 
-          responsive={true}
-          animate={true}
-          stagger={true}
-        >
-          <GridItem>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="order-2 lg:order-1">
             <HeroContent />
-          </GridItem>
-          <GridItem>
+          </div>
+          <div className="order-1 lg:order-2">
             <HeroProfile />
-          </GridItem>
-        </Grid>
+          </div>
+        </div>
       </div>
 
     </section>
