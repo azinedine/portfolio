@@ -50,13 +50,13 @@ export function ProjectsGrid({
             className="text-center py-16"
           >
             <div className="max-w-md mx-auto">
-              <div className="w-16 h-16 mx-auto mb-4 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
                 <span className="text-2xl">🔍</span>
               </div>
-              <h3 className="text-xl font-semibold text-white/90 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white/90 mb-2">
                 No projects found
               </h3>
-              <p className="text-white/70">
+              <p className="text-gray-600 dark:text-white/70">
                 No projects match the selected category {`"${selectedCategory}"`}.
                 Try selecting a different category.
               </p>
