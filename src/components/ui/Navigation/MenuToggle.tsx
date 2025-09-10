@@ -14,7 +14,7 @@ export function MenuToggle({ isOpen, onToggle }: MenuToggleProps) {
       onClick={onToggle}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="lg:hidden p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white hover:bg-white/20 transition-all duration-200"
+      className="lg:hidden p-3 bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300/50 dark:border-white/20 rounded-2xl text-gray-700 dark:text-white hover:bg-gray-200/80 dark:hover:bg-white/20 transition-all duration-200"
       aria-label="Toggle menu"
     >
       <AnimatePresence mode="wait">
