@@ -80,12 +80,12 @@ export function WhyChoose() {
       <div className="container-responsive relative z-10">
         <motion.div variants={itemVariants} className="mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="block text-white">Why My Services</span>
+            <span className="block text-gray-900 dark:text-white">Why My Services</span>
             <span className="block gradient-text-primary">
               The Best Choice?
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-lg">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/80 leading-relaxed max-w-lg">
             Discover what makes working with me different and why clients choose
             my development services.
           </p>
