@@ -52,7 +52,7 @@ const GeometricShapes = () => (
         rotate: { duration: 40, repeat: Infinity, ease: "linear" },
         scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
       }}
-      className="absolute top-32 right-1/4 w-20 h-20 border border-primary-400/30 rounded-lg backdrop-blur-sm"
+      className="absolute top-32 right-1/4 w-20 h-20 border dark:border-gray-800 border-primary-400/30 rounded-lg backdrop-blur-sm"
     />
 
     <motion.div
@@ -163,7 +163,7 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-grid opacity-15" />
+        <div className="absolute inset-0 bg-grid dark:bg-dark-900 opacity-30 dark:opacity-15" />
         <BackgroundOrbs />
         <GeometricShapes />
         <DecorativeElements />
