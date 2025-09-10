@@ -68,7 +68,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-background-primary border-t border-white/10">
+    <footer className="relative bg-gray-50 dark:bg-background-primary border-t border-gray-200 dark:border-white/10">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-10" />
       <div className="absolute top-0 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-primary-600/5 to-blue-600/5 rounded-full blur-3xl" />
@@ -94,13 +94,13 @@ export function Footer() {
                     <span className="text-xl sm:text-2xl font-bold gradient-text-primary">
                       A.ZINEDDINE
                     </span>
-                    <span className="text-xs text-white/50 font-medium tracking-wider">
+                    <span className="text-xs text-gray-500 dark:text-white/50 font-medium tracking-wider">
                       Software Engineer
                     </span>
                   </div>
                 </div>
 
-                <p className="text-white/70 leading-relaxed mb-6 text-sm sm:text-base max-w-sm mx-auto sm:mx-0">
+                <p className="text-gray-600 dark:text-white/70 leading-relaxed mb-6 text-sm sm:text-base max-w-sm mx-auto sm:mx-0">
                   Full Stack Developer passionate about creating modern,
                   scalable, and user-friendly applications.
                   {`Let's build something amazing together.`}
@@ -116,7 +116,7 @@ export function Footer() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.9 }}
-                      className={`p-2 sm:p-3 glass rounded-xl text-white/60 ${color} transition-all duration-200 hover:bg-white/10 group`}
+                      className={`p-2 sm:p-3 bg-gray-100/80 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-xl text-gray-600 dark:text-white/60 ${color} transition-all duration-200 hover:bg-gray-200/80 dark:hover:bg-white/10 group`}
                       aria-label={label}
                     >
                       <Icon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
@@ -134,7 +134,7 @@ export function Footer() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
               >
-                <h3 className="text-lg font-semibold text-white mb-4 sm:mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
                   Services
                 </h3>
                 <ul className="space-y-2 sm:space-y-3">
@@ -142,7 +142,7 @@ export function Footer() {
                     <li key={service}>
                       <button
                         onClick={navigateToServices}
-                        className="text-white/60 hover:text-primary-400 transition-all duration-200 inline-block text-sm sm:text-base text-left hover:translate-x-1"
+                        className="text-gray-600 dark:text-white/60 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 inline-block text-sm sm:text-base text-left hover:translate-x-1"
                       >
                         {service}
                       </button>
@@ -160,7 +160,7 @@ export function Footer() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-lg font-semibold text-white mb-4 sm:mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
                   Support
                 </h3>
                 <ul className="space-y-2 sm:space-y-3">
@@ -169,7 +169,7 @@ export function Footer() {
                       <motion.a
                         href={link.href}
                         whileHover={{ x: 5 }}
-                        className="text-white/60 hover:text-primary-400 transition-all duration-200 inline-block text-sm sm:text-base"
+                        className="text-gray-600 dark:text-white/60 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 inline-block text-sm sm:text-base"
                       >
                         {link.name}
                       </motion.a>
@@ -187,23 +187,23 @@ export function Footer() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <h3 className="text-lg font-semibold text-white mb-4 sm:mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
                   Get in Touch
                 </h3>
                 <div className="space-y-3 sm:space-y-4 mb-6">
-                  <p className="text-white/70 text-sm sm:text-base">
+                  <p className="text-gray-600 dark:text-white/70 text-sm sm:text-base">
                     Ready to start your next project?
                   </p>
                   <div className="space-y-2">
                     <a
                       href="mailto:amarichezineddine@gmail.com"
-                      className="block text-primary-400 hover:text-primary-300 transition-colors text-sm sm:text-base break-all"
+                      className="block text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors text-sm sm:text-base break-all"
                     >
                       a.zineddine@dev.com
                     </a>
                     <a
                       href="tel:+2130540128550"
-                      className="block text-white/60 hover:text-white transition-colors text-sm sm:text-base"
+                      className="block text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors text-sm sm:text-base"
                     >
                       +213 540 128 550
                     </a>
@@ -229,15 +229,15 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="py-6 sm:py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6"
+          className="py-6 sm:py-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6"
         >
-          <p className="text-white/50 text-xs sm:text-sm text-center md:text-left order-2 md:order-1">
-            © {currentYear} Braivexa. All rights reserved.
+          <p className="text-gray-500 dark:text-white/50 text-xs sm:text-sm text-center md:text-left order-2 md:order-1">
+            © {currentYear} A.ZINEDDINE. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4 md:gap-6 order-1 md:order-2 flex-wrap justify-center">
             <motion.div
-              className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-white/50"
+              className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-gray-500 dark:text-white/50"
               whileHover={{ scale: 1.05 }}
             >
               <span>Made with</span>
@@ -263,7 +263,7 @@ export function Footer() {
               onClick={scrollToTop}
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 sm:p-3 glass rounded-xl text-white/60 hover:text-primary-400 hover:bg-white/10 transition-all duration-200 group"
+              className="p-2 sm:p-3 bg-gray-100/80 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-xl text-gray-600 dark:text-white/60 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-200/80 dark:hover:bg-white/10 transition-all duration-200 group"
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4 group-hover:scale-110 transition-transform" />
