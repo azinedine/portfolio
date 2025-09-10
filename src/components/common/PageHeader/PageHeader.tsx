@@ -3,11 +3,7 @@
 import { easeOut, motion } from "framer-motion";
 import {
   ArrowLeft,
-  Home,
-  Magnet,
-  Projector,
   Settings,
-  Star,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -91,7 +87,7 @@ export function PageHeader({
             <motion.div variants={itemVariants} className="mb-6">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-white/70 hover:text-white font-medium transition-colors group"
+                className="inline-flex items-center gap-2 text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white font-medium transition-colors group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>Back to Home</span>
@@ -118,7 +114,7 @@ export function PageHeader({
             >
               {subtitle ? (
                 <>
-                  <span className="block text-white">{subtitle}</span>
+                  <span className="block text-gray-900 dark:text-white">{subtitle}</span>
                   <span className="block gradient-text-primary">{title}</span>
                 </>
               ) : (
@@ -133,8 +129,8 @@ export function PageHeader({
               variants={itemVariants}
               className={`leading-relaxed ${
                 isMinimal
-                  ? "text-base md:text-lg text-white/80 max-w-2xl"
-                  : "text-lg md:text-xl text-white/80 max-w-3xl"
+                  ? "text-base md:text-lg text-gray-600 dark:text-white/80 max-w-2xl"
+                  : "text-lg md:text-xl text-gray-600 dark:text-white/80 max-w-3xl"
               } ${isCentered ? "mx-auto" : ""}`}
             >
               {description}
