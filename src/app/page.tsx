@@ -6,6 +6,7 @@ import { WhyChoose } from '@/components/sections/WhyChoose'
 import { Services } from '@/components/sections/Services'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { ContactCTA } from '@/components/sections/ContactCTA'
+import { GlobalScrollIndicator } from '@/components/common/GlobalScrollIndicator'
 
 export default function HomePage() {
   useEffect(() => {
@@ -41,6 +42,7 @@ export default function HomePage() {
       <Services />
       <Portfolio />
       <ContactCTA />
+      <GlobalScrollIndicator />
     </>
   )
 }
