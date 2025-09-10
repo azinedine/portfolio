@@ -8,6 +8,7 @@ import { DesktopNav } from './DesktopNav'
 import { CtaButton } from './CtaButton'
 import { MenuToggle } from './MenuToggle'
 import { MobileNav } from './MobileNav'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 export function Navigation() {
   const {
@@ -65,6 +66,7 @@ export function Navigation() {
             />
 
             <div className="flex items-center space-x-3">
+              <ThemeToggle />
               {pathname !== '/contact' && (
                 <CtaButton onClick={navigateToContact} />
               )}
