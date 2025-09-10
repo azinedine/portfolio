@@ -21,7 +21,7 @@ export const ServicesHeader = memo(() => {
       whileInView="visible"
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="text-center mb-16 sm:mb-20"
+      className="text-center mb-8 sm:mb-10"
     >
       {/* Decorative elements */}
       <motion.div 
@@ -30,7 +30,7 @@ export const ServicesHeader = memo(() => {
         whileInView="visible"
         viewport={{ once: true }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="flex items-center justify-center gap-4 mb-6 sm:mb-8"
+        className="flex items-center justify-center gap-4 mb-4 sm:mb-5"
       >
         <div className="w-8 sm:w-12 h-px bg-gradient-to-r from-transparent to-primary-500"></div>
         <motion.div 
@@ -48,15 +48,14 @@ export const ServicesHeader = memo(() => {
       </motion.div>
 
       {/* Main heading with structured data */}
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
         <span className="block text-gray-900 dark:text-white">The Services I</span>
         <span className="block gradient-text-primary">Provide For You</span>
       </h1>
 
       {/* Description */}
-      <p className="text-lg sm:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
-        I offer comprehensive digital solutions tailored to your business
-        needs, from development to design and beyond.
+      <p className="text-base sm:text-lg text-gray-600 dark:text-white/80 max-w-2xl mx-auto leading-relaxed">
+        Comprehensive digital solutions tailored to your business needs.
       </p>
 
       {/* Hidden structured data for SEO */}
