@@ -71,7 +71,7 @@ export function WhyChoose() {
     <section
       id="why-choose"
       ref={sectionRef}
-      className="relative h-screen min-h-[100vh] flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden"
       style={{ position: 'relative' }}
     >
       {/* Background elements */}
@@ -80,14 +80,14 @@ export function WhyChoose() {
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-primary-500/10 rounded-full blur-3xl" />
 
       <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
-        <motion.div variants={itemVariants} className="mb-8 sm:mb-12">
+        <motion.div variants={itemVariants} className="mb-8 sm:mb-12 text-center lg:text-left">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="block text-gray-900 dark:text-white">Why My Services</span>
             <span className="block gradient-text-primary">
               The Best Choice?
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/80 leading-relaxed max-w-lg">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
             Discover what makes working with me different and why clients choose
             my development services.
           </p>
