@@ -36,7 +36,7 @@ export function MobileNav({ isOpen, activeItemName, onClose }: MobileNavProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -50, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-20 left-4 right-4 bg-black/90 backdrop-blur-2xl border rounded-3xl shadow-2xl overflow-hidden"
+            className="absolute top-20 left-4 right-4 bg-white/95 dark:bg-black/90 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-800/50 rounded-3xl shadow-2xl overflow-hidden"
           >
             <div className="p-6 space-y-2">
               {navigationItems.map((item, index) => {
@@ -56,8 +56,8 @@ export function MobileNav({ isOpen, activeItemName, onClose }: MobileNavProps) {
                       className={cn(
                         'flex items-center gap-4 px-4 py-4 rounded-2xl font-medium transition-all duration-200 group relative overflow-hidden',
                         isActive
-                          ? 'bg-gradient-to-r from-primary-500/20 to-purple-500/20 text-white border border-primary-500/30'
-                          : 'text-white/80 hover:text-white hover:bg-white/10'
+                          ? 'bg-gradient-to-r from-primary-500/20 to-purple-500/20 text-gray-900 dark:text-white border border-primary-500/30'
+                          : 'text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/10'
                       )}
                     >
                       <span className="text-lg group-hover:scale-110 transition-transform duration-150">
@@ -66,7 +66,7 @@ export function MobileNav({ isOpen, activeItemName, onClose }: MobileNavProps) {
 
                       <div className="flex-1">
                         <span className="block font-semibold">{item.name}</span>
-                        <span className="text-xs text-white/50 block">
+                        <span className="text-xs text-gray-500 dark:text-white/50 block">
                           {item.name === 'Home' && 'Welcome page'}
                           {item.name === 'About' && 'Learn about me'}
                           {item.name === 'Projects' && 'View my work'}
@@ -100,7 +100,7 @@ export function MobileNav({ isOpen, activeItemName, onClose }: MobileNavProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navigationItems.length * 0.1 + 0.1 }}
-                className="pt-4 border-t border-white/10 mt-4"
+                className="pt-4 border-t border-gray-200/50 dark:border-white/10 mt-4"
               >
                 <button
                   onClick={onClose}
