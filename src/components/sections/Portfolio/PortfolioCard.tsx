@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye, Ban } from "lucide-react";
 import { MediaCarousel } from "./MediaCarousel";
 import { type PortfolioItem } from "./portfolioData";
 
@@ -38,18 +38,24 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
           <div className="pointer-events-none absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 bg-primary-900/80 opacity-0 group-hover:opacity-90 transition-all duration-300 flex items-center justify-center">
             <div className="flex gap-3">
-              {project.links?.demo && (
-                <motion.a
-                  href={project.links.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                  title="View Live Demo"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </motion.a>
+              {project.links.demoRemoved && project.links.demo === "https://example.com" ? (
+                <div className="w-8 h-8 bg-red-100/80 dark:bg-red-800/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-gray-700 dark:text-white">
+                  <Ban className="w-3.5 h-3.5 text-red-500" />
+                </div>
+              ) : (
+                project.links?.demo && (
+                  <motion.a
+                    href={project.links.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                    title="View Live Demo"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </motion.a>
+                )
               )}
               {project.links?.github && (
                 <motion.a
