@@ -11,8 +11,9 @@ export type ProjectItem = {
   featured?: boolean
   status?: string  
   links: {
-    demo: string
+    demo?: string
     github: string
+    demoRemoved: boolean
   },
 }
 
@@ -33,6 +34,7 @@ export const projectsData: ProjectItem[] = [
     links: {
       demo: "https://effi-tech.net/",
       github: "https://github.com/Braivexa-agency/effitech",
+      demoRemoved: false,
     },
     status: "completed",
     featured: true,
@@ -49,6 +51,7 @@ export const projectsData: ProjectItem[] = [
     links: {
       demo: "https://diaspo.io",
       github: "https://github.com/username/project",
+      demoRemoved: false,
     },
     status: "completed",
   },
@@ -70,8 +73,10 @@ export const projectsData: ProjectItem[] = [
     technologies: ["React", "Laravel", "SQLite"],
     color: "from-green-500 to-emerald-500",
     links: {
-      demo: "https://e-commerce-dashboard.com",
+      demo: "https://example.com",
       github: "https://github.com/username/project",
+      demoRemoved: true,
+      
     },
     status: "completed",
   },
@@ -92,6 +97,7 @@ export const projectsData: ProjectItem[] = [
     links: {
       demo: "https://taqqee.com",
       github: "https://github.com/username/project",
+      demoRemoved: false,
     },
     status: "completed",
   },
@@ -112,6 +118,7 @@ export const projectsData: ProjectItem[] = [
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
+      demoRemoved: true,
     },
     status: "completed",
   },
@@ -133,6 +140,7 @@ export const projectsData: ProjectItem[] = [
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
+      demoRemoved: true,
     },
     status: "completed",
   },
