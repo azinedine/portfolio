@@ -37,7 +37,7 @@ export function ContactCTA() {
             transition={{ delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
           >
-            <span className="block text-white">Ready to Start</span>
+            <span className="block text-gray-900 dark:text-white">Ready to Start</span>
             <span className="block gradient-text-primary">Your Project?</span>
           </motion.h2>
 
@@ -47,7 +47,7 @@ export function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-xl text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto"
           >
             {`Ready to transform your ideas into reality? Get in touch today and let's create something extraordinary together.`}
           </motion.p>
