@@ -4,41 +4,26 @@ import { memo } from 'react'
 import { ServicesHeader } from './ServicesHeader'
 import { ServicesGrid } from './ServicesGrid'
 import { ServicesBackground } from './ServicesBackground'
-import { ScrollIndicator } from '@/components/common/ScrollIndicator'
 import { services } from './servicesData'
 
 export const Services = memo(() => {
-  const handleScrollToPortfolio = () => {
-    const portfolioSection = document.getElementById('portfolio')
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   return (
     <section 
       id="services" 
-      className="section-padding relative overflow-hidden"
+      className="relative h-screen min-h-[100vh] flex items-center justify-center overflow-hidden"
       aria-label="Services offered by A.ZINEDDINE"
     >
       <ServicesBackground />
       
-      <div className="container-responsive relative z-10">
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
         <ServicesHeader />
         
-        <div className="section-padding">
+        <div className="py-8 sm:py-12 md:py-16">
           <ServicesGrid services={services} />
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <ScrollIndicator 
-        onClick={handleScrollToPortfolio}
-        text="See my work"
-        delay={1.5}
-        position="bottom"
-        variant="default"
-      />
     </section>
   )
 })
