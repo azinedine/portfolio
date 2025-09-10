@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ChevronLeft, ChevronRight, Tag, Calendar, ExternalLink, ArrowRight, Github } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Tag, Calendar, ExternalLink, ArrowRight, Github, Ban } from 'lucide-react'
 import Image from 'next/image'
 import { type PortfolioItem } from './portfolioData'
 
@@ -57,7 +57,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="fixed inset-4 md:inset-8 lg:inset-16 z-50 flex items-center justify-center"
           >
-            <div className="bg-white dark:bg-dark-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
               {/* Fixed-height media */}
               <div className="relative w-full h-64 md:h-80 overflow-hidden">
                 {len > 0 ? (
@@ -146,27 +146,29 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(90vh-16rem)]">
                   {/* Title and Meta */}
                   <div className="mb-6">
-                    <h2 className="text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-2">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                       {project.title}
                     </h2>
-                    <div className="flex items-center gap-4 text-sm text-dark-600 dark:text-dark-400 mb-4">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {project.status}
-                      </span>
+                    <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                      {project.status && (
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          {project.status}
+                        </span>
+                      )}
                       <span className="flex items-center gap-1">
                         <Tag className="w-4 h-4" />
                         {project.category}
                       </span>
                     </div>
-                    <p className="text-lg text-dark-600 dark:text-dark-400 leading-relaxed">
+                    <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Technologies */}
                   <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-dark-900 dark:text-white mb-4">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                       Technologies Used
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -183,25 +185,32 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <motion.a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex-1 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg group flex items-center justify-center gap-2"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>View Live Demo</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </motion.a>
+                    { project.links.demoRemoved && project.links.demo  == "https://example.com" ? (
+                      <div className="flex-1 bg-red-100 dark:bg-red-800 text-gray-600 dark:text-gray-400 font-semibold py-3 px-6 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center gap-2">
+                        <Ban className="w-4 h-4" />
+                        <span>Demo Link Removed</span>
+                      </div>
+                    ) : (
+                      <motion.a
+                        href={project.links.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg group flex items-center justify-center gap-2"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>View Live Demo</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                      </motion.a>
+                    )}
                     <motion.a
                       href={project.links.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex-1 bg-dark-100 dark:bg-dark-800 hover:bg-dark-200 dark:hover:bg-dark-700 text-dark-900 dark:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-dark-200 dark:border-dark-700 group flex items-center justify-center gap-2"
+                      className="flex-1 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-gray-200 dark:border-gray-700 group flex items-center justify-center gap-2"
                     >
                       <Github className="w-4 h-4" />
                       <span>View Source Code</span>
