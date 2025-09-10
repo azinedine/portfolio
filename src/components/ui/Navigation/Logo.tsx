@@ -24,11 +24,17 @@ export function Logo({ onClick }: LogoProps) {
           }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="w-11 h-11  rounded-2xl flex items-center justify-center shadow-lg"
+          className="w-11 h-11 rounded-full flex items-center justify-center  p-2 bg-primary-900 dark:bg-transparent"
           style={{ willChange: 'transform' }}
         >
           {/* <Code2 className="w-5 h-5 text-white" /> */}
-          <Image src="/logo.png" alt="Logo" width={44} height={44} />
+          <Image 
+            src="/logo.png" 
+            alt="Logo" 
+            width={44} 
+            height={44}
+            className="transition-all duration-300"
+          />
         </motion.div>
 
         <motion.div
@@ -54,13 +60,13 @@ export function Logo({ onClick }: LogoProps) {
       </div>
       <div className="flex flex-col">
         <motion.span 
-          className="text-xl font-bold bg-gradient-to-r from-white via-gray-100 to-primary-200 bg-clip-text text-transparent"
+          className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-primary-600 dark:from-white dark:via-gray-100 dark:to-primary-200 bg-clip-text text-transparent"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 400, damping: 25 }}
         >
           A.ZINEDDINE
         </motion.span>
-        <span className="text-xs text-white/50 font-medium tracking-wider">
+        <span className="text-xs text-gray-500 dark:text-white/50 font-medium tracking-wider">
           Software Engineer
         </span>
       </div>
