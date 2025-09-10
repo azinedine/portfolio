@@ -12,7 +12,7 @@ export const ServicesGrid = memo(({ services }: ServicesGridProps) => {
   return (
     <Grid 
       cols={3} 
-      gap="lg" 
+      gap="md" 
       align="stretch" 
       responsive={true}
       animate={true}
