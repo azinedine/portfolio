@@ -12,59 +12,38 @@ import { HeroProfile } from "./HeroProfile";
 const DecorativeElements = () => (
   <>
     <FloatingElement
-      duration={8}
-      yRange={10}
-      rotateRange={180}
-      className="absolute top-1/4 left-20 hidden lg:block"
-    >
-      <Plus className="w-6 h-6 text-primary-400/40" />
-    </FloatingElement>
-
-    <FloatingElement
-      duration={4}
-      delay={1}
+      duration={12}
       yRange={8}
-      className="absolute bottom-1/3 right-32 hidden lg:block"
+      rotateRange={90}
+      className="absolute top-1/4 left-20 hidden xl:block"
     >
-      <Star className="w-5 h-5 text-yellow-400/50" />
+      <Plus className="w-4 h-4 text-primary-400/30" />
     </FloatingElement>
 
     <FloatingElement
-      duration={6}
+      duration={8}
       delay={2}
-      yRange={12}
-      className="absolute top-40 right-1/3 hidden lg:block"
+      yRange={6}
+      className="absolute bottom-1/3 right-32 hidden xl:block"
     >
-      <Sparkles className="w-6 h-6 text-cyan-400/50" />
+      <Star className="w-4 h-4 text-yellow-400/40" />
     </FloatingElement>
   </>
 );
 
-// Memoized geometric shapes
+// Memoized geometric shapes - Reduced complexity
 const GeometricShapes = () => (
   <>
     <motion.div
       animate={{
         rotate: 360,
-        scale: [1, 1.02, 1],
+        scale: [1, 1.01, 1],
       }}
       transition={{
-        rotate: { duration: 40, repeat: Infinity, ease: "linear" },
-        scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+        rotate: { duration: 60, repeat: Infinity, ease: "linear" },
+        scale: { duration: 12, repeat: Infinity, ease: "easeInOut" },
       }}
-      className="absolute top-32 right-1/4 w-20 h-20 border dark:border-gray-800 border-primary-400/30 rounded-lg backdrop-blur-sm hidden md:block"
-    />
-
-    <motion.div
-      animate={{
-        rotate: -360,
-        y: [0, -10, 0],
-      }}
-      transition={{
-        rotate: { duration: 50, repeat: Infinity, ease: "linear" },
-        y: { duration: 10, repeat: Infinity, ease: "easeInOut" },
-      }}
-      className="absolute bottom-40 left-1/3 w-16 h-16 border border-cyan-400/30 rounded-full backdrop-blur-sm hidden md:block"
+      className="absolute top-32 right-1/4 w-16 h-16 border dark:border-gray-800 border-primary-400/20 rounded-lg backdrop-blur-sm hidden lg:block"
     />
   </>
 );
@@ -84,14 +63,19 @@ export function Hero() {
   // Optimized scroll handler
 
   useEffect(() => {
-    // Throttled mouse move for better performance
+    // Throttled mouse move for better performance - Increased throttle
     let timeoutId: NodeJS.Timeout;
     const throttledMouseMove = (e: MouseEvent) => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => handleMouseMove(e), 32); // Reduced to ~30fps for smoother performance
+      timeoutId = setTimeout(() => handleMouseMove(e), 50); // Increased from 32ms to 50ms for better performance
     };
 
-    window.addEventListener("mousemove", throttledMouseMove, { passive: true });
+    // Only add listener on desktop devices
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    if (mediaQuery.matches) {
+      window.addEventListener("mousemove", throttledMouseMove, { passive: true });
+    }
+    
     return () => {
       window.removeEventListener("mousemove", throttledMouseMove);
       clearTimeout(timeoutId);
@@ -120,16 +104,16 @@ export function Hero() {
         <DecorativeElements />
       </div>
 
-      {/* Optimized Mouse follower gradient */}
+      {/* Optimized Mouse follower gradient - Only on desktop */}
       <motion.div
-        className="absolute w-[600px] h-[600px] pointer-events-none"
+        className="absolute w-[400px] h-[400px] pointer-events-none hidden lg:block"
         animate={{
           x: mousePosition.x,
           y: mousePosition.y,
         }}
         transition={{
           type: "tween",
-          duration: 0.3,
+          duration: 0.4,
           ease: "easeOut",
         }}
         style={mouseFollowerStyle}
