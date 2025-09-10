@@ -38,8 +38,8 @@ export function DesktopNav({ activeItemName, hoveredItem, onItemHover }: Desktop
             <span className={cn(
               'text-sm font-medium transition-colors duration-200 relative',
               isActive 
-                ? 'text-white' 
-                : 'text-white/70 group-hover:text-white'
+                ? 'text-gray-900 dark:text-white' 
+                : 'text-gray-700 dark:text-white/70 group-hover:text-gray-900 dark:group-hover:text-white'
             )}>
               {item.name}
 
@@ -60,7 +60,7 @@ export function DesktopNav({ activeItemName, hoveredItem, onItemHover }: Desktop
 
               {hoveredItem === item.name && !isActive && (
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/40 rounded-full"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gray-400/60 dark:bg-white/40 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   exit={{ scaleX: 0 }}
