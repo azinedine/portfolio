@@ -83,7 +83,7 @@ export function DesktopNav({ activeItemName, hoveredItem, onItemHover }: Desktop
 
             {hoveredItem === item.name && !isActive && (
               <motion.div
-                className="absolute inset-0 bg-white/5 rounded-xl"
+                className="absolute inset-0 bg-gray-100/50 dark:bg-white/5 rounded-xl"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
