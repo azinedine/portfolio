@@ -10,11 +10,17 @@ import {
   Send,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ScrollIndicator } from "@/components/common/ScrollIndicator";
 
 export function ContactCTA() {
   const router = useRouter();
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section id="contact-cta" className="section-padding relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-20" />
       <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-primary-600/10 to-blue-600/10 rounded-full blur-3xl" />
@@ -173,6 +179,15 @@ export function ContactCTA() {
       >
         <Plus className="w-5 h-5" />
       </motion.div>
+
+      {/* Scroll Indicator */}
+      <ScrollIndicator 
+        onClick={handleScrollToTop}
+        text="Back to top"
+        delay={1}
+        position="bottom"
+        variant="minimal"
+      />
     </section>
   );
 }
