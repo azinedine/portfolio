@@ -142,16 +142,16 @@ const Content = ({
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            className="flex gap-3 p-3 sm:p-4 rounded-xl hover:bg-white/5 transition-all duration-200 cursor-pointer group"
+            className="flex gap-3 p-3 sm:p-4 rounded-xl hover:bg-gray-100/50 dark:hover:bg-white/5 transition-all duration-200 cursor-pointer group"
           >
             <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
               <reason.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div className="flex-1">
-              <h3 className="text-sm sm:text-base font-semibold text-white mb-1 group-hover:text-primary-200 transition-colors">
+              <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-200 transition-colors">
                 {reason.title}
               </h3>
-              <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
+              <p className="text-gray-600 dark:text-white/70 text-xs sm:text-sm leading-relaxed">
                 {reason.description}
               </p>
             </div>
@@ -175,9 +175,9 @@ const Video = ({ isInView }: { isInView: boolean }) => {
       className="relative order-1 lg:order-2"
     >
       {/* Main video container */}
-      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl">
+      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100/80 to-gray-50/60 dark:from-white/10 dark:to-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/20 shadow-2xl">
         {/* Video thumbnail */}
-        <div className="aspect-video bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center relative group">
+        <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 dark:from-dark-800 dark:to-dark-900 flex items-center justify-center relative group">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-2 sm:inset-4 bg-gradient-to-br from-primary-900/30 to-blue-900/30 rounded-xl sm:rounded-2xl" />
@@ -192,7 +192,7 @@ const Video = ({ isInView }: { isInView: boolean }) => {
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-500/20 to-blue-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
                 <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white/60" />
               </div>
-              <p className="text-white/60 text-xs sm:text-sm font-medium">
+              <p className="text-gray-300 dark:text-white/60 text-xs sm:text-sm font-medium">
                 Development Process
               </p>
             </div>
@@ -233,15 +233,15 @@ const Video = ({ isInView }: { isInView: boolean }) => {
                   <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-white font-medium text-xs sm:text-sm">
+                  <p className="text-gray-900 dark:text-white font-medium text-xs sm:text-sm">
                     Why Choose A.ZINEDDINE
                   </p>
-                  <p className="text-white/60 text-xs">
+                  <p className="text-gray-600 dark:text-white/60 text-xs">
                     Professional Development Journey
                   </p>
                 </div>
               </div>
-              <span className="text-white/80 text-xs bg-black/30 px-2 py-1 rounded-full font-medium">
+              <span className="text-gray-700 dark:text-white/80 text-xs bg-gray-200/50 dark:bg-black/30 px-2 py-1 rounded-full font-medium">
                 2:15
               </span>
             </div>
@@ -256,18 +256,18 @@ const Video = ({ isInView }: { isInView: boolean }) => {
           isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: 30, y: 20 }
         }
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 glass p-3 sm:p-4 rounded-xl sm:rounded-2xl max-w-xs hidden md:block backdrop-blur-md border border-white/20"
+        className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 glass p-3 sm:p-4 rounded-xl sm:rounded-2xl max-w-xs hidden md:block backdrop-blur-md border border-gray-200/50 dark:border-white/20"
       >
         <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm">
             MW
           </div>
           <div>
-            <p className="text-white font-medium text-xs sm:text-sm">Aimen Bouaziz</p>
-            <p className="text-white/60 text-xs">Startup Founder</p>
+            <p className="text-gray-900 dark:text-white font-medium text-xs sm:text-sm">Aimen Bouaziz</p>
+            <p className="text-gray-600 dark:text-white/60 text-xs">Startup Founder</p>
           </div>
         </div>
-        <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-2">
+        <p className="text-gray-700 dark:text-white/80 text-xs sm:text-sm leading-relaxed mb-2">
           {`"Exceptional developer who delivered beyond expectations. Highly recommended!"`}
         </p>
         <div className="flex gap-1">
@@ -284,13 +284,13 @@ const Video = ({ isInView }: { isInView: boolean }) => {
           isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: -30, y: -20 }
         }
         transition={{ delay: 0.6, duration: 0.5 }}
-        className="absolute -top-3 -left-3 sm:-top-6 sm:-left-6 glass p-3 sm:p-4 rounded-xl sm:rounded-2xl hidden md:block backdrop-blur-md border border-white/20"
+        className="absolute -top-3 -left-3 sm:-top-6 sm:-left-6 glass p-3 sm:p-4 rounded-xl sm:rounded-2xl hidden md:block backdrop-blur-md border border-gray-200/50 dark:border-white/20"
       >
         <div className="text-center">
           <div className="text-lg sm:text-2xl font-bold gradient-text-primary mb-1">
             96%
           </div>
-          <div className="text-white/70 text-xs font-medium mb-2">
+          <div className="text-gray-600 dark:text-white/70 text-xs font-medium mb-2">
             Success Rate
           </div>
           <div className="flex justify-center gap-1">
