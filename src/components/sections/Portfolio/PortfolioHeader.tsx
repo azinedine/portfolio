@@ -19,14 +19,14 @@ export function PortfolioHeader({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="text-center mb-12"
+      className="text-center mb-8"
     >
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">
         <span className="block text-gray-900 dark:text-white">Featured</span>
         <span className="block gradient-text-primary">Projects</span>
       </h2>
 
-      <p className="text-lg text-gray-600 dark:text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
+      <p className="text-base text-gray-600 dark:text-white/70 max-w-2xl mx-auto leading-relaxed mb-6">
         Explore my latest work and discover how I bring ideas to life
         through code.
       </p>
