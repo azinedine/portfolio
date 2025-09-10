@@ -23,9 +23,10 @@ Your contact form is now set up to send emails using EmailJS! This is a client-s
    - Use this template content:
 
    **Subject:** Portfolio Contact: {{subject}}
-   
+
    **Body:**
-   ```
+
+   ```text
    New Contact Form Submission
    
    Contact Details:
@@ -49,7 +50,8 @@ Your contact form is now set up to send emails using EmailJS! This is a client-s
 5. **Set up Environment Variables:**
    - Create a `.env.local` file in your project root
    - Add your EmailJS credentials:
-   ```
+
+   ```env
    NEXT_PUBLIC_EMAILJS_SERVICE_ID=your-service-id
    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your-template-id
    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your-public-key
