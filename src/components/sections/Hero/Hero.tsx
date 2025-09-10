@@ -46,11 +46,11 @@ const GeometricShapes = () => (
     <motion.div
       animate={{
         rotate: 360,
-        scale: [1, 1.05, 1],
+        scale: [1, 1.02, 1],
       }}
       transition={{
-        rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-        scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+        rotate: { duration: 40, repeat: Infinity, ease: "linear" },
+        scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
       }}
       className="absolute top-32 right-1/4 w-20 h-20 border border-primary-400/30 rounded-lg backdrop-blur-sm"
     />
@@ -58,11 +58,11 @@ const GeometricShapes = () => (
     <motion.div
       animate={{
         rotate: -360,
-        y: [0, -15, 0],
+        y: [0, -10, 0],
       }}
       transition={{
-        rotate: { duration: 30, repeat: Infinity, ease: "linear" },
-        y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
+        rotate: { duration: 50, repeat: Infinity, ease: "linear" },
+        y: { duration: 10, repeat: Infinity, ease: "easeInOut" },
       }}
       className="absolute bottom-40 left-1/3 w-16 h-16 border border-cyan-400/30 rounded-full backdrop-blur-sm"
     />
@@ -117,8 +117,8 @@ export function Hero() {
   // Optimized mouse move handler with useCallback to prevent re-renders
   const handleMouseMove = useCallback((e: MouseEvent) => {
     setMousePosition({
-      x: (e.clientX - window.innerWidth / 2) / 100,
-      y: (e.clientY - window.innerHeight / 2) / 100,
+      x: (e.clientX - window.innerWidth / 2) / 150, // Reduced sensitivity
+      y: (e.clientY - window.innerHeight / 2) / 150, // Reduced sensitivity
     });
   }, []);
 
@@ -137,7 +137,7 @@ export function Hero() {
     let timeoutId: NodeJS.Timeout;
     const throttledMouseMove = (e: MouseEvent) => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => handleMouseMove(e), 16); // ~60fps
+      timeoutId = setTimeout(() => handleMouseMove(e), 32); // Reduced to ~30fps for smoother performance
     };
 
     window.addEventListener("mousemove", throttledMouseMove, { passive: true });
@@ -177,9 +177,9 @@ export function Hero() {
           y: mousePosition.y,
         }}
         transition={{
-          type: "spring",
-          stiffness: 50,
-          damping: 15,
+          type: "tween",
+          duration: 0.3,
+          ease: "easeOut",
         }}
         style={mouseFollowerStyle}
       />
