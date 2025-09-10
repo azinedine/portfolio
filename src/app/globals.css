@@ -217,14 +217,41 @@
   
   /* Reduce padding on mobile for better content fit */
   .container-responsive {
-    @apply px-4 py-8;
+    @apply px-4 py-6;
+  }
+  
+  /* Improve mobile touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-friendly text sizing */
+  .text-responsive {
+    @apply text-sm;
+  }
+  
+  /* Better mobile spacing */
+  .mobile-spacing {
+    @apply space-y-4;
   }
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
   /* Tablet adjustments */
   .container-responsive {
-    @apply px-6 py-12;
+    @apply px-6 py-10;
+  }
+  
+  .section-padding {
+    @apply py-16 px-6;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop adjustments */
+  .container-responsive {
+    @apply px-8 py-12;
   }
 }
 
@@ -233,6 +260,22 @@
   .min-h-\[100vh\] {
     min-height: 100vh;
     min-height: 100dvh;
+  }
+  
+  /* Ensure content doesn't get cut off on mobile */
+  .mobile-section {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* Better mobile card layouts */
+  .mobile-card {
+    @apply p-4 rounded-lg;
+  }
+  
+  /* Improve mobile button spacing */
+  .mobile-buttons {
+    @apply flex flex-col gap-3;
   }
   
   /* Adjust scroll indicator positioning on mobile */
