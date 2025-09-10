@@ -253,6 +253,15 @@
   }
 }
 
+/* Global ScrollIndicator positioning */
+.global-scroll-indicator {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
 /* Print styles */
 @media print {
   .no-print {
