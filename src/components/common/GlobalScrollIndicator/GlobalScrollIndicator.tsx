@@ -10,11 +10,11 @@ interface GlobalScrollIndicatorProps {
 }
 
 const sections = [
-  { id: 'hero', nextId: 'why-choose', text: 'Discover more' },
-  { id: 'why-choose', nextId: 'services', text: 'View my services' },
-  { id: 'services', nextId: 'projects', text: 'See my work' },
-  { id: 'projects', nextId: 'contact-cta', text: 'Get in touch' },
-  { id: 'contact-cta', nextId: 'hero', text: 'Back to top' }
+  { id: 'hero', nextId: 'why-choose', text: 'Discover more', isFooter: false },
+  { id: 'why-choose', nextId: 'services', text: 'View my services', isFooter: false },
+  { id: 'services', nextId: 'projects', text: 'See my work', isFooter: false },
+  { id: 'projects', nextId: 'contact-cta', text: 'Get in touch', isFooter: false },
+  { id: 'contact-cta', nextId: 'hero', text: 'Back to top', isFooter: true }
 ]
 
 export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorProps) {
@@ -71,6 +71,7 @@ export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorP
 
   const currentSectionData = sections.find(s => s.id === currentSection)
   const text = currentSectionData?.text || 'Scroll to explore'
+  const isFooter = currentSectionData?.isFooter || false
 
   return (
     <motion.div
@@ -90,37 +91,88 @@ export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorP
         zIndex: 9999
       }}
     >
-      {/* Text */}
-      <motion.p
-        className="text-gray-600 dark:text-white/60 text-xs sm:text-sm mb-2 sm:mb-3 font-medium"
-        animate={{ opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
-        {text}
-      </motion.p>
+      {/* Conditional layout based on footer state */}
+      {isFooter ? (
+        // Footer layout: Icon at top, scroll indicator in middle, text at bottom
+        <>
+          {/* Chevron icon at top */}
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="mb-2 sm:mb-3"
+          >
+            <motion.div
+              animate={{ rotate: 180 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              <ChevronDown className="w-4 h-4 text-gray-400 dark:text-white/40 mx-auto" />
+            </motion.div>
+          </motion.div>
 
-      {/* Scroll indicator container */}
-      <motion.div
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="w-6 h-10 border-2 border-gray-300 dark:border-white/30 rounded-full mx-auto relative backdrop-blur-sm bg-white/10 dark:bg-black/10"
-      >
-        {/* Scroll dot */}
-        <motion.div
-          animate={{ y: [2, 16, 2] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-1 h-3 bg-primary-500 rounded-full mx-auto mt-2"
-        />
-      </motion.div>
+          {/* Scroll indicator container */}
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border-2 border-gray-300 dark:border-white/30 rounded-full mx-auto relative backdrop-blur-sm bg-white/10 dark:bg-black/10"
+          >
+            {/* Scroll dot */}
+            <motion.div
+              animate={{ y: [16, 2, 16] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1 h-3 bg-primary-500 rounded-full mx-auto mt-2"
+            />
+          </motion.div>
 
-      {/* Chevron icon */}
-      <motion.div
-        animate={{ y: [0, 4, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="mt-2"
-      >
-        <ChevronDown className="w-4 h-4 text-gray-400 dark:text-white/40 mx-auto" />
-      </motion.div>
+          {/* Text at bottom */}
+          <motion.p
+            className="text-gray-600 dark:text-white/60 text-xs sm:text-sm font-medium mt-2 sm:mt-3"
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            {text}
+          </motion.p>
+        </>
+      ) : (
+        // Normal layout: Text at top, scroll indicator in middle, icon at bottom
+        <>
+          {/* Text at top */}
+          <motion.p
+            className="text-gray-600 dark:text-white/60 text-xs sm:text-sm font-medium mb-2 sm:mb-3"
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            {text}
+          </motion.p>
+
+          {/* Scroll indicator container */}
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-6 h-10 border-2 border-gray-300 dark:border-white/30 rounded-full mx-auto relative backdrop-blur-sm bg-white/10 dark:bg-black/10"
+          >
+            {/* Scroll dot */}
+            <motion.div
+              animate={{ y: [2, 16, 2] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1 h-3 bg-primary-500 rounded-full mx-auto mt-2"
+            />
+          </motion.div>
+
+          {/* Chevron icon at bottom */}
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="mt-2"
+          >
+            <motion.div
+              animate={{ rotate: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              <ChevronDown className="w-4 h-4 text-gray-400 dark:text-white/40 mx-auto" />
+            </motion.div>
+          </motion.div>
+        </>
+      )}
     </motion.div>
   )
 }
