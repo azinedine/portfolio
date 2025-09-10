@@ -15,7 +15,7 @@ const DecorativeElements = () => (
       duration={8}
       yRange={10}
       rotateRange={180}
-      className="absolute top-1/4 left-20"
+      className="absolute top-1/4 left-20 hidden lg:block"
     >
       <Plus className="w-6 h-6 text-primary-400/40" />
     </FloatingElement>
@@ -24,7 +24,7 @@ const DecorativeElements = () => (
       duration={4}
       delay={1}
       yRange={8}
-      className="absolute bottom-1/3 right-32"
+      className="absolute bottom-1/3 right-32 hidden lg:block"
     >
       <Star className="w-5 h-5 text-yellow-400/50" />
     </FloatingElement>
@@ -33,7 +33,7 @@ const DecorativeElements = () => (
       duration={6}
       delay={2}
       yRange={12}
-      className="absolute top-40 right-1/3"
+      className="absolute top-40 right-1/3 hidden lg:block"
     >
       <Sparkles className="w-6 h-6 text-cyan-400/50" />
     </FloatingElement>
@@ -52,7 +52,7 @@ const GeometricShapes = () => (
         rotate: { duration: 40, repeat: Infinity, ease: "linear" },
         scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
       }}
-      className="absolute top-32 right-1/4 w-20 h-20 border dark:border-gray-800 border-primary-400/30 rounded-lg backdrop-blur-sm"
+      className="absolute top-32 right-1/4 w-20 h-20 border dark:border-gray-800 border-primary-400/30 rounded-lg backdrop-blur-sm hidden md:block"
     />
 
     <motion.div
@@ -64,7 +64,7 @@ const GeometricShapes = () => (
         rotate: { duration: 50, repeat: Infinity, ease: "linear" },
         y: { duration: 10, repeat: Infinity, ease: "easeInOut" },
       }}
-      className="absolute bottom-40 left-1/3 w-16 h-16 border border-cyan-400/30 rounded-full backdrop-blur-sm"
+      className="absolute bottom-40 left-1/3 w-16 h-16 border border-cyan-400/30 rounded-full backdrop-blur-sm hidden md:block"
     />
   </>
 );
@@ -111,7 +111,7 @@ export function Hero() {
   );
 
   return (
-    <section id="hero" className="relative h-screen min-h-[100vh] flex items-center justify-center overflow-hidden hero-bg">
+    <section id="hero" className="relative min-h-screen py-16 sm:py-20 flex items-center justify-center overflow-hidden hero-bg">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-grid dark:bg-dark-900 opacity-30 dark:opacity-15" />
@@ -141,7 +141,7 @@ export function Hero() {
           <div className="order-2 lg:order-1">
             <HeroContent />
           </div>
-          <div className="order-1 lg:order-2">
+          <div className="order-1 lg:order-2 flex justify-center">
             <HeroProfile />
           </div>
         </div>
