@@ -2,10 +2,11 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, Plus, Star, Sparkles } from "lucide-react";
+import { Plus, Star, Sparkles } from "lucide-react";
 import { BackgroundOrbs } from "@/components/common/BackgroundOrbs";
 import { FloatingElement } from "@/components/common/FloatingElements";
 import { Grid, GridItem } from "@/components/common/Grid";
+import { ScrollIndicator } from "@/components/common/ScrollIndicator";
 import { HeroContent } from "./HeroContent";
 import { HeroProfile } from "./HeroProfile";
 
@@ -70,47 +71,6 @@ const GeometricShapes = () => (
   </>
 );
 
-// Memoized scroll indicator
-const ScrollIndicator = ({ onClick }: { onClick: () => void }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 2, duration: 0.6 }}
-    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center cursor-pointer"
-    onClick={onClick}
-  >
-    <motion.p
-      className="text-white/60 text-sm mb-3 font-medium"
-      animate={{ opacity: [0.6, 1, 0.6] }}
-      transition={{ duration: 3, repeat: Infinity }}
-    >
-      Scroll to explore
-    </motion.p>
-    <motion.div
-      animate={{ y: [0, 6, 0] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      className="w-6 h-10 border border-white/30 rounded-full mx-auto relative backdrop-blur-sm"
-    >
-      <motion.div
-        animate={{ y: [2, 16, 2] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="w-1 h-3 bg-primary-500 rounded-full mx-auto mt-2"
-      />
-    </motion.div>
-    <motion.div
-      animate={{ y: [0, 3, 0] }}
-      transition={{
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: 0.5,
-      }}
-      className="mt-1"
-    >
-      <ChevronDown className="w-4 h-4 text-white/40 mx-auto" />
-    </motion.div>
-  </motion.div>
-);
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -205,7 +165,13 @@ export function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <ScrollIndicator onClick={handleScrollToNext} />
+      <ScrollIndicator 
+        onClick={handleScrollToNext}
+        text="Scroll to explore"
+        delay={2}
+        position="bottom"
+        variant="default"
+      />
     </section>
   );
 }
