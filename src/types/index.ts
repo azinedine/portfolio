@@ -136,6 +136,7 @@ export interface Project {
     theme: Theme
     setTheme: (theme: Theme) => void
     toggleTheme: () => void
+    mounted: boolean
   }
   
   // API Response types
