@@ -11,6 +11,7 @@ import {
   Zap,
   Shield,
 } from 'lucide-react'
+import { ScrollIndicator } from '@/components/common/ScrollIndicator'
 
 const reasons = [
   {
@@ -66,6 +67,13 @@ export function WhyChoose() {
   const sectionRef = useRef<HTMLElement | null>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-50px" })
 
+  const handleScrollToServices = () => {
+    const servicesSection = document.getElementById('services')
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section
       id="why-choose"
@@ -114,6 +122,15 @@ export function WhyChoose() {
           }
         }
       `}</style>
+
+      {/* Scroll Indicator */}
+      <ScrollIndicator 
+        onClick={handleScrollToServices}
+        text="View my services"
+        delay={1}
+        position="bottom"
+        variant="minimal"
+      />
     </section>
   )
 }
