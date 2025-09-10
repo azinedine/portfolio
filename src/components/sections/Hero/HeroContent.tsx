@@ -1,6 +1,6 @@
 "use client";
 
-import { easeOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import Link from "next/link";
 
@@ -13,40 +13,24 @@ const techStack = [
   "Node.js",
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: easeOut,
-    },
-  },
-};
 
 export function HeroContent() {
   return (
     <div className="pt-20 md:pt-[60px] xl:pt-5">
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="text-left"
       >
         {/* Greeting Badge */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          className="mb-8"
+        >
           <motion.div
             whileHover={{ scale: 1.02 }}
             className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-primary-500/20 to-blue-500/20 border border-primary-400/30 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium backdrop-blur-sm"
@@ -63,7 +47,12 @@ export function HeroContent() {
         </motion.div>
 
         {/* Main heading */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="mb-8"
+        >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight">
             <motion.span
               className="block text-gray-900 dark:text-white"
@@ -94,7 +83,9 @@ export function HeroContent() {
 
         {/* Description */}
         <motion.p
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           className="text-lg md:text-xl text-gray-600 dark:text-white/80 mb-10 leading-relaxed max-w-2xl"
         >
           {`I'm a passionate `}
@@ -115,7 +106,9 @@ export function HeroContent() {
 
         {/* CTA Buttons */}
         <motion.div
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           className="flex flex-col sm:flex-row gap-4 mb-12"
         >
           <motion.div
@@ -148,7 +141,12 @@ export function HeroContent() {
         </motion.div>
 
         {/* Tech stack */}
-        <motion.div variants={itemVariants} className="space-y-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          className="space-y-4"
+        >
           <p className="text-sm text-gray-500 dark:text-white/60 font-medium tracking-wide uppercase">
             Technologies I Specialize In
           </p>
