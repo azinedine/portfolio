@@ -43,7 +43,7 @@ export function Portfolio() {
 
 
   return (
-    <section id="projects" className="relative h-screen min-h-[100vh] flex items-start justify-center overflow-hidden pt-8 sm:pt-12">
+    <section id="projects" className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-10" />
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-primary-600/8 to-blue-600/8 rounded-full blur-3xl" />
