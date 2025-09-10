@@ -78,11 +78,17 @@ export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorP
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[9999] text-center cursor-pointer sm:bottom-8",
+        "global-scroll-indicator bottom-4 text-center cursor-pointer sm:bottom-8",
         className
       )}
       onClick={handleClick}
-      style={{ pointerEvents: 'auto' }}
+      style={{ 
+        pointerEvents: 'auto',
+        position: 'fixed',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 9999
+      }}
     >
       {/* Text */}
       <motion.p
