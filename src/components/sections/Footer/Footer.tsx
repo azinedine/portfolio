@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Heart, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, ArrowUp, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -86,14 +86,56 @@ export function Footer() {
                 className="mb-8"
               >
                 {/* Logo */}
-                <div className="flex items-center justify-center sm:justify-start space-x-3 mb-4 sm:mb-6">
-                  <div className="w-10 h-10 flex items-center justify-center">
-                    <Image src="/logo.png" alt="Logo" width={44} height={44} />
+                <div className="flex items-center justify-center sm:justify-start space-x-3 mb-4 sm:mb-6 group">
+                  <div className="relative">
+                    <motion.div
+                      whileHover={{ 
+                        rotate: [0, -10, 10, 0],
+                        scale: 1.1,
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.4, ease: 'easeOut' }}
+                      className="w-11 h-11 rounded-full flex items-center justify-center p-2 bg-primary-900 dark:bg-transparent"
+                      style={{ willChange: 'transform' }}
+                    >
+                      <Image 
+                        src="/logo.png" 
+                        alt="Logo" 
+                        width={44} 
+                        height={44}
+                        className="transition-all duration-300"
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-primary-400 to-purple-600 rounded-2xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+                      initial={false}
+                    />
+
+                    <motion.div
+                      className="absolute -top-1 -right-1"
+                      animate={{ 
+                        scale: [0, 1, 0],
+                        rotate: [0, 180, 360]
+                      }}
+                      transition={{ 
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        repeatDelay: 1
+                      }}
+                    >
+                      <Sparkles className="w-3 h-3 text-purple-300" />
+                    </motion.div>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xl sm:text-2xl font-bold gradient-text-primary">
+                    <motion.span 
+                      className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-primary-600 dark:from-white dark:via-gray-100 dark:to-primary-200 bg-clip-text text-transparent"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                    >
                       A.ZINEDDINE
-                    </span>
+                    </motion.span>
                     <span className="text-xs text-gray-500 dark:text-white/50 font-medium tracking-wider">
                       Software Engineer
                     </span>
