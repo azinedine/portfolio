@@ -22,7 +22,7 @@ export function PortfolioGrid({
   if (projects.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-white/70 text-lg">No projects found for the selected category.</p>
+        <p className="text-gray-600 dark:text-white/70 text-lg">No projects found for the selected category.</p>
       </div>
     )
   }
