@@ -23,10 +23,10 @@ export function FeaturedProjects({ featuredProjects }: FeaturedProjectsProps) {
           viewport={{ once: true }}
           className="mb-8 sm:mb-12"
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-dark-900 dark:text-white mb-3 sm:mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Featured Projects
           </h2>
-          <p className="text-sm sm:text-base text-dark-600 dark:text-dark-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Highlighting my most impactful and innovative work
           </p>
         </motion.div>
