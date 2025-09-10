@@ -16,7 +16,7 @@ export function ContactCTA() {
 
 
   return (
-    <section id="contact-cta" className="relative h-screen min-h-[100vh] flex items-center justify-center overflow-hidden">
+    <section id="contact-cta" className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-20" />
       <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-primary-600/10 to-blue-600/10 rounded-full blur-3xl" />
@@ -36,7 +36,7 @@ export function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8"
           >
             <span className="block text-gray-900 dark:text-white">Ready to Start</span>
             <span className="block gradient-text-primary">Your Project?</span>
@@ -48,7 +48,7 @@ export function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="text-xl text-gray-600 dark:text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-3xl mx-auto"
           >
             {`Ready to transform your ideas into reality? Get in touch today and let's create something extraordinary together.`}
           </motion.p>
@@ -59,7 +59,7 @@ export function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="grid md:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
           >
             {[
               {
@@ -96,17 +96,17 @@ export function ContactCTA() {
                 whileHover={{ scale: 1.02, y: -3 }}
                 className="group"
               >
-                <div className="bg-gray-100/50 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 hover:border-gray-300/50 dark:hover:border-white/20 p-6 rounded-2xl text-center hover:bg-gray-200/50 dark:hover:bg-white/10 transition-all duration-300">
+                <div className="bg-gray-100/50 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 hover:border-gray-300/50 dark:hover:border-white/20 p-4 sm:p-6 rounded-2xl text-center hover:bg-gray-200/50 dark:hover:bg-white/10 transition-all duration-300">
                   <div
-                    className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300`}
                   >
-                    <method.icon className="w-7 h-7 text-white" />
+                    <method.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
 
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-2">
                     {method.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-white/70 text-sm mb-4">
+                  <p className="text-gray-600 dark:text-white/70 text-xs sm:text-sm mb-3 sm:mb-4">
                     {method.description}
                   </p>
 
@@ -114,10 +114,10 @@ export function ContactCTA() {
                     href={method.href}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium text-sm hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium text-xs sm:text-sm hover:gap-3 transition-all"
                   >
                     <span>{method.action}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </motion.a>
                 </div>
               </motion.div>
@@ -130,17 +130,17 @@ export function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8 }}
-            className="mb-12"
+            className="mb-8 sm:mb-12"
           >
             <motion.button
               onClick={() => router.push('/contact')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold px-10 py-4 rounded-2xl transition-all duration-300 shadow-lg group flex items-center mx-auto"
+              className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-2xl transition-all duration-300 shadow-lg group flex items-center mx-auto text-sm sm:text-base lg:text-lg min-h-[48px]"
             >
-                <Send className="w-5 h-5 mr-3 group-hover:translate-x-0.5 transition-transform" />
-                <span className="text-lg">{`Let's Work Together`}</span>
-                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 group-hover:translate-x-0.5 transition-transform" />
+                <span>{`Let's Work Together`}</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </motion.div>
 
