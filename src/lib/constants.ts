@@ -1,5 +1,12 @@
 // Application constants and configuration
 
+export const APP_VERSION = '0.1.0' as const
+export const BUILD_INFO = {
+  version: APP_VERSION,
+  buildDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+  environment: process.env.NODE_ENV || 'development',
+} as const
+
 export const APP_CONFIG = {
     name: 'Developer Portfolio',
     description: 'Full Stack Developer specializing in React, Next.js, React Native, Vue.js, Node.js, and Laravel',
