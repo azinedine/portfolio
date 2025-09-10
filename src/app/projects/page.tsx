@@ -46,7 +46,7 @@ export default function ProjectsPage() {
   } = useProjectsPage();
 
   return (
-    <div className="min-h-screen bg-dark-950">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/30">
       <PageHeader
         badge="Projects"
         subtitle="Crafting Digital"
@@ -58,8 +58,6 @@ export default function ProjectsPage() {
       <div className="section-padding">
         <FeaturedProjects featuredProjects={featuredProjects} />
       </div>
-      {/* Featured Projects */}
-      {/* <FeaturedProjects featuredProjects={featuredProjects} /> */}
 
       {/* All Projects */}
       <section className="section-padding relative overflow-hidden">
