@@ -25,10 +25,10 @@ export function HeroProfile() {
         {/* Animated background ring */}
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 rounded-full"
           style={{
-            background: 'conic-gradient(from 0deg, rgba(109, 74, 236, 0.5), rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3), rgba(109, 74, 236, 0.5))',
+            background: 'conic-gradient(from 0deg, rgba(109, 74, 236, 0.4), rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2), rgba(109, 74, 236, 0.4))',
             padding: '3px',
           }}
         >
@@ -45,10 +45,10 @@ export function HeroProfile() {
             }}>
               <motion.div
                 animate={{ 
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 2, 0, -2, 0] 
+                  scale: [1, 1.02, 1],
+                  rotate: [0, 1, 0, -1, 0] 
                 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                 className="text-gray-700 dark:text-white/90 mb-2"
               >
                 <Code2 className="w-16 h-16" />
@@ -137,14 +137,14 @@ export function HeroProfile() {
 
         {/* Small decorative dots */}
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.8, 0.6] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-8 right-8 w-2 h-2 bg-cyan-400/60 rounded-full"
         />
         
         <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.7, 0.5] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute bottom-8 left-8 w-1.5 h-1.5 bg-pink-400/70 rounded-full"
         />
       </div>
