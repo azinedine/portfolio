@@ -64,7 +64,7 @@ const itemVariants = {
 
 export function WhyChoose() {
   const sectionRef = useRef<HTMLElement | null>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const isInView = useInView(sectionRef, { once: true, margin: "-50px" })
 
   return (
     <section
@@ -141,10 +141,10 @@ const Content = ({
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
             transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
-            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+            whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
             className="flex gap-3 p-3 sm:p-4 rounded-xl hover:bg-gray-100/50 dark:hover:bg-white/5 transition-all duration-200 cursor-pointer group"
           >
-            <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+            <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
               <reason.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
             <div className="flex-1">
