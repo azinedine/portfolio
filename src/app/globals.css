@@ -208,6 +208,49 @@
   .section-padding {
     @apply py-12 px-4;
   }
+  
+  /* Mobile viewport height adjustments */
+  .h-screen {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  }
+  
+  /* Reduce padding on mobile for better content fit */
+  .container-responsive {
+    @apply px-4 py-8;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet adjustments */
+  .container-responsive {
+    @apply px-6 py-12;
+  }
+}
+
+/* Mobile-specific height adjustments for sections */
+@media (max-width: 768px) {
+  .min-h-\[100vh\] {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  /* Adjust scroll indicator positioning on mobile */
+  .scroll-indicator {
+    @apply bottom-4;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .h-screen {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .container-responsive {
+    @apply py-4;
+  }
 }
 
 /* Print styles */
