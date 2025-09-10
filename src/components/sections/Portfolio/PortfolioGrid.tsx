@@ -29,21 +29,33 @@ export function PortfolioGrid({
 
   return (
     <>
-      {/* Portfolio Grid */}
+      {/* Horizontal Scrollable Portfolio Grid */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+        className="mb-8"
       >
-        {projects.map((project) => (
-          <PortfolioCard 
-            key={project.id} 
-            project={project} 
-            variants={itemVariants}
-            onViewDetails={onViewDetails}
-          />
-        ))}
+        <div className="overflow-x-auto scrollbar-hide h-200">
+          <div className="flex gap-4 pb-4 h-full" style={{ width: 'max-content' }}>
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: index * 0.1 }}
+                className="flex-shrink-0 w-80 "
+              >
+                <PortfolioCard 
+                  project={project} 
+                  variants={itemVariants}
+                  onViewDetails={onViewDetails}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       {/* Bottom CTA */}
@@ -58,10 +70,10 @@ export function PortfolioGrid({
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg group flex items-center justify-center gap-2 mx-auto"
+            className="px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white text-sm font-medium rounded-lg transition-all duration-300 shadow-lg group flex items-center justify-center gap-2 mx-auto"
           >
             <span>View All Projects</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </motion.button>
         </Link>
       </motion.div>
