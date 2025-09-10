@@ -49,12 +49,12 @@ export function HeroProfile() {
                   rotate: [0, 2, 0, -2, 0] 
                 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="text-white/90 mb-2"
+                className="text-gray-700 dark:text-white/90 mb-2"
               >
                 <Code2 className="w-16 h-16" />
               </motion.div>
-              <p className="text-white/80 font-medium text-sm">A.ZINEDDINE</p>
-              <p className="text-white/60 font-medium text-xs mt-1">Full Stack Developer</p>
+              <p className="text-gray-800 dark:text-white/80 font-medium text-sm">A.ZINEDDINE</p>
+              <p className="text-gray-600 dark:text-white/60 font-medium text-xs mt-1">Full Stack Developer</p>
               
               {/* Decorative code elements */}
               <div className="absolute top-12 left-12 text-green-400/60 font-mono text-xs font-bold">
