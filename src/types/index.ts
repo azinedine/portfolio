@@ -49,7 +49,7 @@ export interface Project {
   }
   
   export interface ContactInfo {
-    icon: any // Lucide icon component
+    icon: React.ComponentType<{ className?: string }> // Lucide icon component
     label: string
     value: string
     href: string
@@ -57,7 +57,7 @@ export interface Project {
   }
   
   export interface SocialLink {
-    icon: any // Lucide icon component
+    icon: React.ComponentType<{ className?: string }> // Lucide icon component
     label: string
     href: string
     color: string
@@ -77,7 +77,7 @@ export interface Project {
   }
   
   export interface Stats {
-    icon: any // Lucide icon component
+    icon: React.ComponentType<{ className?: string }> // Lucide icon component
     label: string
     value: string
   }
@@ -180,11 +180,11 @@ export interface Project {
   }
   
   // Utility types
-  export type WithClassName<T = {}> = T & {
+  export type WithClassName<T = Record<string, never>> = T & {
     className?: string
   }
   
-  export type WithChildren<T = {}> = T & {
+  export type WithChildren<T = Record<string, never>> = T & {
     children: React.ReactNode
   }
   
