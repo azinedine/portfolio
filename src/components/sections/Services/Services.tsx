@@ -11,7 +11,7 @@ export const Services = memo(() => {
   return (
     <section 
       id="services" 
-      className="relative h-screen min-h-[100vh] flex items-start justify-center overflow-hidden pt-8 sm:pt-12"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden"
       aria-label="Services offered by A.ZINEDDINE"
     >
       <ServicesBackground />
