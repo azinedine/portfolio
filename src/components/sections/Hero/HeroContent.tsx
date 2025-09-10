@@ -49,7 +49,7 @@ export function HeroContent() {
         <motion.div variants={itemVariants} className="mb-8">
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-primary-500/20 to-blue-500/20 border border-primary-400/30 text-primary-200 rounded-full text-sm font-medium backdrop-blur-sm"
+            className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-primary-500/20 to-blue-500/20 border border-primary-400/30 text-primary-700 dark:text-primary-200 rounded-full text-sm font-medium backdrop-blur-sm"
           >
             <motion.div
               animate={{ rotate: [0, 360] }}
@@ -66,7 +66,7 @@ export function HeroContent() {
         <motion.div variants={itemVariants} className="mb-8">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight">
             <motion.span
-              className="block text-white"
+              className="block text-gray-900 dark:text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -82,7 +82,7 @@ export function HeroContent() {
               Developer
             </motion.span>
             <motion.span
-              className="block text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2"
+              className="block text-gray-900 dark:text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -95,19 +95,19 @@ export function HeroContent() {
         {/* Description */}
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl"
+          className="text-lg md:text-xl text-gray-600 dark:text-white/80 mb-10 leading-relaxed max-w-2xl"
         >
           {`I'm a passionate `}
-          <span className="text-primary-300 font-semibold">
+          <span className="text-primary-600 dark:text-primary-300 font-semibold">
             Full Stack Developer
           </span>{" "}
           with 4+ years of experience in creating{" "}
-          <span className="text-white font-semibold">
+          <span className="text-gray-900 dark:text-white font-semibold">
             modern web applications
           </span>
-          , <span className="text-cyan-300 font-semibold">mobile apps</span>,
+          , <span className="text-cyan-600 dark:text-cyan-300 font-semibold">mobile apps</span>,
           and{" "}
-          <span className="text-green-300 font-semibold">
+          <span className="text-green-600 dark:text-green-300 font-semibold">
             scalable digital solutions
           </span>
           . I transform ideas into reality using cutting-edge technologies.
@@ -137,9 +137,9 @@ export function HeroContent() {
           >
             <Link
               href="/projects"
-              className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 text-white font-semibold rounded-2xl transition-all duration-300 hover:bg-white/15 min-h-[56px]"
+              className="group flex items-center justify-center gap-3 px-8 py-4 bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300/50 dark:border-white/20 hover:border-gray-400/50 dark:hover:border-white/30 text-gray-900 dark:text-white font-semibold rounded-2xl transition-all duration-300 hover:bg-gray-200/80 dark:hover:bg-white/15 min-h-[56px]"
             >
-              <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/60 transition-all duration-300">
+              <div className="w-5 h-5 bg-gray-300/50 dark:bg-white/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/60 transition-all duration-300">
                 <Play className="w-2 h-2 ml-0.5" />
               </div>
               <span>View My Work</span>
@@ -149,7 +149,7 @@ export function HeroContent() {
 
         {/* Tech stack */}
         <motion.div variants={itemVariants} className="space-y-4">
-          <p className="text-sm text-white/60 font-medium tracking-wide uppercase">
+          <p className="text-sm text-gray-500 dark:text-white/60 font-medium tracking-wide uppercase">
             Technologies I Specialize In
           </p>
           <div className="flex flex-wrap gap-2">
@@ -160,7 +160,7 @@ export function HeroContent() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1, duration: 0.4 }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="px-3 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 rounded-lg text-sm font-medium hover:bg-white/15 hover:border-primary-400/40 transition-all duration-300 cursor-default"
+                className="px-3 py-2 bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300/50 dark:border-white/20 text-gray-700 dark:text-white/90 rounded-lg text-sm font-medium hover:bg-gray-200/80 dark:hover:bg-white/15 hover:border-primary-400/40 transition-all duration-300 cursor-default"
               >
                 {tech}
               </motion.span>
