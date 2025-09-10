@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye, Ban } from "lucide-react";
 import { memo, useMemo } from "react";
 import { type ProjectItem } from "./projectsData";
 import MediaCarousel from "@/components/sections/Portfolio/MediaCarousel";
@@ -85,11 +85,17 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
           <div className="pointer-events-none absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 bg-gray-900/80 dark:bg-primary-900/80 opacity-0 group-hover:opacity-90 transition-all duration-300 flex items-center justify-center">
             <div className="flex gap-3">
-              <ActionButton 
-                href={project.links?.demo} 
-                icon={ExternalLink} 
-                title="View Live Demo" 
-              />
+              { project.links.demoRemoved && project.links.demo  == "https://example.com" ? (
+                <div className="w-8 h-8 bg-red-100/80 dark:bg-red-800/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-gray-700 dark:text-white">
+                  <Ban className="w-3.5 h-3.5 text-red-500" />
+                </div>
+              ) : (
+                <ActionButton 
+                  href={project.links?.demo} 
+                  icon={ExternalLink} 
+                  title="View Live Demo" 
+                />
+              )}
               <ActionButton 
                 href={project.links?.github} 
                 icon={Github} 
