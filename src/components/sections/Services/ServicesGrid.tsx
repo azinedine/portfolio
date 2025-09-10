@@ -17,7 +17,7 @@ export const ServicesGrid = memo(({ services }: ServicesGridProps) => {
       responsive={true}
       animate={true}
       stagger={true}
-      delay={0.2}
+      delay={0.1}
     >
       {services.map((service, index) => (
         <GridItem key={service.title}>
