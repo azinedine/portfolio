@@ -43,13 +43,13 @@ export function Portfolio() {
 
 
   return (
-    <section id="projects" className="relative h-screen min-h-[100vh] flex items-center justify-center overflow-hidden">
+    <section id="projects" className="relative h-screen min-h-[100vh] flex items-start justify-center overflow-hidden pt-8 sm:pt-12">
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-10" />
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-primary-600/8 to-blue-600/8 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-gradient-to-br from-cyan-500/8 to-primary-500/8 rounded-full blur-3xl" />
 
-      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
         {/* Section Header */}
         <PortfolioHeader
           categories={categories}
