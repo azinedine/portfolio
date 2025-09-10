@@ -1,37 +1,50 @@
 "use client";
 
-import { useEffect, useMemo, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, ChevronLeft, ChevronRight, Tag, Calendar, ExternalLink, ArrowRight, Github } from 'lucide-react'
-import Image from 'next/image'
-import { type ProjectItem } from './projectsData'
+import { useEffect, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Tag,
+  Calendar,
+  ExternalLink,
+  ArrowRight,
+  Github,
+  Ban,
+} from "lucide-react";
+import Image from "next/image";
+import { type ProjectItem } from "./projectsData";
 
 type ProjectModalProps = {
-  project: ProjectItem | null
-  isOpen: boolean
-  onClose: () => void
-}
+  project: ProjectItem | null;
+  isOpen: boolean;
+  onClose: () => void;
+};
 
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-  const photos = useMemo(() => (project?.photos ?? []).filter(Boolean), [project?.photos])
-  const [index, setIndex] = useState(0)
-  const len = photos.length
+  const photos = useMemo(
+    () => (project?.photos ?? []).filter(Boolean),
+    [project?.photos]
+  );
+  const [index, setIndex] = useState(0);
+  const len = photos.length;
 
   useEffect(() => {
-    if (!isOpen) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = prev || ''
-    }
-  }, [isOpen])
+      document.body.style.overflow = prev || "";
+    };
+  }, [isOpen]);
 
   useEffect(() => {
-    if (index >= len) setIndex(0)
-  }, [len, index])
+    if (index >= len) setIndex(0);
+  }, [len, index]);
 
-  const next = () => setIndex((i) => (i + 1) % (len || 1))
-  const prev = () => setIndex((i) => (i - 1 + (len || 1)) % (len || 1))
+  const next = () => setIndex((i) => (i + 1) % (len || 1));
+  const prev = () => setIndex((i) => (i - 1 + (len || 1)) % (len || 1));
 
   return (
     <AnimatePresence>
@@ -51,7 +64,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed inset-4 md:inset-8 lg:inset-16 z-50 flex items-center justify-center"
           >
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
@@ -66,12 +79,14 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                           initial={{ opacity: 0, scale: 1.02 }}
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.985 }}
-                          transition={{ duration: 0.25, ease: 'easeOut' }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
                           className="absolute inset-0"
                         >
                           <Image
                             src={photos[index]}
-                            alt={`${project?.title ?? 'Project'} photo ${index + 1}`}
+                            alt={`${project?.title ?? "Project"} photo ${
+                              index + 1
+                            }`}
                             fill
                             className="object-cover"
                             sizes="100vw"
@@ -182,18 +197,25 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <motion.a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex-1 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg group flex items-center justify-center gap-2"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>View Live Demo</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </motion.a>
+                    { project.links.demoRemoved && project.links.demo  == "https://example.com" ? (
+                      <div className="flex-1 bg-red-100 dark:bg-red-800 text-gray-600 dark:text-gray-400 font-semibold py-3 px-6 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center gap-2">
+                        <Ban className="w-4 h-4" />
+                        <span>Demo Link Removed</span>
+                      </div>
+                    ) : (
+                      <motion.a
+                        href={project.links.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg group flex items-center justify-center gap-2"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>View Live Demo</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                      </motion.a>
+                    )}
                     <motion.a
                       href={project.links.github}
                       target="_blank"
@@ -214,5 +236,5 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         </>
       )}
     </AnimatePresence>
-  )
+  );
 }
