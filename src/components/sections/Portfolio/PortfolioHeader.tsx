@@ -22,11 +22,11 @@ export function PortfolioHeader({
       className="text-center mb-12"
     >
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-        <span className="block text-white">Featured</span>
+        <span className="block text-gray-900 dark:text-white">Featured</span>
         <span className="block gradient-text-primary">Projects</span>
       </h2>
 
-      <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
+      <p className="text-lg text-gray-600 dark:text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
         Explore my latest work and discover how I bring ideas to life
         through code.
       </p>
@@ -42,7 +42,7 @@ export function PortfolioHeader({
             className={`px-4 py-2 text-sm rounded-xl transition-all duration-300 font-medium ${
               selectedCategory === filter
                 ? 'bg-primary-600 text-white border border-primary-500'
-                : 'bg-white/5 hover:bg-primary-600 border border-white/10 hover:border-primary-500 text-white'
+                : 'bg-gray-100/50 dark:bg-white/5 hover:bg-primary-600 border border-gray-300/50 dark:border-white/10 hover:border-primary-500 text-gray-700 dark:text-white'
             }`}
           >
             {filter}
