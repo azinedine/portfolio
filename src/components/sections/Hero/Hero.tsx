@@ -6,7 +6,6 @@ import { Plus, Star, Sparkles } from "lucide-react";
 import { BackgroundOrbs } from "@/components/common/BackgroundOrbs";
 import { FloatingElement } from "@/components/common/FloatingElements";
 import { Grid, GridItem } from "@/components/common/Grid";
-import { ScrollIndicator } from "@/components/common/ScrollIndicator";
 import { HeroContent } from "./HeroContent";
 import { HeroProfile } from "./HeroProfile";
 
@@ -84,14 +83,6 @@ export function Hero() {
   }, []);
 
   // Optimized scroll handler
-  const handleScrollToNext = useCallback(() => {
-    const nextSection =
-      document.querySelector('[data-section="why-choose"]') ||
-      document.querySelector("section:nth-of-type(2)");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
 
   useEffect(() => {
     // Throttled mouse move for better performance
@@ -121,7 +112,7 @@ export function Hero() {
   );
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg">
+    <section id="hero" className="relative h-screen min-h-[100vh] flex items-center justify-center overflow-hidden hero-bg">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-grid dark:bg-dark-900 opacity-30 dark:opacity-15" />
@@ -164,14 +155,6 @@ export function Hero() {
         </Grid>
       </div>
 
-      {/* Scroll Indicator */}
-      <ScrollIndicator 
-        onClick={handleScrollToNext}
-        text="Scroll to explore"
-        delay={2}
-        position="bottom"
-        variant="default"
-      />
     </section>
   );
 }
