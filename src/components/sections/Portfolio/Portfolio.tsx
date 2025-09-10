@@ -5,6 +5,7 @@ import { usePortfolio } from "./usePortfolio";
 import { PortfolioHeader } from "./PortfolioHeader";
 import { PortfolioGrid } from "./PortfolioGrid";
 import { ProjectModal } from "./ProjectModal";
+import { ScrollIndicator } from "@/components/common/ScrollIndicator";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -39,6 +40,13 @@ export function Portfolio() {
     openModal,
     closeModal,
   } = usePortfolio();
+
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById('contact-cta')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
 
   return (
@@ -82,6 +90,15 @@ export function Portfolio() {
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={closeModal}
+      />
+
+      {/* Scroll Indicator */}
+      <ScrollIndicator 
+        onClick={handleScrollToContact}
+        text="Get in touch"
+        delay={1}
+        position="bottom"
+        variant="outlined"
       />
     </section>
   );
