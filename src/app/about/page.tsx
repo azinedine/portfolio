@@ -377,30 +377,44 @@ export default function AboutPage() {
             animate="visible"
             className="text-center"
           >
-            <div className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-3xl p-16 text-white overflow-hidden">
-              {/* Background pattern */}
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iNyIvPjwvZz48L2c+PC9zdmc+')] opacity-20" />
+            <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-16 shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+              <div className="absolute inset-0 bg-dots opacity-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-blue-600/10 to-indigo-600/10 dark:from-purple-600/20 dark:via-blue-600/20 dark:to-indigo-600/20" />
               
               <div className="relative z-10">
                 <motion.h2 
                   whileHover={{ scale: 1.05 }}
-                  className="text-4xl md:text-5xl font-bold mb-6"
+                  className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
                 >
                   Let&apos;s Work Together
                 </motion.h2>
-                <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto font-light">
+                <p className="text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
                   Ready to bring your ideas to life? I&apos;m always excited to work on new projects 
                   and collaborate with amazing people to create something extraordinary.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
-               
                   <motion.button
                     onClick={() => router.push('/contact')}
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(109, 74, 236, 0.3)" }}
                     whileTap={{ scale: 0.95 }}
-                    className="border-2 border-white/30 text-white hover:bg-white/10 font-bold px-10 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm"
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg"
                   >
-                    {`Let's Work Together`}
+                    Let&apos;s Work Together
+                  </motion.button>
+                  <motion.button
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = '/resume.pdf';
+                      link.download = 'A.ZINEDDINE_Resume.pdf';
+                      link.target = '_blank';
+                      link.click();
+                    }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 inline-flex items-center justify-center gap-2"
+                  >
+                    <Download className="w-5 h-5" />
+                    Download Resume
                   </motion.button>
                 </div>
               </div>
