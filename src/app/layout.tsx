@@ -4,6 +4,7 @@ import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/sections/Footer'
 import { ScrollIndicator } from '@/components/common/ScrollIndicator'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -128,17 +129,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body 
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white dark:bg-dark-950 text-dark-900 dark:text-dark-100 transition-colors duration-300`}
         suppressHydrationWarning
       >
-        <ScrollIndicator />
-        <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <ScrollIndicator />
+          <Navigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
