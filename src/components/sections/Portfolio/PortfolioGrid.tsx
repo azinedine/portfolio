@@ -36,8 +36,8 @@ export function PortfolioGrid({
         animate="visible"
         className="mb-8"
       >
-        <div className="overflow-x-auto scrollbar-hide h-200">
-          <div className="flex gap-4 pb-4 h-full" style={{ width: 'max-content' }}>
+        <div className="overflow-x-auto scrollbar-hide h-auto min-h-[400px] sm:h-[450px] md:h-[500px]">
+          <div className="flex gap-3 sm:gap-4 pb-4 h-full" style={{ width: 'max-content' }}>
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -45,7 +45,7 @@ export function PortfolioGrid({
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: index * 0.1 }}
-                className="flex-shrink-0 w-80 "
+                className="flex-shrink-0 w-72 sm:w-80 md:w-84"
               >
                 <PortfolioCard 
                   project={project} 
@@ -64,16 +64,16 @@ export function PortfolioGrid({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3 }}
-        className="text-center"
+        className="text-center mt-4 sm:mt-6"
       >
         <Link href="/projects">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white text-sm font-medium rounded-lg transition-all duration-300 shadow-lg group flex items-center justify-center gap-2 mx-auto"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white text-sm sm:text-base font-medium rounded-xl transition-all duration-300 shadow-lg group flex items-center justify-center gap-2 mx-auto min-h-[48px]"
           >
             <span>View All Projects</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </motion.button>
         </Link>
       </motion.div>
