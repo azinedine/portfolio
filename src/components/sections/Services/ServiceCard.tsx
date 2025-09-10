@@ -18,7 +18,7 @@ interface ServiceCardProps {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 }
 
@@ -30,13 +30,13 @@ export const ServiceCard = memo(({ service, index }: ServiceCardProps) => {
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       transition={{ 
-        delay: index * 0.1,
-        duration: 0.5,
+        delay: index * 0.08,
+        duration: 0.4,
         ease: "easeOut"
       }}
       whileHover={{ 
-        y: -5,
-        transition: { duration: 0.2, ease: "easeOut" }
+        y: -3,
+        transition: { duration: 0.15, ease: "easeOut" }
       }}
       className="group relative bg-white/80 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer overflow-hidden h-full"
     >
