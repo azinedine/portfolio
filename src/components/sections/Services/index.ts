@@ -1,1 +1,7 @@
 export { Services } from './Services'
+export { ServiceCard } from './ServiceCard'
+export { ServicesHeader } from './ServicesHeader'
+export { ServicesGrid } from './ServicesGrid'
+export { ServicesBackground } from './ServicesBackground'
+export { services } from './servicesData'
+export type { Service } from './ServiceCard'
