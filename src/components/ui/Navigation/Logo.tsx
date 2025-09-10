@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
 import Image from 'next/image'
+import { APP_VERSION, BUILD_INFO } from '@/lib/constants'
 
 type LogoProps = {
   onClick?: () => void
@@ -69,6 +70,15 @@ export function Logo({ onClick }: LogoProps) {
         <span className="text-xs text-gray-500 dark:text-white/50 font-medium tracking-wider">
           Software Engineer
         </span>
+        <motion.span 
+          className="text-xs text-gray-400 dark:text-white/30 font-mono tracking-wider transition-colors duration-200 group-hover:text-primary-500 dark:group-hover:text-primary-300 cursor-help"
+          initial={{ opacity: 0.7 }}
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          title={`Version: ${BUILD_INFO.version}\nBuild Date: ${BUILD_INFO.buildDate}\nEnvironment: ${BUILD_INFO.environment}`}
+        >
+          v{APP_VERSION}
+        </motion.span>
       </div>
     </Link>
   )
