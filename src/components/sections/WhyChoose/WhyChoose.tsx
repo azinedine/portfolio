@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, memo, useMemo, useCallback } from 'react'
 import { easeOut, motion, useInView } from 'framer-motion'
 import {
   Play,
@@ -44,25 +44,25 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: easeOut,
     },
   },
 }
 
-export function WhyChoose() {
+export const WhyChoose = memo(() => {
   const sectionRef = useRef<HTMLElement | null>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-50px" })
 
@@ -74,10 +74,10 @@ export function WhyChoose() {
       className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden"
       style={{ position: 'relative' }}
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-dots opacity-20" />
-      <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-primary-600/10 to-blue-600/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-primary-500/10 rounded-full blur-3xl" />
+      {/* Background elements - Reduced complexity */}
+      <div className="absolute inset-0 bg-dots opacity-10" />
+      <div className="absolute top-20 right-20 w-48 h-48 bg-gradient-to-br from-primary-600/5 to-blue-600/5 rounded-full blur-2xl" />
+      <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-cyan-500/5 to-primary-500/5 rounded-full blur-2xl" />
 
       <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
         <motion.div variants={itemVariants} className="mb-8 sm:mb-12 text-center lg:text-left">
@@ -119,13 +119,13 @@ export function WhyChoose() {
 
     </section>
   )
-}
+})
 
-const Content = ({
-  isInView,
-}: {
-  isInView: boolean
-}) => {
+WhyChoose.displayName = 'WhyChoose'
+
+const Content = memo(({ isInView }: { isInView: boolean }) => {
+  const memoizedReasons = useMemo(() => reasons, [])
+  
   return (
     <motion.div
       variants={containerVariants}
@@ -138,43 +138,63 @@ const Content = ({
         variants={itemVariants}
         className="grid grid-cols-1 gap-3 sm:gap-4 mb-8 sm:mb-12"
       >
-        {reasons.map((reason, index) => (
-          <motion.div
-            key={reason.title}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-            transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
-            whileHover={{ scale: 1.01, transition: { duration: 0.2 } }}
-            className="flex gap-3 p-3 sm:p-4 rounded-xl hover:bg-gray-100/50 dark:hover:bg-white/5 transition-all duration-200 cursor-pointer group"
-          >
-            <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              <reason.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-200 transition-colors">
-                {reason.title}
-              </h3>
-              <p className="text-gray-600 dark:text-white/70 text-xs sm:text-sm leading-relaxed">
-                {reason.description}
-              </p>
-            </div>
-          </motion.div>
+        {memoizedReasons.map((reason, index) => (
+          <ReasonCard key={reason.title} reason={reason} index={index} isInView={isInView} />
         ))}
       </motion.div>
     </motion.div>
   )
-}
+})
 
-const Video = ({ isInView }: { isInView: boolean }) => {
+Content.displayName = 'Content'
+
+const ReasonCard = memo(({ reason, index, isInView }: {
+  reason: typeof reasons[0]
+  index: number
+  isInView: boolean
+}) => {
+  const hoverVariants = useMemo(() => ({
+    scale: 1.01,
+    transition: { duration: 0.15 }
+  }), [])
+  
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 30 }}
-      animate={
-        isInView
-          ? { opacity: 1, scale: 1, y: 0 }
-          : { opacity: 0, scale: 0.9, y: 30 }
-      }
-      transition={{ duration: 0.6, delay: 0.2 }}
+      initial={{ opacity: 0, x: -15 }}
+      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -15 }}
+      transition={{ delay: 0.2 + index * 0.08, duration: 0.3 }}
+      whileHover={hoverVariants}
+      className="flex gap-3 p-3 sm:p-4 rounded-xl hover:bg-gray-100/50 dark:hover:bg-white/5 transition-all duration-200 cursor-pointer group"
+    >
+      <div className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+        <reason.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+      </div>
+      <div className="flex-1">
+        <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-200 transition-colors">
+          {reason.title}
+        </h3>
+        <p className="text-gray-600 dark:text-white/70 text-xs sm:text-sm leading-relaxed">
+          {reason.description}
+        </p>
+      </div>
+    </motion.div>
+  )
+})
+
+ReasonCard.displayName = 'ReasonCard'
+
+const Video = memo(({ isInView }: { isInView: boolean }) => {
+  const animationVariants = useMemo(() => ({
+    initial: { opacity: 0, scale: 0.95, y: 20 },
+    animate: isInView
+      ? { opacity: 1, scale: 1, y: 0 }
+      : { opacity: 0, scale: 0.95, y: 20 },
+    transition: { duration: 0.5, delay: 0.1 }
+  }), [isInView])
+  
+  return (
+    <motion.div
+      {...animationVariants}
       className="relative order-1 lg:order-2"
     >
       {/* Main video container */}
@@ -307,4 +327,6 @@ const Video = ({ isInView }: { isInView: boolean }) => {
       </motion.div>
     </motion.div>
   )
-}
+})
+
+Video.displayName = 'Video'
