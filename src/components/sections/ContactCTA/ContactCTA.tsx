@@ -8,7 +8,6 @@ import {
   MessageCircle,
   Plus,
   Send,
-  Link,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -95,17 +94,17 @@ export function ContactCTA() {
                 whileHover={{ scale: 1.02, y: -3 }}
                 className="group"
               >
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 p-6 rounded-2xl text-center hover:bg-white/10 transition-all duration-300">
+                <div className="bg-gray-100/50 dark:bg-white/5 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 hover:border-gray-300/50 dark:hover:border-white/20 p-6 rounded-2xl text-center hover:bg-gray-200/50 dark:hover:bg-white/10 transition-all duration-300">
                   <div
                     className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300`}
                   >
                     <method.icon className="w-7 h-7 text-white" />
                   </div>
 
-                  <h3 className="text-lg font-bold text-white mb-2">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                     {method.title}
                   </h3>
-                  <p className="text-white/70 text-sm mb-4">
+                  <p className="text-gray-600 dark:text-white/70 text-sm mb-4">
                     {method.description}
                   </p>
 
@@ -113,7 +112,7 @@ export function ContactCTA() {
                     href={method.href}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 text-primary-400 font-medium text-sm hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium text-sm hover:gap-3 transition-all"
                   >
                     <span>{method.action}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
