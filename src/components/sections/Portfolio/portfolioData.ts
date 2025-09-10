@@ -9,6 +9,7 @@ export type PortfolioItem = {
   links: {
     demo: string;
     github: string;
+    demoRemoved: boolean;
   };
   status: string;
   featured?: boolean;
@@ -31,6 +32,7 @@ export const portfolioItems: PortfolioItem[] = [
     links: {
       demo: "https://effi-tech.net/",
       github: "https://github.com/Braivexa-agency/effitech",
+      demoRemoved: false,
     },
     status: "completed",
     featured: true,
@@ -47,6 +49,7 @@ export const portfolioItems: PortfolioItem[] = [
     links: {
       demo: "https://diaspo.io",
       github: "https://github.com/username/project",
+      demoRemoved: false,
     },
     status: "completed",
   },
@@ -68,8 +71,9 @@ export const portfolioItems: PortfolioItem[] = [
     technologies: ["React", "Laravel", "SQLite"],
     color: "from-green-500 to-emerald-500",
     links: {
-      demo: "https://e-commerce-dashboard.com",
+      demo: "https://example.com",
       github: "https://github.com/username/project",
+      demoRemoved: true,
     },
     status: "completed",
   },
@@ -90,6 +94,7 @@ export const portfolioItems: PortfolioItem[] = [
     links: {
       demo: "https://taqqee.com",
       github: "https://github.com/username/project",
+      demoRemoved: false,
     },
     status: "completed",
   },
@@ -110,6 +115,7 @@ export const portfolioItems: PortfolioItem[] = [
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
+      demoRemoved: true,
     },
     status: "completed",
   },
@@ -131,6 +137,7 @@ export const portfolioItems: PortfolioItem[] = [
     links: {
       demo: "https://example.com",
       github: "https://github.com/username/project",
+      demoRemoved: true,
     },
     status: "completed",
   },
