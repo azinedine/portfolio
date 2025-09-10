@@ -39,7 +39,7 @@ export default function ContactPage() {
             <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
               <AnimatedText text="Let's Create" className="text-gray-900 dark:text-white" />
               <br />
-              <AnimatedText text="Something Amazing" className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent" delay={0.5} />
+              <AnimatedText text="Something Amazing" className="bg-gradient-to-r pb-2 from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent" delay={0.5} />
             </motion.h1>
 
             <motion.p
