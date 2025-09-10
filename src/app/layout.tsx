@@ -3,7 +3,6 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/sections/Footer'
-import { ScrollIndicator } from '@/components/common/ScrollIndicator'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 const inter = Inter({ 
@@ -135,7 +134,6 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <ScrollIndicator />
           <Navigation />
           <main className="min-h-screen">
             {children}
