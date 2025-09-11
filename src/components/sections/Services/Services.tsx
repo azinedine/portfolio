@@ -1,13 +1,13 @@
 'use client'
 
 import { memo } from 'react'
+import { motion } from 'framer-motion'
 import { ServicesHeader } from './ServicesHeader'
 import { ServicesGrid } from './ServicesGrid'
 import { ServicesBackground } from './ServicesBackground'
 import { services } from './servicesData'
 
 export const Services = memo(() => {
-
   return (
     <section 
       id="services" 
@@ -16,13 +16,28 @@ export const Services = memo(() => {
     >
       <ServicesBackground />
       
-      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
+      <motion.div 
+        className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{
+          duration: 0.8,
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
+      >
         <ServicesHeader />
         
-        <div className="py-4 sm:py-6 md:py-8">
+        <motion.div 
+          className="py-4 sm:py-6 md:py-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
           <ServicesGrid services={services} />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
     </section>
   )
