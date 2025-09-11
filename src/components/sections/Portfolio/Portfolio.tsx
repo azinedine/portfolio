@@ -49,7 +49,11 @@ export const Portfolio = memo(() => {
 
 
   return (
-    <section id="projects" className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center">
+    <section 
+      id="projects" 
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
+      style={{ scrollSnapAlign: 'center' }}
+    >
       {/* Background elements - Reduced complexity */}
       <div className="absolute inset-0 bg-dots opacity-5" />
       <div className="absolute top-1/4 right-0 w-48 h-48 bg-gradient-to-br from-primary-600/4 to-blue-600/4 rounded-full blur-2xl" />
