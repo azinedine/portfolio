@@ -71,7 +71,7 @@ export const WhyChoose = memo(() => {
     <section
       id="why-choose"
       ref={sectionRef}
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
       style={{ position: 'relative' }}
     >
       {/* Background elements - Reduced complexity */}
