@@ -127,7 +127,7 @@ export const AnimatedCard = memo(({
             </motion.h3>
 
             {/* Service Description */}
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-white/70 leading-relaxed text-center">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-white/70 leading-relaxed text-center line-clamp-3">
               {description}
             </p>
           </>
