@@ -21,32 +21,62 @@ export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorP
   const [currentSection, setCurrentSection] = useState<string>('hero')
 
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout
+
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2
+      // Clear previous timeout
+      clearTimeout(scrollTimeout)
       
-      // Find which section is currently in view
-      for (const section of sections) {
-        const element = document.getElementById(section.id)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          const elementTop = rect.top + window.scrollY
-          const elementBottom = elementTop + rect.height
-          
-          if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
-            setCurrentSection(section.id)
-            break
+      // Add a small delay to account for scroll snapping animation
+      scrollTimeout = setTimeout(() => {
+        // Find the scroll container (the one with snap-y)
+        const scrollContainer = document.querySelector('.snap-y')
+        if (!scrollContainer) return
+
+        const containerRect = scrollContainer.getBoundingClientRect()
+        const containerTop = containerRect.top
+        const containerHeight = containerRect.height
+        const viewportCenter = containerTop + containerHeight / 2
+        
+        // Find which section is closest to the viewport center
+        let closestSection = 'hero'
+        let closestDistance = Infinity
+        
+        for (const section of sections) {
+          const element = document.getElementById(section.id)
+          if (element) {
+            const rect = element.getBoundingClientRect()
+            const elementCenter = rect.top + rect.height / 2
+            const distance = Math.abs(elementCenter - viewportCenter)
+            
+            if (distance < closestDistance) {
+              closestDistance = distance
+              closestSection = section.id
+            }
           }
         }
-      }
+        
+        setCurrentSection(closestSection)
+      }, 100) // 100ms delay to account for snap animation
     }
 
     // Initial check
     handleScroll()
 
-    // Listen for scroll events
+    // Listen for scroll events on the scroll container
+    const scrollContainer = document.querySelector('.snap-y')
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll, { passive: true })
+    }
+    
+    // Also listen on window as fallback
     window.addEventListener('scroll', handleScroll, { passive: true })
     
     return () => {
+      clearTimeout(scrollTimeout)
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScroll)
+      }
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
@@ -58,13 +88,21 @@ export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorP
     const { nextId } = currentSectionData
     
     if (nextId === 'hero') {
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      // Scroll to top of the scroll container
+      const scrollContainer = document.querySelector('.snap-y') as HTMLElement
+      if (scrollContainer) {
+        scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     } else {
-      // Scroll to next section
+      // Scroll to next section using scrollIntoView with snap behavior
       const nextElement = document.getElementById(nextId)
       if (nextElement) {
-        nextElement.scrollIntoView({ behavior: 'smooth' })
+        nextElement.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        })
       }
     }
   }
