@@ -15,9 +15,9 @@ export const ServicesGrid = memo(({ services }: ServicesGridProps) => {
       gap="md" 
       align="stretch" 
       responsive={true}
-      animate={true}
-      stagger={true}
-      delay={0.1}
+      animate={false}
+      stagger={false}
+      delay={0}
     >
       {services.map((service, index) => (
         <GridItem key={service.title}>
