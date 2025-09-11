@@ -97,9 +97,8 @@ export function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen pt-20 sm:pt-24 md:pt-20 pb-12 sm:pb-16 md:pb-20 flex items-center justify-center hero-bg snap-center"
+      className="relative min-h-screen flex items-center justify-center hero-bg snap-start lg:snap-center"
       style={{ 
-        scrollSnapAlign: 'center',
         scrollSnapStop: 'always',
         height: '100vh',
         minHeight: '100vh'
@@ -129,7 +128,7 @@ export function Hero() {
       />
 
       {/* Main Content */}
-      <div className="container-responsive section-padding relative z-10">
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="order-2 lg:order-1">
             <HeroContent />
