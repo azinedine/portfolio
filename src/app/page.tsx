@@ -36,14 +36,14 @@ const HomePage = memo(() => {
   }, []);
 
   return (
-    <>
+    <div className="snap-y snap-mandatory scroll-smooth h-screen overflow-y-scroll">
       <Hero />
       <WhyChoose />
       <Services />
       <Portfolio />
       <ContactCTA />
       <GlobalScrollIndicator />
-    </>
+    </div>
   )
 })
 
