@@ -11,21 +11,18 @@ export const Services = memo(() => {
   return (
     <section 
       id="services" 
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-center"
+      style={{ 
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
+        height: '100vh',
+        minHeight: '100vh'
+      }}
       aria-label="Services offered by A.ZINEDDINE"
     >
       <ServicesBackground />
       
-      <motion.div 
-        className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{
-          duration: 0.8,
-          ease: [0.25, 0.46, 0.45, 0.94]
-        }}
-      >
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         <ServicesHeader />
         
         <motion.div 
@@ -37,7 +34,7 @@ export const Services = memo(() => {
         >
           <ServicesGrid services={services} />
         </motion.div>
-      </motion.div>
+      </div>
 
     </section>
   )
