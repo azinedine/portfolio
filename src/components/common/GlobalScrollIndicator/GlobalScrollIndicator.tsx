@@ -14,7 +14,8 @@ const sections = [
   { id: 'why-choose', nextId: 'services', text: 'View my services', isFooter: false },
   { id: 'services', nextId: 'projects', text: 'See my work', isFooter: false },
   { id: 'projects', nextId: 'contact-cta', text: 'Get in touch', isFooter: false },
-  { id: 'contact-cta', nextId: 'hero', text: 'Back to top', isFooter: true }
+  { id: 'contact-cta', nextId: 'footer', text: 'View footer', isFooter: false },
+  { id: 'footer', nextId: 'hero', text: 'Back to top', isFooter: true }
 ]
 
 export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorProps) {
