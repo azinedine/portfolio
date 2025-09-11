@@ -118,7 +118,7 @@ export function GlobalScrollIndicator({ className = "" }: GlobalScrollIndicatorP
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "global-scroll-indicator bottom-4 text-center cursor-pointer sm:bottom-8",
+        "global-scroll-indicator bottom-4 text-center cursor-pointer sm:bottom-8 hidden md:block",
         className
       )}
       onClick={handleClick}
