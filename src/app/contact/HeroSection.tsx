@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <section 
       id="contact-hero" 
-      className="h-screen min-h-[100vh] flex items-center justify-center pt-20 pb-8"
+      className="min-h-screen sm:min-h-0 md:min-h-screen flex items-center justify-center pt-20 pb-8"
       aria-labelledby="hero-heading"
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
