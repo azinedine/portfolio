@@ -1,6 +1,7 @@
 // Application constants and configuration
+import packageJson from '../../package.json'
 
-export const APP_VERSION = '0.1.3' as const
+export const APP_VERSION = packageJson.version
 export const BUILD_INFO = {
   version: APP_VERSION,
   buildDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
