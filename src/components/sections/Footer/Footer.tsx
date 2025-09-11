@@ -68,12 +68,21 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-gray-50 dark:bg-background-primary border-t border-gray-200 dark:border-white/10">
+    <footer 
+      id="footer"
+      className="relative bg-gray-50 dark:bg-background-primary border-t border-gray-200 dark:border-white/10 min-h-screen flex items-center justify-center snap-center"
+      style={{ 
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
+        height: '100vh',
+        minHeight: '100vh'
+      }}
+    >
       {/* Background elements */}
       <div className="absolute inset-0 bg-dots opacity-10" />
       <div className="absolute top-0 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-primary-600/5 to-blue-600/5 rounded-full blur-3xl" />
 
-      <div className="container-responsive relative z-10 px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         {/* Main Footer Content */}
         <div className="py-12 sm:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
