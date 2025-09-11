@@ -36,7 +36,16 @@ const HomePage = memo(() => {
   }, []);
 
   return (
-    <div className="snap-y snap-mandatory scroll-smooth h-screen overflow-y-scroll">
+    <div 
+      className="snap-y snap-mandatory scroll-smooth h-screen overflow-y-scroll" 
+      style={{ 
+        height: '100vh',
+        scrollBehavior: 'smooth',
+        scrollSnapType: 'y mandatory',
+        scrollPaddingTop: '0px',
+        scrollPaddingBottom: '0px'
+      }}
+    >
       <Hero />
       <WhyChoose />
       <Services />
