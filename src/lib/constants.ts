@@ -1,6 +1,6 @@
 // Application constants and configuration
 
-export const APP_VERSION = '0.1.2' as const
+export const APP_VERSION = '0.1.3' as const
 export const BUILD_INFO = {
   version: APP_VERSION,
   buildDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
