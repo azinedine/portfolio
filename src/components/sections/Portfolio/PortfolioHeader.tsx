@@ -21,7 +21,7 @@ export function PortfolioHeader({
       transition={{ duration: 0.5 }}
       className="text-center mb-8"
     >
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4">
         <span className="block text-gray-900 dark:text-white">Featured</span>
         <span className="block gradient-text-primary">Projects</span>
       </h2>
