@@ -18,9 +18,14 @@ export const ServicesGrid = memo(({ services }: ServicesGridProps) => {
       animate={false}
       stagger={false}
       delay={0}
+      className="gpu-accelerated"
     >
       {services.map((service, index) => (
-        <GridItem key={service.title}>
+        <GridItem 
+          key={service.title}
+          animate={false}
+          className="gpu-accelerated"
+        >
           <ServiceCard
             service={service}
             index={index}
