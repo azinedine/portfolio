@@ -21,7 +21,7 @@ export const ServicesHeader = memo(() => {
       whileInView="visible"
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="text-center mb-8 sm:mb-10"
+      className="text-center mb-10 sm:mb-12"
     >
       {/* Decorative elements */}
       <motion.div 
