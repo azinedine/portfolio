@@ -20,11 +20,10 @@ export const APP_CONFIG = {
   } as const
   
   export const SOCIAL_LINKS = {
-    github: 'https://github.com/yourusername',
-    linkedin: 'https://linkedin.com/in/yourprofile',
-    twitter: 'https://twitter.com/yourusername',
-    instagram: 'https://instagram.com/yourusername',
-    youtube: 'https://youtube.com/c/yourchannel',
+    github: 'https://github.com/azinedine',
+    linkedin: 'https://www.linkedin.com/in/zineddineamariche/',
+    twitter: 'https://x.com/zinedineamarich',
+    instagram: 'https://www.instagram.com/azinedine_/',
   } as const
   
   export const NAVIGATION_ITEMS = [
