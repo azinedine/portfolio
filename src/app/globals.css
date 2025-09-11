@@ -39,6 +39,19 @@
   .snap-y {
     scroll-snap-type: y mandatory !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important; /* Prevent horizontal scroll on main container */
+  }
+
+  /* Prevent horizontal overflow utilities */
+  .prevent-horizontal-scroll {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Ensure all sections stay within viewport */
+  section {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 }
 
@@ -54,11 +67,14 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll */
   }
 
   body {
     @apply bg-white dark:bg-dark-950 text-dark-900 dark:text-dark-100;
     font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    max-width: 100vw; /* Ensure body doesn't exceed viewport width */
   }
 
   /* Custom scrollbar */
@@ -124,6 +140,7 @@
 
   .container-responsive {
     @apply max-w-7xl mx-auto;
+    overflow-x: hidden; /* Prevent horizontal overflow in containers */
   }
 
   /* Hero background */
