@@ -4,6 +4,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Responsive Scroll Snapping */
+@layer utilities {
+  /* Small and medium screens - snap to start */
+  @media (max-width: 1023px) {
+    #hero,
+    #why-choose,
+    #services,
+    #projects,
+    #contact-cta,
+    #footer {
+      scroll-snap-align: start !important;
+    }
+  }
+  
+  /* Large screens - snap to center */
+  @media (min-width: 1024px) {
+    #hero,
+    #why-choose,
+    #services,
+    #projects,
+    #contact-cta,
+    #footer {
+      scroll-snap-align: center !important;
+    }
+  }
+}
+
 @layer base {
   :root {
     --font-inter: 'Inter', system-ui, sans-serif;
