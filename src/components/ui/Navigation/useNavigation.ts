@@ -24,11 +24,14 @@ export function useNavigation(): UseNavigationReturn {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [activeSection, setActiveSection] = useState('')
   const pathname = usePathname()
   const router = useRouter()
+
+  // Removed debounced visibility for immediate response
 
   
   useEffect(() => {
@@ -37,23 +40,37 @@ export function useNavigation(): UseNavigationReturn {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
       const progress = Math.min(currentScrollY / docHeight, 1) * 100
 
-      // Improved scroll direction detection with minimum scroll threshold
-      const scrollDifference = Math.abs(currentScrollY - lastScrollY)
-      const minimumScrollThreshold = 10 // Minimum scroll distance to trigger hide/show
-
-      if (scrollDifference > minimumScrollThreshold) {
-        const isScrollingDown = currentScrollY > lastScrollY
-        const isAtTop = currentScrollY < 50 // Show navbar when very close to top
-        const isNearBottom = currentScrollY > docHeight - 100 // Show navbar when near bottom
-
-        // Show navigation when:
-        // 1. At the top of the page
-        // 2. Scrolling up
-        // 3. Near the bottom of the page
-        setIsVisible(isAtTop || !isScrollingDown || isNearBottom)
+      // Simple and reliable scroll direction detection
+      const scrollDelta = currentScrollY - lastScrollY
+      const minimumScrollThreshold = 5
+      
+      // Only update visibility if there's significant scroll movement
+      if (Math.abs(scrollDelta) > minimumScrollThreshold) {
+        const newScrollDirection = scrollDelta > 0 ? 'down' : 'up'
+        
+        // Define clear visibility conditions
+        const isAtTop = currentScrollY <= 100 // Show when at top
+        const isAtBottom = currentScrollY >= docHeight - 150 // Show when at bottom
+        const isScrollingUp = newScrollDirection === 'up'
+        
+        // Update scroll direction
+        setScrollDirection(newScrollDirection)
+        
+        // Simple logic: Show at top, bottom, or when scrolling up
+        let shouldShowNav = false
+        
+        if (isAtTop || isAtBottom || isScrollingUp) {
+          shouldShowNav = true
+        } else {
+          shouldShowNav = false
+        }
+        
+        // Direct visibility update for smooth behavior
+        setIsVisible(shouldShowNav)
         setLastScrollY(currentScrollY)
       }
 
+      // Update other scroll states
       setIsScrolled(currentScrollY > 10)
       setScrollProgress(progress)
 
@@ -81,27 +98,43 @@ export function useNavigation(): UseNavigationReturn {
       setActiveSection(currentSection)
     }
 
-    // Optimized throttling for better performance (following memory guidance)
+    // Optimized throttling for better performance and consistency
     let ticking = false
-    let lastCallTime = 0
-    const throttleDelay = 16 // ~60fps for smooth navigation behavior
+    let timeoutId: NodeJS.Timeout
     
     const throttledHandleScroll = () => {
-      const now = Date.now()
-      if (!ticking && now - lastCallTime >= throttleDelay) {
+      if (!ticking) {
+        // Clear any pending timeout
+        clearTimeout(timeoutId)
+        
+        // Use requestAnimationFrame for smooth updates
         requestAnimationFrame(() => {
           handleScroll()
           ticking = false
-          lastCallTime = now
         })
+        
+        // Set a fallback timeout to ensure updates aren't missed
+        timeoutId = setTimeout(() => {
+          if (ticking) {
+            handleScroll()
+            ticking = false
+          }
+        }, 50) // 50ms fallback following memory guidance
+        
         ticking = true
       }
     }
 
     window.addEventListener('scroll', throttledHandleScroll, { passive: true })
+    
+    // Initialize scroll state
     handleScroll()
-    return () => window.removeEventListener('scroll', throttledHandleScroll)
-  }, [lastScrollY, pathname])
+    
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll)
+      clearTimeout(timeoutId)
+    }
+  }, [lastScrollY, pathname, isVisible])
 
   const closeMenu = () => {
     setIsOpen(false)
