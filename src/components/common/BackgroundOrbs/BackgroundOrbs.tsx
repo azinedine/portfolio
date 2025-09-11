@@ -16,7 +16,7 @@ export function BackgroundOrbs() {
           repeat: Infinity,
           ease: "easeInOut" 
         }}
-        className="absolute top-20 right-20 w-[400px] h-[400px] bg-gradient-to-br from-primary-500/20 via-blue-500/15 to-cyan-500/10 rounded-full blur-3xl"
+        className="absolute top-20 right-10 sm:right-20 w-[200px] sm:w-[300px] lg:w-[400px] h-[200px] sm:h-[300px] lg:h-[400px] bg-gradient-to-br from-primary-500/20 via-blue-500/15 to-cyan-500/10 rounded-full blur-3xl"
       />
       
       <motion.div
@@ -30,7 +30,7 @@ export function BackgroundOrbs() {
           ease: "easeInOut",
           delay: 3
         }}
-        className="absolute bottom-20 left-20 w-[300px] h-[300px] bg-gradient-to-br from-purple-500/15 via-primary-500/20 to-pink-500/10 rounded-full blur-3xl"
+        className="absolute bottom-20 left-10 sm:left-20 w-[150px] sm:w-[250px] lg:w-[300px] h-[150px] sm:h-[250px] lg:h-[300px] bg-gradient-to-br from-purple-500/15 via-primary-500/20 to-pink-500/10 rounded-full blur-3xl"
       />
 
       <motion.div
@@ -44,7 +44,7 @@ export function BackgroundOrbs() {
           ease: "easeInOut",
           delay: 6
         }}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-gradient-to-br from-cyan-400/10 to-primary-400/15 rounded-full blur-2xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100px] sm:w-[150px] lg:w-[200px] h-[100px] sm:h-[150px] lg:h-[200px] bg-gradient-to-br from-cyan-400/10 to-primary-400/15 rounded-full blur-2xl"
       />
     </div>
   )
