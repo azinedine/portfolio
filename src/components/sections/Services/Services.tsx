@@ -11,9 +11,8 @@ export const Services = memo(() => {
   return (
     <section 
       id="services" 
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-center"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-start lg:snap-center"
       style={{ 
-        scrollSnapAlign: 'center',
         scrollSnapStop: 'always',
         height: '100vh',
         minHeight: '100vh'
