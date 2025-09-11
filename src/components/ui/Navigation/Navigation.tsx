@@ -35,11 +35,16 @@ export function Navigation() {
           opacity: isVisible ? 1 : 0 
         }}
         transition={{ 
-          duration: 0.4, 
-          ease: [0.25, 0.46, 0.45, 0.94] 
+          duration: 0.3, 
+          ease: [0.25, 0.46, 0.45, 0.94],
+          type: "tween"
         }}
         className="fixed top-0 left-0 right-0 z-50"
-        style={{ willChange: 'transform' }}
+        style={{ 
+          willChange: 'transform, opacity',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
+        }}
       >
         {/* Scroll Progress Bar */}
         <motion.div
