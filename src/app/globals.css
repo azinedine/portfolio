@@ -278,10 +278,40 @@
     @apply flex flex-col gap-3;
   }
   
-  /* Adjust scroll indicator positioning on mobile */
-  .scroll-indicator {
-    @apply bottom-4;
+/* Animation performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Smooth scroll indicator positioning */
+.scroll-indicator {
+  @apply bottom-4;
+}
+
+/* Service card animations */
+.service-card {
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
+}
+
+/* Prevent animation flicker */
+.motion-reduce {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+}
 }
 
 /* Landscape mobile adjustments */
