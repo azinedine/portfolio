@@ -55,7 +55,7 @@ export const Portfolio = memo(() => {
       <div className="absolute top-1/4 right-0 w-48 h-48 bg-gradient-to-br from-primary-600/4 to-blue-600/4 rounded-full blur-2xl" />
       <div className="absolute bottom-1/4 left-0 w-40 h-40 bg-gradient-to-br from-cyan-500/4 to-primary-500/4 rounded-full blur-2xl" />
 
-      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 -mt-20">
         {/* Section Header */}
         <PortfolioHeader
           categories={categories}
