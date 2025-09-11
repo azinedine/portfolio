@@ -97,11 +97,9 @@ export function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen flex items-center justify-center hero-bg snap-start lg:snap-center"
+      className="relative min-h-screen flex items-center justify-center hero-bg snap-start pt-24 sm:pt-28 md:pt-20"
       style={{ 
-        scrollSnapStop: 'always',
-        height: '100vh',
-        minHeight: '100vh'
+        scrollSnapStop: 'always'
       }}
     >
       {/* Background Elements */}
