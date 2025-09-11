@@ -51,15 +51,20 @@ export const Portfolio = memo(() => {
   return (
     <section 
       id="projects" 
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
-      style={{ scrollSnapAlign: 'center' }}
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-center"
+      style={{ 
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
+        height: '100vh',
+        minHeight: '100vh'
+      }}
     >
       {/* Background elements - Reduced complexity */}
       <div className="absolute inset-0 bg-dots opacity-5" />
       <div className="absolute top-1/4 right-0 w-48 h-48 bg-gradient-to-br from-primary-600/4 to-blue-600/4 rounded-full blur-2xl" />
       <div className="absolute bottom-1/4 left-0 w-40 h-40 bg-gradient-to-br from-cyan-500/4 to-primary-500/4 rounded-full blur-2xl" />
 
-      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 -mt-20">
+      <div className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         {/* Section Header */}
         <PortfolioHeader
           categories={categories}
