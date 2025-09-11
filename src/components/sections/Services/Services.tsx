@@ -11,11 +11,9 @@ export const Services = memo(() => {
   return (
     <section 
       id="services" 
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-start lg:snap-center"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-start"
       style={{ 
-        scrollSnapStop: 'always',
-        height: '100vh',
-        minHeight: '100vh'
+        scrollSnapStop: 'always'
       }}
       aria-label="Services offered by A.ZINEDDINE"
     >
