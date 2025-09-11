@@ -1,30 +1,32 @@
-'use client'
+"use client";
 
-import { motion, type Variants } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { PortfolioCard } from './PortfolioCard'
-import { type PortfolioItem } from './portfolioData'
+import { motion, type Variants } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { PortfolioCard } from "./PortfolioCard";
+import { type PortfolioItem } from "./portfolioData";
 
 type PortfolioGridProps = {
-  projects: PortfolioItem[]
-  containerVariants: Variants
-  itemVariants: Variants
-  onViewDetails?: (project: PortfolioItem) => void
-}
+  projects: PortfolioItem[];
+  containerVariants: Variants;
+  itemVariants: Variants;
+  onViewDetails?: (project: PortfolioItem) => void;
+};
 
-export function PortfolioGrid({ 
-  projects, 
-  containerVariants, 
+export function PortfolioGrid({
+  projects,
+  containerVariants,
   itemVariants,
-  onViewDetails
+  onViewDetails,
 }: PortfolioGridProps) {
   if (projects.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600 dark:text-white/70 text-lg">No projects found for the selected category.</p>
+        <p className="text-gray-600 dark:text-white/70 text-lg">
+          No projects found for the selected category.
+        </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -36,8 +38,11 @@ export function PortfolioGrid({
         animate="visible"
         className="mb-8"
       >
-        <div className="overflow-x-auto scrollbar-hide h-auto min-h-[400px] sm:h-[450px] md:h-[500px]">
-          <div className="flex gap-3 sm:gap-4 pb-4 h-full" style={{ width: 'max-content' }}>
+        <div className="overflow-x-auto scrollbar-hide h-auto ">
+          <div
+            className="flex gap-3 sm:gap-4 pb-4 h-full"
+            style={{ width: "max-content" }}
+          >
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -47,8 +52,8 @@ export function PortfolioGrid({
                 transition={{ delay: index * 0.1 }}
                 className="flex-shrink-0 w-72 sm:w-80 md:w-84"
               >
-                <PortfolioCard 
-                  project={project} 
+                <PortfolioCard
+                  project={project}
                   variants={itemVariants}
                   onViewDetails={onViewDetails}
                 />
@@ -78,5 +83,5 @@ export function PortfolioGrid({
         </Link>
       </motion.div>
     </>
-  )
+  );
 }
