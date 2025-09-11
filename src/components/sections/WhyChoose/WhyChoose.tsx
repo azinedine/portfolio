@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, memo, useMemo, useCallback } from 'react'
+import { useRef, memo, useMemo } from 'react'
 import { easeOut, motion, useInView } from 'framer-motion'
 import {
   Play,
@@ -72,7 +72,7 @@ export const WhyChoose = memo(() => {
       id="why-choose"
       ref={sectionRef}
       className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
-      style={{ position: 'relative' }}
+      style={{ scrollSnapAlign: 'center', position: 'relative' }}
     >
       {/* Background elements - Reduced complexity */}
       <div className="absolute inset-0 bg-dots opacity-10" />
