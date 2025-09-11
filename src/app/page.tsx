@@ -6,6 +6,7 @@ import { WhyChoose } from '@/components/sections/WhyChoose'
 import { Services } from '@/components/sections/Services'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { ContactCTA } from '@/components/sections/ContactCTA'
+import { Footer } from '@/components/sections/Footer'
 import { GlobalScrollIndicator } from '@/components/common/GlobalScrollIndicator'
 
 const HomePage = memo(() => {
@@ -51,6 +52,7 @@ const HomePage = memo(() => {
       <Services />
       <Portfolio />
       <ContactCTA />
+      <Footer />
       <GlobalScrollIndicator />
     </div>
   )
