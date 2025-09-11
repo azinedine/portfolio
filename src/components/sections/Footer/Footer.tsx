@@ -70,11 +70,9 @@ export function Footer() {
   return (
     <footer 
       id="footer"
-      className="relative bg-gray-50 dark:bg-background-primary border-t border-gray-200 dark:border-white/10 min-h-screen flex items-center justify-center snap-start lg:snap-center"
+      className="relative bg-gray-50 dark:bg-background-primary border-t border-gray-200 dark:border-white/10 min-h-screen flex items-center justify-center snap-start"
       style={{ 
-        scrollSnapStop: 'always',
-        height: '100vh',
-        minHeight: '100vh'
+        scrollSnapStop: 'always'
       }}
     >
       {/* Background elements */}
