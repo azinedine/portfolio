@@ -37,13 +37,20 @@ export function useNavigation(): UseNavigationReturn {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
       const progress = Math.min(currentScrollY / docHeight, 1) * 100
 
+      // Improved scroll direction detection with minimum scroll threshold
       const scrollDifference = Math.abs(currentScrollY - lastScrollY)
+      const minimumScrollThreshold = 10 // Minimum scroll distance to trigger hide/show
 
-      if (scrollDifference > 5) {
-        const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > 100
-        const isAtTop = currentScrollY < 100
+      if (scrollDifference > minimumScrollThreshold) {
+        const isScrollingDown = currentScrollY > lastScrollY
+        const isAtTop = currentScrollY < 50 // Show navbar when very close to top
+        const isNearBottom = currentScrollY > docHeight - 100 // Show navbar when near bottom
 
-        setIsVisible(isAtTop || !isScrollingDown)
+        // Show navigation when:
+        // 1. At the top of the page
+        // 2. Scrolling up
+        // 3. Near the bottom of the page
+        setIsVisible(isAtTop || !isScrollingDown || isNearBottom)
         setLastScrollY(currentScrollY)
       }
 
@@ -74,12 +81,18 @@ export function useNavigation(): UseNavigationReturn {
       setActiveSection(currentSection)
     }
 
+    // Optimized throttling for better performance (following memory guidance)
     let ticking = false
+    let lastCallTime = 0
+    const throttleDelay = 16 // ~60fps for smooth navigation behavior
+    
     const throttledHandleScroll = () => {
-      if (!ticking) {
+      const now = Date.now()
+      if (!ticking && now - lastCallTime >= throttleDelay) {
         requestAnimationFrame(() => {
           handleScroll()
           ticking = false
+          lastCallTime = now
         })
         ticking = true
       }
