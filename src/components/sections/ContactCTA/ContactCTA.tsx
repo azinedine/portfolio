@@ -51,8 +51,13 @@ export const ContactCTA = memo(() => {
   return (
     <section 
       id="contact-cta" 
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
-      style={{ scrollSnapAlign: 'center' }}
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center snap-center"
+      style={{ 
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
+        height: '100vh',
+        minHeight: '100vh'
+      }}
     >
       {/* Background elements - Reduced complexity */}
       <div className="absolute inset-0 bg-dots opacity-10" />
