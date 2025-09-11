@@ -11,13 +11,13 @@ export const Services = memo(() => {
   return (
     <section 
       id="services" 
-      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 flex items-center justify-center overflow-hidden snap-center"
       aria-label="Services offered by A.ZINEDDINE"
     >
       <ServicesBackground />
       
       <motion.div 
-        className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8"
+        className="container-responsive relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8 -mt-20"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -29,7 +29,7 @@ export const Services = memo(() => {
         <ServicesHeader />
         
         <motion.div 
-          className="py-4 sm:py-6 md:py-8"
+          className="py-4 sm:py-6 md:py-8 mb-8 sm:mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
