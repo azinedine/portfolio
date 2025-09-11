@@ -27,6 +27,15 @@ export function Navigation() {
 
   return (
     <>
+      {/* Always visible Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-500 via-primary-400 to-purple-500 z-50"
+        style={{ 
+          width: `${scrollProgress}%`,
+          willChange: 'width'
+        }}
+      />
+
       {/* Main Navigation */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
@@ -39,22 +48,13 @@ export function Navigation() {
           ease: [0.25, 0.46, 0.45, 0.94],
           type: "tween"
         }}
-        className="fixed top-0 left-0 right-0 z-50"
+        className="fixed top-0 left-0 right-0 z-40"
         style={{ 
           willChange: 'transform, opacity',
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden'
         }}
       >
-        {/* Scroll Progress Bar */}
-        <motion.div
-          className="absolute top-0 left-0 h-1 bg-gradient-to-r from-primary-500 via-primary-400 to-purple-500 z-10"
-          style={{ 
-            width: `${scrollProgress}%`,
-            willChange: 'width'
-          }}
-        />
-
         <nav className={cn(
           'relative transition-all duration-500 w-full',
           isScrolled
