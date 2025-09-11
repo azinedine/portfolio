@@ -97,8 +97,13 @@ export function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen pt-20 sm:pt-24 md:pt-20 pb-12 sm:pb-16 md:pb-20 flex items-center justify-center overflow-hidden hero-bg snap-center"
-      style={{ scrollSnapAlign: 'center' }}
+      className="relative min-h-screen pt-20 sm:pt-24 md:pt-20 pb-12 sm:pb-16 md:pb-20 flex items-center justify-center hero-bg snap-center"
+      style={{ 
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
+        height: '100vh',
+        minHeight: '100vh'
+      }}
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
