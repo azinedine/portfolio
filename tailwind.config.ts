@@ -157,6 +157,10 @@ const config: Config = {
       },
     },
   },
+  plugins: [
+    // Line-clamp is built-in to Tailwind CSS v3.3+
+    // No need for @tailwindcss/line-clamp plugin
+  ],
 } satisfies Config
 
 export default config
