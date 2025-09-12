@@ -363,14 +363,7 @@
   perspective: 1000px;
 }
 
-/* Service card text truncation */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/* Service card text truncation - using Tailwind's built-in line-clamp utilities */
 .scroll-indicator {
   @apply bottom-4;
 }
