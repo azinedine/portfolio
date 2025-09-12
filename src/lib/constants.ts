@@ -13,10 +13,10 @@ export const APP_CONFIG = {
     name: 'Developer Portfolio',
     description: 'Full Stack Developer specializing in React, Next.js, React Native, Vue.js, Node.js, and Laravel',
     author: 'Developer',
-    url: 'https://yourportfolio.com',
-    email: 'hello@developer.com',
-    phone: '+1 (555) 123-4567',
-    location: 'San Francisco, CA',
+    url: 'https://portfolio-git-main-azinedines-projects.vercel.app/contact',
+    email: 'amarichezineddine@gmail.com',
+    phone: '+213 (540) 128-550',
+    location: 'Algeria Aïn Defla, Khemis Miliana',
     timezone: 'PST (UTC-8)',
   } as const
   
@@ -38,10 +38,10 @@ export const APP_CONFIG = {
 
     // Email service configuration
   export const EMAIL_CONFIG: EmailServiceConfig = {
-    provider: 'emailjs', // Change to your preferred provider
+    provider: 'emailjs',
     serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
     templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-    apiKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+    apiKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC,
   } as const;
 
   export const TECH_STACK = {
