@@ -7,6 +7,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { APP_CONFIG, SOCIAL_LINKS } from '@/config';
 
 // Types
 export interface ContactInfo {
@@ -43,27 +44,27 @@ export const contactInfo: ContactInfo[] = [
     icon: Mail,
     label: "Email",
     value: "a.zineddine@dev.com",
-    href: "mailto:amarichezineddine@gmail.com",
+    href: `mailto:${APP_CONFIG.email}`,
     color: "text-red-500",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+213 540 128 550",
-    href: "tel:+213540128550",
+    value: APP_CONFIG.phone,
+    href: `tel:${APP_CONFIG.phone.replace(/\s/g, '')}`,
     color: "text-green-500",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "Khemis Miliana, Algeria",
+    value: APP_CONFIG.location,
     href: "#",
     color: "text-blue-500",
   },
   {
     icon: Clock,
     label: "Timezone",
-    value: "CET (UTC+1)",
+    value: APP_CONFIG.timezone,
     href: "#",
     color: "text-purple-500",
   },
@@ -74,19 +75,19 @@ export const socialLinks: SocialLink[] = [
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/azinedine",
+    href: SOCIAL_LINKS.github,
     color: "hover:text-gray-900 dark:hover:text-white",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/zineddineamariche/",
+    href: SOCIAL_LINKS.linkedin,
     color: "hover:text-blue-600",
   },
   {
     icon: Twitter,
     label: "Twitter",
-    href: "https://x.com/zinedineamarich",
+    href: SOCIAL_LINKS.twitter,
     color: "hover:text-blue-400",
   },
 ];
