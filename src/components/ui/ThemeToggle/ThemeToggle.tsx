@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Sun, Moon, Monitor } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { useThemeContext } from '@/components/providers/ThemeProvider';
 
 export function ThemeToggle() {
@@ -20,8 +20,6 @@ export function ThemeToggle() {
         return <Sun className="w-5 h-5" />;
       case 'dark':
         return <Moon className="w-5 h-5" />;
-      case 'system':
-        return <Monitor className="w-5 h-5" />;
       default:
         return <Sun className="w-5 h-5" />;
     }
