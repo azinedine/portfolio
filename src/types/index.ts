@@ -130,7 +130,7 @@ export interface Project {
   }
   
   // Theme types
-  export type Theme = 'light' | 'dark' | 'system'
+  export type Theme = 'light' | 'dark'
   
   export interface ThemeContextType {
     theme: Theme
