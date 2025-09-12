@@ -114,7 +114,7 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
             <span className="text-xs text-gray-500 dark:text-white/50">{project.date}</span>
           </div>
 
-          <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
             {project.title}
           </h3>
 
@@ -123,17 +123,17 @@ export const ProjectCard = memo(({ project, variants, onViewDetails  }: ProjectC
           </p>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
+          <div className="flex gap-1.5 sm:gap-2 mb-4 overflow-x-auto scrollbar-hide">
             {project.technologies.slice(0, 3).map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-1 bg-gray-200/50 dark:bg-white/10 text-gray-700 dark:text-white/80 text-xs rounded-md font-medium"
+                className="px-2 py-1 bg-gray-200/50 dark:bg-white/10 text-gray-700 dark:text-white/80 text-xs rounded-md font-medium flex-shrink-0 whitespace-nowrap"
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > 3 && (
-              <span className="px-2 py-1 bg-gray-200/50 dark:bg-white/10 text-gray-700 dark:text-white/80 text-xs rounded-md font-medium">
+              <span className="px-2 py-1 bg-gray-200/50 dark:bg-white/10 text-gray-700 dark:text-white/80 text-xs rounded-md font-medium flex-shrink-0 whitespace-nowrap">
                 +{project.technologies.length - 3}
               </span>
             )}
