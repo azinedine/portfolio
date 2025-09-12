@@ -82,7 +82,7 @@ export function PortfolioCard({ project, variants, onViewDetails }: PortfolioCar
             <span className="text-xs text-gray-500 dark:text-white/50">{project.status}</span>
           </div>
 
-          <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-400 transition-colors">
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-400 transition-colors truncate">
             {project.title}
           </h3>
 
