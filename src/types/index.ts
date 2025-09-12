@@ -106,6 +106,14 @@ export interface Project {
     published: boolean
   }
   
+  export interface EmailServiceConfig {
+  provider: 'emailjs' | 'resend' | 'nodemailer' | 'webhook';
+  apiKey?: string;
+  serviceId?: string;
+  templateId?: string;
+  endpoint?: string;
+}
+
   // Animation variants
   export interface AnimationVariants {
     hidden: {
