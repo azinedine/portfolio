@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
 import { useNavigation } from './useNavigation'
 import { Logo } from './Logo'
 import { DesktopNav } from './DesktopNav'
@@ -55,12 +54,7 @@ export function Navigation() {
           backfaceVisibility: 'hidden'
         }}
       >
-        <nav className={cn(
-          'relative transition-all duration-500 w-full',
-          isScrolled
-            ? 'bg-white/95 dark:bg-transparent backdrop-blur-2xl shadow-2xl shadow-primary-500/10 border-b border-gray-200/50 dark:border-gray-800/50'
-            : 'bg-white/90 dark:bg-transparent backdrop-blur-xl shadow-xl'
-        )}>
+        <nav className="relative transition-all duration-500 w-full bg-white/90 dark:bg-transparent backdrop-blur-2xl shadow-2xl shadow-primary-500/10 border-b border-gray-200/50 dark:border-gray-800/50">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <Logo onClick={closeMenu} />
 
