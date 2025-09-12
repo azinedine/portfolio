@@ -54,7 +54,7 @@ Your contact form is now set up to send emails using EmailJS! This is a client-s
    ```env
    NEXT_PUBLIC_EMAILJS_SERVICE_ID=your-service-id
    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your-template-id
-   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your-public-key
+   NEXT_PUBLIC_EMAILJS_PUBLIC=your-public-key
    ```
 
 6. **Test the Form:**
