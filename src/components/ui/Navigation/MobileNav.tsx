@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, X, Sparkles } from 'lucide-react'
+import { ArrowUpRight, X, Sparkles, Calendar } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navigationItems } from './navigationItems'
 
@@ -55,17 +56,34 @@ export function MobileNav({ isOpen, activeItemName, onClose }: MobileNavProps) {
               >
                 {/* Personal logo/avatar */}
                 <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                    AZ
-                  </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white dark:border-gray-900 animate-pulse" />
+                  <motion.div
+                    whileHover={{ 
+                      rotate: [0, -5, 5, 0],
+                      scale: 1.05,
+                    }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center p-1 bg-primary-900 dark:bg-transparent shadow-lg"
+                  >
+                    <Image 
+                      src="/logo.png" 
+                      alt="A.ZINEDDINE Logo" 
+                      width={44} 
+                      height={44}
+                      className="transition-all duration-300 rounded-xl"
+                    />
+                  </motion.div>
                 </div>
                 
                 {/* Personal information */}
                 <div>
-                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">A.ZINEDDINE</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold text-lg text-gray-900 dark:text-white">A.ZINEDDINE</h3>
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">Full Stack Developer</p>
-                
+                  <div className="flex items-center gap-1 mt-1">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Available for projects</span>
+                  </div>
                 </div>
               </motion.div>
               
@@ -188,53 +206,80 @@ export function MobileNav({ isOpen, activeItemName, onClose }: MobileNavProps) {
                 </div>
                 
                 {/* Contact methods grid */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-2">
                   <motion.a
                     href="mailto:amarichezineddine@gmail.com"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-md"
+                    className="flex flex-col items-center justify-center gap-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-md"
                   >
                     <span className="text-lg">📧</span>
-                    <span className="text-sm font-medium">Email</span>
+                    <span className="text-xs font-medium">Email</span>
                   </motion.a>
                   
                   <motion.a
                     href="tel:+213540128550"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-md"
+                    className="flex flex-col items-center justify-center gap-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-md"
                   >
                     <span className="text-lg">📞</span>
-                    <span className="text-sm font-medium">Call</span>
+                    <span className="text-xs font-medium">Call</span>
+                  </motion.a>
+                  
+                  <motion.a
+                    href="https://calendly.com/azineddine" // Replace with your actual Calendly link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex flex-col items-center justify-center gap-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    <span className="text-xs font-medium">Meet</span>
                   </motion.a>
                 </div>
                 
-                {/* Main CTA button */}
-                <motion.button
-                  onClick={() => {
-                    onClose()
-                    setTimeout(() => {
-                      if (typeof window !== 'undefined') {
-                        window.location.href = '/contact'
-                      }
-                    }, 150)
-                  }}
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group w-full bg-gradient-to-r from-primary-500 via-primary-600 to-purple-600 hover:from-primary-400 hover:via-primary-500 hover:to-purple-500 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 relative overflow-hidden"
-                >
-                  {/* Animated background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                {/* Main CTA buttons */}
+                <div className="grid grid-cols-2 gap-3">
+                  <motion.button
+                    onClick={() => {
+                      onClose()
+                      setTimeout(() => {
+                        if (typeof window !== 'undefined') {
+                          window.location.href = '/projects'
+                        }
+                      }, 150)
+                    }}
+                    whileHover={{ scale: 1.02, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-semibold py-3 px-4 rounded-xl border-2 border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 shadow-md hover:shadow-lg relative overflow-hidden"
+                  >
+                    <span className="text-lg">💼</span>
+                    <span className="text-sm">Portfolio</span>
+                  </motion.button>
                   
-                  <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                  <span className="relative z-10 text-base">{`Let's Work Together`}</span>
-                  <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                </motion.button>
+                  <motion.button
+                    onClick={() => {
+                      onClose()
+                      setTimeout(() => {
+                        if (typeof window !== 'undefined') {
+                          window.location.href = '/contact'
+                        }
+                      }, 150)
+                    }}
+                    whileHover={{ scale: 1.02, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group flex items-center justify-center gap-2 bg-gradient-to-r from-primary-500 via-primary-600 to-purple-600 hover:from-primary-400 hover:via-primary-500 hover:to-purple-500 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg relative overflow-hidden"
+                  >
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <span className="text-sm">Contact</span>
+                  </motion.button>
+                </div>
                 
                 {/* Footer note */}
                 <p className="text-center text-xs text-gray-500 dark:text-gray-400">
-                  Response within 24 hours • Free consultation
+                  Book a meeting • Response within 24 hours • Free consultation
                 </p>
               </div>
             </motion.div>
