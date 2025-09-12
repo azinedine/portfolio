@@ -160,6 +160,14 @@ export interface Project {
     message: string
   }
   
+  // Email service configuration type
+  export interface EmailServiceConfig {
+    provider: 'emailjs' | 'resend' | 'nodemailer' | 'webhook'
+    serviceId?: string
+    templateId?: string
+    apiKey?: string
+  }
+  
   // Component prop types
   export interface ButtonProps {
     children: React.ReactNode
