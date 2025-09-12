@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import emailjs from '@emailjs/browser';
 import { FormData } from "./data";
+import { ERROR_MESSAGES, FORM_VALIDATION_RULES, FORM_SUCCESS_TIMEOUT, APP_CONFIG } from '@/config';
+import { checkEmailJSConfiguration } from '@/utils/email';
 
 interface FormErrors {
   name?: string;
@@ -43,27 +45,26 @@ export const useContactForm = (): UseContactFormReturn => {
   const validateField = useCallback((name: string, value: string): string | undefined => {
     switch (name) {
       case 'name':
-        if (!value.trim()) return 'Name is required';
-        if (value.trim().length < 2) return 'Name must be at least 2 characters';
-        if (value.trim().length > 50) return 'Name must be less than 50 characters';
+        if (!value.trim()) return ERROR_MESSAGES.NAME_REQUIRED;
+        if (value.trim().length < FORM_VALIDATION_RULES.name.minLength) return ERROR_MESSAGES.NAME_TOO_SHORT;
+        if (value.trim().length > FORM_VALIDATION_RULES.name.maxLength) return ERROR_MESSAGES.NAME_TOO_LONG;
         return undefined;
 
       case 'email':
-        if (!value.trim()) return 'Email is required';
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) return 'Please enter a valid email address';
+        if (!value.trim()) return ERROR_MESSAGES.EMAIL_REQUIRED;
+        if (!FORM_VALIDATION_RULES.email.pattern.test(value)) return ERROR_MESSAGES.EMAIL_INVALID;
         return undefined;
 
       case 'subject':
-        if (!value.trim()) return 'Subject is required';
-        if (value.trim().length < 5) return 'Subject must be at least 5 characters';
-        if (value.trim().length > 100) return 'Subject must be less than 100 characters';
+        if (!value.trim()) return ERROR_MESSAGES.SUBJECT_REQUIRED;
+        if (value.trim().length < FORM_VALIDATION_RULES.subject.minLength) return ERROR_MESSAGES.SUBJECT_TOO_SHORT;
+        if (value.trim().length > FORM_VALIDATION_RULES.subject.maxLength) return ERROR_MESSAGES.SUBJECT_TOO_LONG;
         return undefined;
 
       case 'message':
-        if (!value.trim()) return 'Message is required';
-        if (value.trim().length < 10) return 'Message must be at least 10 characters';
-        if (value.trim().length > 2000) return 'Message must be less than 2000 characters';
+        if (!value.trim()) return ERROR_MESSAGES.MESSAGE_REQUIRED;
+        if (value.trim().length < FORM_VALIDATION_RULES.message.minLength) return ERROR_MESSAGES.MESSAGE_TOO_SHORT_FORM;
+        if (value.trim().length > FORM_VALIDATION_RULES.message.maxLength) return ERROR_MESSAGES.MESSAGE_TOO_LONG;
         return undefined;
 
       default:
@@ -110,14 +111,7 @@ export const useContactForm = (): UseContactFormReturn => {
   }, [errors, error]);
 
   const isEmailJSConfigured = useCallback((): boolean => {
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    
-    return !!(serviceId && templateId && publicKey && 
-           serviceId !== 'your-service-id' && 
-           templateId !== 'your-template-id' && 
-           publicKey !== 'your-public-key');
+    return checkEmailJSConfiguration();
   }, []);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
@@ -130,20 +124,20 @@ export const useContactForm = (): UseContactFormReturn => {
       const formErrors = validateForm();
       if (Object.keys(formErrors).length > 0) {
         setErrors(formErrors);
-        setError('Please fix the errors above and try again.');
+        setError(ERROR_MESSAGES.FORM_VALIDATION_ERROR);
         return;
       }
 
       // Check if EmailJS is configured
       if (!isEmailJSConfigured()) {
-        setError('Email service is not configured. Please contact me directly at amarichezineddine@gmail.com');
+        setError(ERROR_MESSAGES.EMAIL_SERVICE_NOT_CONFIGURED);
         return;
       }
 
       // EmailJS configuration
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC!;
 
       // Prepare template parameters
       const templateParams = {
@@ -152,7 +146,7 @@ export const useContactForm = (): UseContactFormReturn => {
         subject: formData.subject.trim(),
         message: formData.message.trim(),
         budget: formData.budget || 'Not specified',
-        to_email: 'amarichezineddine@gmail.com',
+        to_email: APP_CONFIG.email,
         reply_to: formData.email.trim(),
       };
 
@@ -163,11 +157,11 @@ export const useContactForm = (): UseContactFormReturn => {
       setFormData(initialFormData);
       setErrors({});
       
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
+      // Reset success message after timeout
+      setTimeout(() => setIsSubmitted(false), FORM_SUCCESS_TIMEOUT);
     } catch (error: unknown) {
       console.error('EmailJS error:', error);
-      setError('Failed to send message. Please try again or contact me directly at amarichezineddine@gmail.com');
+      setError(ERROR_MESSAGES.EMAIL_SEND_FAILED);
     } finally {
       setIsSubmitting(false);
     }
