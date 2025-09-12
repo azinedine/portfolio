@@ -1,4 +1,5 @@
 // Application constants and configuration
+import { EmailServiceConfig } from '@/types'
 import packageJson from '../../package.json'
 
 export const APP_VERSION = packageJson.version
@@ -34,6 +35,15 @@ export const APP_CONFIG = {
     { name: 'Contact', href: '/contact' },
   ] as const
   
+
+    // Email service configuration
+  export const EMAIL_CONFIG: EmailServiceConfig = {
+    provider: 'emailjs', // Change to your preferred provider
+    serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+    apiKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+  } as const;
+
   export const TECH_STACK = {
     frontend: [
       'React.js',
