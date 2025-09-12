@@ -27,27 +27,13 @@ export function ThemeToggle() {
     }
   };
 
-  const getTooltip = () => {
-    switch (theme) {
-      case 'light':
-        return 'Switch to dark mode';
-      case 'dark':
-        return 'Switch to system mode';
-      case 'system':
-        return 'Switch to light mode';
-      default:
-        return 'Toggle theme';
-    }
-  };
-
   return (
     <motion.button
       onClick={toggleTheme}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className="group relative p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-      title={getTooltip()}
-      aria-label={getTooltip()}
+      aria-label="Toggle theme"
     >
       <motion.div
         key={theme}
@@ -59,12 +45,6 @@ export function ThemeToggle() {
       >
         {getIcon()}
       </motion.div>
-      
-      {/* Tooltip */}
-      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-        {getTooltip()}
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-100" />
-      </div>
     </motion.button>
   );
 }
