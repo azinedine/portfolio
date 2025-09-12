@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { APP_CONFIG } from '@/config';
+import { checkEmailJSConfiguration } from '@/utils/email';
 import { budgetOptions } from "./data";
 import { useContactForm } from "./useContactForm";
 
@@ -17,16 +19,7 @@ const ContactForm = () => {
     clearError
   } = useContactForm();
 
-  const isEmailJSConfigured = () => {
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    
-    return serviceId && templateId && publicKey && 
-           serviceId !== 'your-service-id' && 
-           templateId !== 'your-template-id' && 
-           publicKey !== 'your-public-key';
-  };
+  const isEmailJSConfigured = checkEmailJSConfiguration;
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 shadow-sm">
@@ -50,10 +43,10 @@ const ContactForm = () => {
               <p className="text-amber-700 dark:text-amber-400 text-sm">
                 Please contact me directly at{' '}
                 <a 
-                  href="mailto:amarichezineddine@gmail.com" 
+                  href={`mailto:${APP_CONFIG.email}`} 
                   className="underline hover:no-underline"
                 >
-                  amarichezineddine@gmail.com
+                  {APP_CONFIG.email}
                 </a>
                 {' '}or set up EmailJS following the instructions in EMAIL_SETUP.md
               </p>
